@@ -1,21 +1,119 @@
-MIT License
+# AIDDM Proprietary License Agreement
+**Version 1.0 — 2025**  
+**Copyright © 2025 Tsai Spark.  
+All Rights Reserved.**
 
-Copyright (c) 2025 AIDDM Institute
+## 1. Definitions
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+For the purpose of this License:
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+1. **“AIDDM”** refers to the AI Document-Driven Methodology, including all concepts, workflows, specifications, schemas, templates, meta-models, naming conventions, traceability rules, and development guidelines created by the Licensor.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+2. **“Software”** means all AIDDM-related source code, binaries, libraries, scripts, and components, including but not limited to:
+   - AIDDM CE SDK  
+   - AIDoC Tools  
+   - AIDDM Parser / Meta-Model Engine  
+   - MCP Server and MCP Pipeline  
+   - AIDeC Cloud Platform Components  
+   - AIDeP Marketplace Infrastructure  
+   - AIDeM Migration Tools  
+   - AIDeE Estimation Engine  
+   - Free / Pro / Enterprise Plugins  
+   - Any other modules, utilities, or tools provided by the Licensor.
+
+3. **“Documentation”** means all AIDDM template files, specifications, manuals, examples, reference materials, including SRS/SAS/SDS/STS/VDP/TR/ACR templates and meta-model definitions.
+
+4. **“Generated Output”** means any documents, diagrams, models, metadata, reports, or code produced using the Software, Documentation, or AIDDM methodology.
+
+5. **“Licensor”** refers to **Tsai Spark**, the creator and exclusive owner of all AIDDM intellectual property.
+
+6. **“Licensee”** refers to the individual, company, or entity granted limited rights under this License.
+
+## 2. License Grant (Limited Use Only)
+
+Subject to the terms of this Agreement, the Licensor grants the Licensee a **non-exclusive, non-transferable, non-sublicensable, revocable** license to:
+
+- Install and use the Software and Documentation solely for internal purposes.  
+- Generate documents or code using the Software for the Licensee’s internal development projects.  
+- Evaluate the AIDDM methodology and tools.
+
+No rights are granted unless explicitly stated.
+
+## 3. Prohibited Actions
+
+The Licensee **MUST NOT**, under any circumstances:
+
+1. Copy, distribute, publish, or disclose the Software or Documentation to any third party.  
+2. Modify, fork, translate, reverse-engineer, decompile, or create derivative works of the Software or Documentation.  
+3. Use the Software to build competing methodologies, SDKs, parsers, plugins, or platforms.  
+4. Publish or redistribute AIDDM templates, meta-models, schemas, or workflow definitions.  
+5. Offer the Software, Documentation, or Generated Output as a service to third parties without written permission.  
+6. Circumvent, disable, or bypass any licensing, authentication, or subscription mechanisms.  
+7. Train AI models using the Software, Documentation, or Generated Output.
+
+Any violation immediately terminates the License.
+
+## 4. Ownership and Intellectual Property
+
+1. All rights, titles, and interests in **AIDDM**, the Software, the Documentation, and the meta-models remain the **exclusive property of the Licensor**.  
+2. This License **does not** transfer ownership.  
+3. Generated Output may be used internally by the Licensee, but:
+   - The underlying templates, schemas, and meta-models remain proprietary.  
+   - The Licensor retains copyright over all AIDDM structural patterns and formats.
+
+## 5. Confidentiality
+
+The Software, Documentation, and internal AIDDM structures are classified as **Confidential Information**.
+
+The Licensee must maintain strict confidentiality and prevent:
+
+- Redistribution  
+- Copying  
+- Unauthorized access  
+- Exposure to contractors or external parties  
+
+unless permission is granted in writing by the Licensor.
+
+## 6. Commercial Restrictions
+
+Unless explicitly authorized by a separate commercial agreement, the Licensee **MAY NOT**:
+
+- Sell, license, or distribute any product derived from AIDDM  
+- Provide consulting or development services based on AIDDM  
+- Integrate AIDDM into commercial tools, IDE extensions, plugins, or platforms  
+- Use AIDDM for SaaS or paid services  
+
+Commercial rights require a separate Enterprise License.
+
+## 7. Termination
+
+This License terminates immediately and automatically if the Licensee:
+
+- Violates any part of this Agreement  
+- Attempts to redistribute AIDDM assets  
+- Uses AIDDM for competitive or unauthorized commercial purposes  
+
+Upon termination, the Licensee must delete all copies of the Software, Documentation, and confidential AIDDM materials.
+
+## 8. No Warranty
+
+The Software and Documentation are provided **“AS IS”**, without any warranty of:
+
+- Performance  
+- Accuracy  
+- Reliability  
+- Fitness for a particular purpose  
+
+The Licensor is not liable for damages arising from use.
+
+## 9. Governing Law
+
+This License is governed by the laws of **Taiwan (Republic of China)**, without regard to conflict-of-law principles.
+
+## 10. Entire Agreement
+
+This document constitutes the complete and exclusive agreement between the parties regarding the Software and supersedes all prior agreements.
+
+---
+
+# **END OF LICENSE**
