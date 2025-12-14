@@ -1,118 +1,154 @@
 ---
 document: SCS
 id: SCS-PYTHON
-version: 1.0.0
-layer: Language
-language: Python
+version: 1.1.0
+stage: Stable
 status: Active
 owner: AIDDM / Community
+scope:
+  - language: python
+  - level: language
 applies_with:
   - SCS_STD.md
 ---
 
 # Software Coding Standard — Python
 
-## Role & Positioning (Normative)
+## 1. Role & Positioning (Normative)
 
-This document defines **Python-specific coding constraints and conventions**
-within the AIDDM Software Coding Standard (SCS) model.
+This document defines **Python-specific coding standards**
+within the AIDDM SCS framework.
 
-This document represents **Layer 2 (Language Foundation)** and MUST be applied
-together with `SCS_STD.md`.
-
-In case of conflict with organizational or customer-specific coding rules,
-**language constraints take precedence** unless a safe, equivalent alternative
-exists.
+It represents **Language Layer Standards**
+and MUST be applied together with `SCS_STD.md`.
 
 ---
 
-## Language References
+## 2. Language Baseline
 
-The Python coding standard aligns with the following publicly available
-and widely adopted references:
+This standard aligns with:
+- PEP 8 — Style Guide for Python Code
+- PEP 257 — Docstring Conventions
 
-- **PEP 8** — Style Guide for Python Code
-- **PEP 257** — Docstring Conventions
-
-These references define the baseline for Python syntax, naming,
-formatting, and documentation practices.
-
-This document **does not restate** the referenced standards.
+These references define syntax and formatting baselines
+and are not restated here.
 
 ---
 
-## Python-Specific Rules
+## 3. Standard Items
 
-### SCS-PY-001 — Readability over cleverness
+### SCS-PY-001 — Explicitness over cleverness
 
-**description**  
-Python code MUST prioritize readability and explicitness over compact or
-clever expressions.
+#### description
+Python code should favor explicit, readable constructs
+over compact or clever expressions that obscure intent.
 
-**rationale**  
-Readable code improves long-term maintainability and reduces ambiguity for
-both human reviewers and AI-assisted tooling.
+#### applies_to
+- language: python
+- construct: expression
+- readability: explicit
 
----
+#### role
+- AI
+- Human
 
-### SCS-PY-002 — Explicit error handling
+#### intent
+Favor explicit Python constructs.
 
-**description**  
-Exceptions MUST be handled explicitly. Broad or silent exception handling
-(e.g., bare `except`) SHOULD be avoided.
-
-**rationale**  
-Explicit error handling improves diagnosability and prevents unintended
-control flow masking.
-
----
-
-### SCS-PY-003 — Clear function and variable naming
-
-**description**  
-Function and variable names SHOULD be descriptive and follow standard
-Python naming conventions.
-
-**rationale**  
-Clear naming is essential for readability, testability, and AI code
-generation stability.
+#### severity
+MUST
 
 ---
 
-### SCS-PY-004 — Docstrings for public interfaces
+### SCS-PY-002 — Explicit exception handling
 
-**description**  
-Public functions, classes, and modules SHOULD include docstrings that
-describe intent, inputs, and outputs.
+#### description
+Exceptions must be handled explicitly.
+Broad exception handling (e.g., bare `except`)
+should be avoided unless fully justified.
 
-**rationale**  
-Docstrings serve as both human documentation and machine-readable intent
-for tooling and AI systems.
+#### applies_to
+- language: python
+- construct: exception_handling
+- handler: explicit_only
 
----
+#### role
+- AI
+- Human
 
-### SCS-PY-005 — Deterministic behavior
+#### intent
+Prevent hidden control flow masking.
 
-**description**  
-Python code SHOULD avoid hidden state, non-deterministic behavior, or
-side effects that are not clearly expressed.
-
-**rationale**  
-Deterministic code is easier to test, reason about, and safely generate
-using AI-assisted workflows.
-
----
-
-## Compatibility & Extension
-
-- This document MAY be extended by community-contributed Python standards.
-- Additional rules MUST NOT conflict with `SCS_STD.md`.
-- Organization-specific preferences MUST be defined in a separate
-  Layer 3 document (e.g., `SCS_Org.md`).
+#### severity
+MUST
 
 ---
 
-## Notes
+### SCS-PY-003 — Typed data structures
 
-This document intentionally provides a **minimal but sufficient**
-Python language standard to demonstrate SCS composability and layering.
+#### description
+Data-only structures such as DTOs, Results, Reports, or Models
+should be explicitly typed and immutable where practical.
+
+#### applies_to
+- language: python
+- element: class
+- purpose: data_container
+- mutability: immutable_preferred
+
+#### role
+- AI
+- Human
+
+#### intent
+Promote safe and predictable data structures.
+
+#### severity
+SHOULD
+
+---
+
+### SCS-PY-004 — Boundary input validation
+
+#### description
+External inputs (e.g., CLI arguments or API requests)
+should be validated and typed at system boundaries.
+
+#### applies_to
+- language: python
+- input_boundary: external
+- validation: required
+
+#### role
+- AI
+- Human
+
+#### intent
+Ensure correctness of external inputs.
+
+#### severity
+SHOULD
+
+---
+
+### SCS-PY-005 — Deterministic core logic
+
+#### description
+Core logic should avoid hidden state,
+non-deterministic behavior, or side effects
+that are not explicitly expressed.
+
+#### applies_to
+- language: python
+- behavior: deterministic
+- side_effects: explicit_only
+
+#### role
+- AI
+- Human
+
+#### intent
+Maintain predictable Python execution.
+
+#### severity
+MUST
