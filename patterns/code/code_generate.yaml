@@ -1,0 +1,22 @@
+id: code_generate
+type: generate
+artifact: CODE
+
+description: >
+  Generate source code based on the Code Scope defined in VDP.
+  This step performs code generation only and does not imply correctness
+  or completion.
+
+inputs:
+  - vdp
+  - srs
+  - sds
+
+outputs:
+  - source_code
+
+rules:
+  validate: false
+  run_tests: false
+  generate_tr: false
+  commit: false

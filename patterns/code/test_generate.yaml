@@ -1,0 +1,21 @@
+id: test_generate
+type: generate
+artifact: TEST_CODE
+
+description: >
+  Generate test code based on VDP Test Scope and STS.
+  This step generates test artifacts only and does not execute tests
+  or imply test success.
+
+inputs:
+  - vdp
+  - sts
+  - source_code
+
+outputs:
+  - test_code
+
+rules:
+  execute_tests: false
+  generate_tr: false
+  modify_source: false
