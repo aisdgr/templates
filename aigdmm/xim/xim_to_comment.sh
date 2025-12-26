@@ -1,8 +1,14 @@
 #!/usr/bin/env bash
 # ----------------------------------------
 # XIM → Git Commit Message Converter
-# ----------------------------------------
+# Version: 1.1.0
 # Author: AIDDM / XIM
+#
+# CHANGELOG:
+# - v1.1.0
+#   * Robust enum block parsing (TYPE / TARGET / LANGUAGE)
+#   * Fix missing scope(test) issue
+#   * Structure-driven parsing (not layout-driven)
 # ----------------------------------------
 
 set -e
@@ -10,7 +16,7 @@ set -e
 # ---------- help ----------
 show_help() {
   cat <<'EOF'
-XIM → Git Commit Message Converter
+XIM → Git Commit Message Converter (v1.1.0)
 
 USAGE:
   ./xim_to_comment.sh <xim-file.md>
@@ -19,15 +25,12 @@ EXAMPLES:
   # Preview commit message
   ./xim_to_comment.sh xim.md
 
-  # Commit directly using XIM as source
-  git commit -F <(./xim_to_comment.sh xim.md)
-
-  # Save commit message to file
-  ./xim_to_comment.sh xim.md > COMMIT_MSG.txt
-  git commit -F COMMIT_MSG.txt
+  # Save commit message to file (Windows / cross-platform)
+  ./xim_to_comment.sh xim.md > .git/COMMIT_MSG
+  git commit -F .git/COMMIT_MSG
 
 DESCRIPTION:
-  This script converts a XIM (Execution / eXchange Implementation Memo)
+  Convert a XIM (Execution / eXchange Implementation Memo)
   into a deterministic Git commit message.
 
 MAPPING RULES:
@@ -45,9 +48,9 @@ MAPPING RULES:
   - DETAIL  -> first body line
   - Others  -> commit body
 
-NOTES:
-  - XIM is treated as a contract, not a prompt.
-  - This tool performs structure mapping only (no AI inference).
+DESIGN NOTES:
+  - XIM is treated as a contract, not a prompt
+  - Parsing is structure-based, not layout-based
 EOF
 }
 
@@ -74,19 +77,28 @@ trim() {
   sed 's/^[[:space:]]*//;s/[[:space:]]*$//'
 }
 
-# ---------- extract fields ----------
+# Parse enum value under a block like:
+# - TYPE
+#   - add
+parse_enum_block() {
+  local block="$1"
+  awk -v block="$block" '
+    $0 ~ "^- " block "$" {found=1; next}
+    found && $0 ~ /^ *- / {
+      gsub(/^ *- */, "", $0)
+      print
+      exit
+    }
+  ' "$XIM_FILE" | trim
+}
+
+# ---------- extract core fields ----------
 PURPOSE=$(awk '/^## PURPOSE/{getline; print}' "$XIM_FILE" | trim)
 DETAIL=$(awk '/^## DETAIL/{getline; print}' "$XIM_FILE" | trim)
 
-TYPE_RAW=$(awk '
-  /^## EXECUTION INTENT/ {flag=1}
-  flag && /- TYPE/ {getline; getline; print; exit}
-' "$XIM_FILE" | trim)
-
-TARGET_RAW=$(awk '
-  /^## EXECUTION INTENT/ {flag=1}
-  flag && /- TARGET/ {getline; getline; print; exit}
-' "$XIM_FILE" | trim)
+TYPE_RAW=$(parse_enum_block "TYPE")
+TARGET_RAW=$(parse_enum_block "TARGET")
+LANGUAGE_RAW=$(parse_enum_block "LANGUAGE")
 
 # ---------- map TYPE ----------
 case "$TYPE_RAW" in
