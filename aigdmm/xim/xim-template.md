@@ -1,6 +1,5 @@
 # XIM
 
-
 ## PURPOSE
 <one-sentence goal>
 
@@ -13,26 +12,22 @@
 - TARGET
   - <test | code | doc>
 - LANGUAGE
-  - <python | ts | ...>
+  - <python | ts | java | go | markdown | ...>
 
 ## SCOPE
 - <target>
   - <reference>
 
-## VALIDATION CONTEXT
-<optional, non-normative validation reference>
-
-One of the following formats MAY be used.
-The formats MUST NOT be mixed within the same XIM.
-
-### Option A: Scenario-based (when no formal STS or test exists)
+### Option A: Scenario-based
+<optional, used when no formal STS or test exists>
 
 Scenario <name>:
 - Given <context>
 - When <event>
 - Then <expected outcome>
 
-### Option B: Reference-based (when formal STS or test exists)
+### Option B: Reference-based
+<optional, used when formal STS or test already exists>
 
 - <kind>:<id>
 - <kind>:<id>
@@ -40,5 +35,5 @@ Scenario <name>:
 ## ARTIFACT
 - <test_code | source_code | document>
 
-## LINKS
+## LINKS (Optional)
 - <kind>:<namespace>:<id>
