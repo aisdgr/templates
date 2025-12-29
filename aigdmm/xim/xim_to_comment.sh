@@ -1,14 +1,21 @@
 #!/usr/bin/env bash
 # ----------------------------------------
 # XIM → Git Commit Message Converter
-# Version: 1.1.0
-# Author: AIDDM / XIM
 #
-# CHANGELOG:
-# - v1.1.0
-#   * Robust enum block parsing (TYPE / TARGET / LANGUAGE)
-#   * Fix missing scope(test) issue
-#   * Structure-driven parsing (not layout-driven)
+# Version: 1.1.1
+# Author : AIDDM / XIM
+#
+# CHANGELOG
+# ----------
+# v1.1.0
+# - Robust enum block parsing (TYPE / TARGET / LANGUAGE)
+# - Fix missing scope(test) issue
+# - Structure-driven parsing (not layout-driven)
+#
+# v1.1.1
+# - Fix: capture full DETAIL block instead of first line only
+# - DETAIL is now treated as a free-form block until next section
+# - Improved robustness against formatting and blank lines
 # ----------------------------------------
 
 set -e
@@ -16,7 +23,7 @@ set -e
 # ---------- help ----------
 show_help() {
   cat <<'EOF'
-XIM → Git Commit Message Converter (v1.1.0)
+XIM → Git Commit Message Converter (v1.1.1)
 
 USAGE:
   ./xim_to_comment.sh <xim-file.md>
@@ -25,7 +32,7 @@ EXAMPLES:
   # Preview commit message
   ./xim_to_comment.sh xim.md
 
-  # Save commit message to file (Windows / cross-platform)
+  # Save commit message to file (cross-platform safe)
   ./xim_to_comment.sh xim.md > .git/COMMIT_MSG
   git commit -F .git/COMMIT_MSG
 
@@ -45,12 +52,13 @@ MAPPING RULES:
       code -> no scope
 
   - PURPOSE -> commit subject
-  - DETAIL  -> first body line
-  - Others  -> commit body
+  - DETAIL  -> commit body (first section, full block)
+  - Others  -> appended as commit body context
 
 DESIGN NOTES:
   - XIM is treated as a contract, not a prompt
   - Parsing is structure-based, not layout-based
+  - Output is deterministic and reproducible
 EOF
 }
 
@@ -93,8 +101,18 @@ parse_enum_block() {
 }
 
 # ---------- extract core fields ----------
-PURPOSE=$(awk '/^## PURPOSE/{getline; print}' "$XIM_FILE" | trim)
-DETAIL=$(awk '/^## DETAIL/{getline; print}' "$XIM_FILE" | trim)
+
+# PURPOSE: single-line subject
+PURPOSE=$(awk '
+  /^## PURPOSE/ {getline; print; exit}
+' "$XIM_FILE" | trim)
+
+# DETAIL: free-form block until next section
+DETAIL=$(awk '
+  /^## DETAIL/ {in_detail=1; next}
+  /^## / {in_detail=0}
+  in_detail {print}
+' "$XIM_FILE" | sed '/^[[:space:]]*$/d')
 
 TYPE_RAW=$(parse_enum_block "TYPE")
 TARGET_RAW=$(parse_enum_block "TARGET")
@@ -126,17 +144,20 @@ fi
 # ---------- body ----------
 BODY_LINES=()
 
+# DETAIL is the first body section
 if [[ -n "$DETAIL" ]]; then
   BODY_LINES+=("$DETAIL")
 fi
 
+# blank line separator
 BODY_LINES+=("")
 
+# Append remaining XIM context (excluding PURPOSE / DETAIL blocks)
 BODY=$(awk '
   BEGIN {skip=0}
   /^## PURPOSE/ {skip=1; next}
-  /^## DETAIL/ {skip=1; next}
-  /^## / {skip=0}
+  /^## DETAIL/  {skip=1; next}
+  /^## /        {skip=0}
   !skip {print}
 ' "$XIM_FILE")
 
