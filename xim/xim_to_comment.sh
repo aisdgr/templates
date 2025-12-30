@@ -2,20 +2,18 @@
 # ----------------------------------------
 # XIM → Git Commit Message Converter
 #
-# Version: 1.1.1
+# Version: 1.2.1
 # Author : AIDDM / XIM
 #
 # CHANGELOG
 # ----------
-# v1.1.0
-# - Robust enum block parsing (TYPE / TARGET / LANGUAGE)
-# - Fix missing scope(test) issue
-# - Structure-driven parsing (not layout-driven)
+# v1.2.1
+# - Hide System Auto Injection (confidential)
+# - Include User File Injection as commit context
+# - User inputs affect reproducibility and must be visible
 #
-# v1.1.1
-# - Fix: capture full DETAIL block instead of first line only
-# - DETAIL is now treated as a free-form block until next section
-# - Improved robustness against formatting and blank lines
+# v1.2.0
+# - Align with XIM vNext structure
 # ----------------------------------------
 
 set -e
@@ -23,42 +21,18 @@ set -e
 # ---------- help ----------
 show_help() {
   cat <<'EOF'
-XIM → Git Commit Message Converter (v1.1.1)
+XIM → Git Commit Message Converter (v1.2.1)
 
 USAGE:
   ./xim_to_comment.sh <xim-file.md>
 
-EXAMPLES:
-  # Preview commit message
-  ./xim_to_comment.sh xim.md
-
-  # Save commit message to file (cross-platform safe)
-  ./xim_to_comment.sh xim.md > .git/COMMIT_MSG
-  git commit -F .git/COMMIT_MSG
-
 DESCRIPTION:
-  Convert a XIM (Execution / eXchange Implementation Memo)
+  Convert a XIM (Execution Intent Manifest)
   into a deterministic Git commit message.
 
-MAPPING RULES:
-  - TYPE:
-      add, change -> feat
-      fix         -> fix
-      refactor    -> refactor
-
-  - TARGET:
-      test -> scope(test)
-      doc  -> scope(doc)
-      code -> no scope
-
-  - PURPOSE -> commit subject
-  - DETAIL  -> commit body (first section, full block)
-  - Others  -> appended as commit body context
-
-DESIGN NOTES:
-  - XIM is treated as a contract, not a prompt
-  - Parsing is structure-based, not layout-based
-  - Output is deterministic and reproducible
+SECURITY MODEL:
+  - System Auto Injection is confidential and hidden
+  - User File Injection is visible for audit & traceability
 EOF
 }
 
@@ -85,9 +59,6 @@ trim() {
   sed 's/^[[:space:]]*//;s/[[:space:]]*$//'
 }
 
-# Parse enum value under a block like:
-# - TYPE
-#   - add
 parse_enum_block() {
   local block="$1"
   awk -v block="$block" '
@@ -101,13 +72,8 @@ parse_enum_block() {
 }
 
 # ---------- extract core fields ----------
+PURPOSE=$(awk '/^## PURPOSE/ {getline; print; exit}' "$XIM_FILE" | trim)
 
-# PURPOSE: single-line subject
-PURPOSE=$(awk '
-  /^## PURPOSE/ {getline; print; exit}
-' "$XIM_FILE" | trim)
-
-# DETAIL: free-form block until next section
 DETAIL=$(awk '
   /^## DETAIL/ {in_detail=1; next}
   /^## / {in_detail=0}
@@ -116,7 +82,6 @@ DETAIL=$(awk '
 
 TYPE_RAW=$(parse_enum_block "TYPE")
 TARGET_RAW=$(parse_enum_block "TARGET")
-LANGUAGE_RAW=$(parse_enum_block "LANGUAGE")
 
 # ---------- map TYPE ----------
 case "$TYPE_RAW" in
@@ -141,29 +106,23 @@ else
   SUBJECT="${GIT_TYPE}: ${PURPOSE}"
 fi
 
-# ---------- body ----------
-BODY_LINES=()
-
-# DETAIL is the first body section
-if [[ -n "$DETAIL" ]]; then
-  BODY_LINES+=("$DETAIL")
-fi
-
-# blank line separator
-BODY_LINES+=("")
-
-# Append remaining XIM context (excluding PURPOSE / DETAIL blocks)
-BODY=$(awk '
-  BEGIN {skip=0}
-  /^## PURPOSE/ {skip=1; next}
-  /^## DETAIL/  {skip=1; next}
-  /^## /        {skip=0}
-  !skip {print}
+# ---------- extract User File Injection ----------
+USER_INPUTS=$(awk '
+  /^### User File Injection/ {in_user=1; next}
+  /^## / {in_user=0}
+  in_user && /^- / {print}
 ' "$XIM_FILE")
-
-BODY_LINES+=("$BODY")
 
 # ---------- output ----------
 echo "$SUBJECT"
 echo
-printf "%s\n" "${BODY_LINES[@]}"
+
+if [[ -n "$DETAIL" ]]; then
+  echo "$DETAIL"
+  echo
+fi
+
+if [[ -n "$USER_INPUTS" ]]; then
+  echo "User Inputs:"
+  echo "$USER_INPUTS"
+fi
