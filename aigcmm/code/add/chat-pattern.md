@@ -5,6 +5,10 @@
 The following files are provided as authoritative inputs.
 You MUST NOT rely on any other files or assumptions.
 
+- Policy:
+  - {{EXECUTION_POLICY_FILE}}   # Execution and rendering policy
+  - {{GENERATE_POLICY_FILE}}    # AI execution contract
+
 - XIM file:
   - {{XIM_PATH}}
 
