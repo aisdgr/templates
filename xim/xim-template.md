@@ -1,6 +1,9 @@
 # XIM
 > Execution Intent Manifest
 
+## XIM ID
+xim-[scope]-[serial]
+
 ---
 
 ## PURPOSE
@@ -62,11 +65,13 @@ Used when formal specifications already exist.
 - TEMPLATE:STS:.aigd/aigddm/sts/sts-template.md
 - TEMPLATE:CAS:.aigd/aigddm/cas/cas-template.md
 - TEMPLATE:CIS:.aigd/aigddm/cis/cis-template.md
+- TEMPLATE:CIS:.aigd/aigddm/css/css-template.md
 - POLICY:EXECUTION:.aigd/aigddm/srs/execution-policy.yaml
 - POLICY:EXECUTION:.aigd/aigddm/sds/execution-policy.yaml
 - POLICY:EXECUTION:.aigd/aigddm/sts/execution-policy.yaml
 - POLICY:EXECUTION:.aigd/aigddm/cas/execution-policy.yaml
 - POLICY:EXECUTION:.aigd/aigddm/cis/execution-policy.yaml
+- POLICY:EXECUTION:.aigd/aigddm/css/execution-policy.yaml
 - POLICY:EXECUTION:.aigd/aigdcm/code/add/execution-policy.yaml
 - POLICY:EXECUTION:.aigd/aigdcm/code/change/execution-policy.yaml
 - POLICY:EXECUTION:.aigd/aigdcm/test/add/execution-policy.yaml
@@ -76,6 +81,7 @@ Used when formal specifications already exist.
 - POLICY:GENERATE:.aigd/aigddm/sts/generate-policy.yaml
 - POLICY:GENERATE:.aigd/aigddm/cas/generate-policy.yaml
 - POLICY:GENERATE:.aigd/aigddm/cis/generate-policy.yaml
+- POLICY:GENERATE:.aigd/aigddm/css/generate-policy.yaml
 - POLICY:GENERATE:.aigd/aigdcm/code/add/generate-policy.yaml
 - POLICY:GENERATE:.aigd/aigdcm/code/change/generate-policy.yaml
 - POLICY:GENERATE:.aigd/aigdcm/test/add/generate-policy.yaml
@@ -98,6 +104,7 @@ Used when formal specifications already exist.
 - DOC:STS:docs/spec/sts.md
 - DOC:CAS:docs/spec/cas.md
 - DOC:CIS:docs/spec/cis.md
+- DOC:CIS:docs/spec/css.md
 - DOC:API:docs/spec/a-b-api.md
 - DOC:IM:docs/records/goal.md
 - DOC:IM:docs/records/src-struct.md
@@ -115,6 +122,7 @@ Used when formal specifications already exist.
   - docs/spec/sts.md
   - docs/spec/cas.md
   - docs/spec/cis.md
+  - docs/spec/css.md
   - tests/
   - src/
   - src/auth/jwt.py
