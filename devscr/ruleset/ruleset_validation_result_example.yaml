@@ -1,0 +1,118 @@
+# ------------------------------------------------------------------------------
+# Target
+# ------------------------------------------------------------------------------
+target:
+  ruleset_id: "DEV-GEN-CODE-JWT-BASELINE"
+  ruleset_version: "1.0.0"
+
+# ------------------------------------------------------------------------------
+# Summary
+# ------------------------------------------------------------------------------
+summary:
+  # Overall validation status:
+  # - ok       : no issues found
+  # - warning  : rule is usable but has potential issues
+  # - failed   : rule is structurally or semantically invalid
+  status: "warning"
+  issue_count:
+    info: 0
+    warning: 4
+    high: 2
+
+# ------------------------------------------------------------------------------
+# Findings
+# ------------------------------------------------------------------------------
+findings:
+  # ---------------------------------------------------------------------------
+  # Rule Structural Validation (Rule Schema Mismatch)
+  # ---------------------------------------------------------------------------
+  - id: RULE_SCHEMA_STRUCTURAL_VIOLATION
+    category: structure
+    location: rule[GEN-NEW-CODE-ADD-JWT]
+    severity: high
+
+    message: >
+      Rule artifact does not conform to 'dev-scr-rule-schema'. 
+      Found unexpected fields 'description', 'applies_to', 'enforcement', and 'examples' 
+      which are not defined in the conceptual rule generation schema."
+
+    suggestion: >
+      Align rule artifact structure with the provided rule.schema.yaml. 
+      Move normative text to the 'constraint' field and descriptive metadata to the 'governance' section.
+
+  - id: RULE_SCHEMA_STRUCTURAL_VIOLATION
+    category: structure
+    location: rule[GEN-NEW-CODE-JWT-VALIDATION]
+    severity: high
+
+    message: >
+      Rule artifact does not conform to 'dev-scr-rule-schema'. 
+      Found unexpected fields 'description', 'applies_to', 'enforcement', and 'examples' 
+      which are not defined in the conceptual rule generation schema."
+
+    suggestion: >
+      Align rule artifact structure with the provided rule.schema.yaml.
+
+  # ---------------------------------------------------------------------------
+  # Rule Constraint (CNL) Validation
+  # ---------------------------------------------------------------------------
+  - id: CNL_REDUCED_SEMANTIC_CLARITY
+    category: cnl_violation
+    location: rule[GEN-NEW-CODE-ADD-JWT].constraint
+    severity: warning
+
+    message: > 
+      The constraint is expressed as a nested object with custom 'type' and 'level' 
+      keys instead of the structured CNL representation defined in 'devSCR-cnl-generate-schema'.
+
+    suggestion: > 
+      Update constraint to use the 'statements' list format 
+      with optional 'subject', 'action', and 'target' fields.
+
+  - id: CNL_REDUCED_SEMANTIC_CLARITY
+    category: cnl_violation
+    location: rule[GEN-NEW-CODE-JWT-VALIDATION].constraint
+    severity: warning
+
+    message: > 
+      The constraint is expressed as a nested object instead of the structured CNL 
+      representation defined in 'devSCR-cnl-generate-schema'.
+
+    suggestion: > 
+      Update constraint to use the 'statements' list format.
+
+  # ---------------------------------------------------------------------------
+  # Ruleset Reference Validation
+  # ---------------------------------------------------------------------------
+  # Verified: GEN-NEW-CODE-ADD-JWT exists.
+  # Verified: GEN-NEW-CODE-JWT-VALIDATION exists.
+  # No High severity reference findings.
+
+  # ---------------------------------------------------------------------------
+  # Governance Metadata Validation
+  # ---------------------------------------------------------------------------
+  - id: GOVERNANCE_MISSING_CORE_FIELDS
+    category: governance
+    location: rule[GEN-NEW-CODE-ADD-JWT].governance
+    severity: warning
+
+    message: > 
+      The rule artifact lacks the 'governance' block required by the rule generation schema. 
+      Required fields like 'version', 'status', and 'owner' are missing or placed in 
+      non-standard blocks (e.g., 'meta')."
+
+    suggestion: > 
+      Move 'version', 'status', and 'owner' into a 'governance' object as per rule.schema.yaml.
+
+  - id: GOVERNANCE_MISSING_CORE_FIELDS
+    category: governance
+    location: rule[GEN-NEW-CODE-JWT-VALIDATION].governance
+    severity: warning
+
+    message: > 
+      The rule artifact lacks the 'governance' block required by the rule generation schema. 
+      Required fields like 'version', 'status', and 'owner' are missing or placed in 
+      non-standard blocks (e.g., 'meta')."
+
+    suggestion: > 
+      Move 'version', 'status', and 'owner' into a 'governance' object as per rule.schema.yaml.

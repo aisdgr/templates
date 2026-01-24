@@ -1,0 +1,114 @@
+# ------------------------------------------------------------------------------
+# 驗證目標 (Target)
+# ------------------------------------------------------------------------------
+target:
+  ruleset_id: "DEV-GEN-CODE-JWT-BASELINE"
+  ruleset_version: "1.0.0"
+
+# ------------------------------------------------------------------------------
+# 摘要 (Summary)
+# ------------------------------------------------------------------------------
+summary:
+  # 整體驗證狀態：
+  # - ok      : 未發現問題
+  # - warning : 規則集可用，但存在潛在問題
+  # - failed  : 規則集在結構或語義上無效
+  status: "warning"
+  issue_count:
+    info: 0
+    warning: 4
+    high: 2
+
+# ------------------------------------------------------------------------------
+# 發現結果 (Findings)
+# ------------------------------------------------------------------------------
+findings:
+  # ---------------------------------------------------------------------------
+  # 規則結構驗證 (規則 Schema 不匹配)
+  # ---------------------------------------------------------------------------
+  - id: RULE_SCHEMA_STRUCTURAL_VIOLATION
+    category: structure # 結構
+    location: rule[GEN-NEW-CODE-ADD-JWT]
+    severity: high      # 高
+
+    message: >
+      規則產物不符合 'dev-scr-rule-schema'。
+      發現了非預期的欄位 'description'、'applies_to'、'enforcement' 與 'examples'，
+      這些欄位未定義在概念性的規則生成結構中。
+
+    suggestion: >
+      請將規則產物的結構與 rule.schema.yaml 對齊。
+      將規範性文本移至 'constraint' 欄位，並將描述性元數據移至 'governance' 區塊。
+
+  - id: RULE_SCHEMA_STRUCTURAL_VIOLATION
+    category: structure # 結構
+    location: rule[GEN-NEW-CODE-JWT-VALIDATION]
+    severity: high      # 高
+
+    message: >
+      規則產物不符合 'dev-scr-rule-schema'。
+      發現了非預期的欄位 'description'、'applies_to'、'enforcement' 與 'examples'。
+
+    suggestion: >
+      請將規則產物的結構與 rule.schema.yaml 對齊。
+
+  # ---------------------------------------------------------------------------
+  # 規則約束 (CNL) 驗證
+  # ---------------------------------------------------------------------------
+  - id: CNL_REDUCED_SEMANTIC_CLARITY
+    category: cnl_violation # CNL 違反
+    location: rule[GEN-NEW-CODE-ADD-JWT].constraint
+    severity: warning       # 警告
+
+    message: > 
+      約束內容被表達為帶有自定義 'type' 與 'level' 鍵值的嵌套物件，
+      而非 'devSCR-cnl-generate-schema' 中定義的結構化 CNL 表示法。
+
+    suggestion: > 
+      請更新約束內容，使用包含 'statements' 清單的格式，
+      並可選填 'subject'、'action' 與 'target' 欄位。
+
+  - id: CNL_REDUCED_SEMANTIC_CLARITY
+    category: cnl_violation # CNL 違反
+    location: rule[GEN-NEW-CODE-JWT-VALIDATION].constraint
+    severity: warning       # 警告
+
+    message: > 
+      約束內容被表達為嵌套物件，而非 'devSCR-cnl-generate-schema' 中定義的結構化 CNL 表示法。
+
+    suggestion: > 
+      請將約束內容更新為 'statements' 清單格式。
+
+  # ---------------------------------------------------------------------------
+  # 規則集引用驗證 (Ruleset Reference Validation)
+  # ---------------------------------------------------------------------------
+  # 已驗證：GEN-NEW-CODE-ADD-JWT 存在。
+  # 已驗證：GEN-NEW-CODE-JWT-VALIDATION 存在。
+  # 未發現高嚴重性的引用問題。
+
+  # ---------------------------------------------------------------------------
+  # 治理元數據驗證 (Governance Metadata Validation)
+  # ---------------------------------------------------------------------------
+  - id: GOVERNANCE_MISSING_CORE_FIELDS
+    category: governance # 治理
+    location: rule[GEN-NEW-CODE-ADD-JWT].governance
+    severity: warning    # 警告
+
+    message: > 
+      規則產物缺少規則生成結構要求的 'governance' 區塊。
+      必要的欄位如 'version'、'status' 與 'owner' 缺失，
+      或被放置在非標準區塊中（例如 'meta'）。
+
+    suggestion: > 
+      請根據 rule.schema.yaml，將 'version'、'status' 與 'owner' 移至 'governance' 物件中。
+
+  - id: GOVERNANCE_MISSING_CORE_FIELDS
+    category: governance # 治理
+    location: rule[GEN-NEW-CODE-JWT-VALIDATION].governance
+    severity: warning    # 警告
+
+    message: > 
+      規則產物缺少規則生成結構要求的 'governance' 區塊。
+
+    suggestion: > 
+      請根據 rule.schema.yaml，將 'version'、'status' 與 'owner' 移至 'governance' 物件中。
