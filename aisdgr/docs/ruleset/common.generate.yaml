@@ -1,0 +1,62 @@
+ruleset:
+  id: common.generate
+  includes:
+  - rule_id: DOCS-AR-C-01
+    version: '>=1.0.0'
+  - rule_id: DOCS-AR-C-02
+    version: '>=1.0.0'
+  - rule_id: DOCS-AR-C-03
+    version: '>=1.0.0'
+  - rule_id: DOCS-AR-C-04
+    version: '>=1.0.0'
+  - rule_id: DOCS-BD-C-02
+    version: '>=1.0.0'
+  - rule_id: DOCS-BD-P-01
+    version: '>=1.0.0'
+  - rule_id: DOCS-BD-P-02
+    version: '>=1.0.0'
+  - rule_id: DOCS-CN-C-01
+    version: '>=1.0.0'
+  - rule_id: DOCS-ST-C-19
+    version: '>=1.0.0'
+  - rule_id: DOCS-ST-C-20
+    version: '>=1.0.0'
+  - rule_id: DOCS-ST-C-21
+    version: '>=1.0.0'
+  - rule_id: DOCS-ST-P-01
+    version: '>=1.0.0'
+  - rule_id: DOCS-ST-P-02
+    version: '>=1.0.0'
+  - rule_id: DOCS-TR-P-01
+    version: '>=1.0.0'
+  applicability:
+    domain:
+    - docs
+    artifact:
+    - SRS
+    - SDS
+    - STS
+    - CAS
+    - CIS
+    - CSS
+    intent:
+    - generate
+    stage:
+    - develop
+  governance:
+    version: 1.0.0
+    status: active
+    owner: aisr
+    intent:
+      purpose:
+      - document_generate
+      - governance_enforcement
+      notes:
+      - Common rules applicable to all document types
+    responsibilities:
+      ai:
+      - document_generator
+      human:
+      - document_reviewer
+      system:
+      - validator

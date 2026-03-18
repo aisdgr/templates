@@ -1,0 +1,33 @@
+ruleset:
+  id: cis.generate
+  includes:
+  - rule_id: DOCS-ST-C-15
+    version: '>=1.0.0'
+  - rule_id: DOCS-ST-C-16
+    version: '>=1.0.0'
+  applicability:
+    domain:
+    - docs
+    artifact:
+    - CIS
+    intent:
+    - generate
+    stage:
+    - develop
+  governance:
+    version: 1.0.0
+    status: active
+    owner: aisr
+    intent:
+      purpose:
+      - document_generate
+      - governance_enforcement
+      notes:
+      - Conceptual Implementation Specification specific rules for generate
+    responsibilities:
+      ai:
+      - document_generator
+      human:
+      - document_reviewer
+      system:
+      - validator

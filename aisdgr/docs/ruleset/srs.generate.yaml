@@ -1,0 +1,35 @@
+ruleset:
+  id: srs.generate
+  includes:
+  - rule_id: DOCS-ST-C-01
+    version: '>=1.0.0'
+  - rule_id: DOCS-ST-C-02
+    version: '>=1.0.0'
+  - rule_id: DOCS-ST-C-03
+    version: '>=1.0.0'
+  applicability:
+    domain:
+    - docs
+    artifact:
+    - SRS
+    intent:
+    - generate
+    stage:
+    - develop
+  governance:
+    version: 1.0.0
+    status: active
+    owner: aisr
+    intent:
+      purpose:
+      - document_generate
+      - governance_enforcement
+      notes:
+      - Software Requirements Specification specific rules for generate
+    responsibilities:
+      ai:
+      - document_generator
+      human:
+      - document_reviewer
+      system:
+      - validator

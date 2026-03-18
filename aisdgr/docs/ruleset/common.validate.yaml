@@ -1,0 +1,38 @@
+ruleset:
+  id: common.validate
+  includes:
+  - rule_id: DOCS-BD-C-01
+    version: '>=1.0.0'
+  - rule_id: DOCS-BD-C-02
+    version: '>=1.0.0'
+  applicability:
+    domain:
+    - docs
+    artifact:
+    - SRS
+    - SDS
+    - STS
+    - CAS
+    - CIS
+    - CSS
+    intent:
+    - validate
+    stage:
+    - develop
+  governance:
+    version: 1.0.0
+    status: active
+    owner: aisr
+    intent:
+      purpose:
+      - document_validate
+      - governance_enforcement
+      notes:
+      - Common rules for document validate operations
+    responsibilities:
+      ai:
+      - document_generator
+      human:
+      - document_reviewer
+      system:
+      - validator
