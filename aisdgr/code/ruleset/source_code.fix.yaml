@@ -24,77 +24,77 @@ ruleset:
   includes:
 
     # ---- BD (Boundary & Stop) ----
-    - rule_id: CODE-BD-01
+    - rule_id: CODE-BD-P-01
       version: ">=1.0.0"
-    - rule_id: CODE-BD-02
+    - rule_id: CODE-BD-P-02
       version: ">=1.0.0"
-    - rule_id: CODE-BD-03
+    - rule_id: CODE-BD-P-03
       version: ">=1.0.0"
-    - rule_id: CODE-BD-04
+    - rule_id: CODE-BD-C-01
       version: ">=1.0.0"
-    - rule_id: CODE-BD-05
+    - rule_id: CODE-BD-C-02
       version: ">=1.0.0"
-    - rule_id: CODE-BD-06
+    - rule_id: CODE-BD-C-03
       version: ">=1.0.0"
 
     # ---- CN (Constraint Neutrality) ----
-    - rule_id: CODE-CN-01
+    - rule_id: CODE-CN-C-01
       version: ">=1.0.0"
-    - rule_id: CODE-CN-02
+    - rule_id: CODE-CN-C-02
       version: ">=1.0.0"
-    - rule_id: CODE-CN-03
+    - rule_id: CODE-CN-C-03
       version: ">=1.0.0"
 
     # ---- TR (Traceability) ----
-    - rule_id: CODE-TR-01
+    - rule_id: CODE-TR-P-01
       version: ">=1.0.0"
-    - rule_id: CODE-TR-02
+    - rule_id: CODE-TR-P-02
       version: ">=1.0.0"
-    - rule_id: CODE-TR-03
+    - rule_id: CODE-TR-P-03
       version: ">=1.0.0"
-    - rule_id: CODE-TR-04
+    - rule_id: CODE-TR-C-01
       version: ">=1.0.0"
 
     # ---- AR (Artifact Isolation) ----
-    - rule_id: CODE-AR-01
+    - rule_id: CODE-AR-P-01
       version: ">=1.0.0"
-    - rule_id: CODE-AR-02
+    - rule_id: CODE-AR-C-01
       version: ">=1.0.0"
-    - rule_id: CODE-AR-03
+    - rule_id: CODE-AR-C-02
       version: ">=1.0.0"
-    - rule_id: CODE-AR-04
+    - rule_id: CODE-AR-C-03
       version: ">=1.0.0"
-    - rule_id: CODE-AR-05
+    - rule_id: CODE-AR-P-02
       version: ">=1.0.0"
 
     # ---- ST (Structural Change — Forbidden in FIX) ----
-    - rule_id: CODE-ST-02
+    - rule_id: CODE-ST-C-01
       version: ">=1.0.0"
-    - rule_id: CODE-ST-03
+    - rule_id: CODE-ST-C-02
       version: ">=1.0.0"
-    - rule_id: CODE-ST-04
+    - rule_id: CODE-ST-C-03
       version: ">=1.0.0"
-    - rule_id: CODE-ST-05
+    - rule_id: CODE-ST-C-04
       version: ">=1.0.0"
 
     # ---- LG (Logging & Report) ----
-    - rule_id: CODE-LG-01
+    - rule_id: CODE-LG-P-01
       version: ">=1.0.0"
-    - rule_id: CODE-LG-02
+    - rule_id: CODE-LG-P-02
       version: ">=1.0.0"
-    - rule_id: CODE-LG-03
+    - rule_id: CODE-LG-P-03
       version: ">=1.0.0"
-    - rule_id: CODE-LG-04
+    - rule_id: CODE-LG-C-01
       version: ">=1.0.0"
-    - rule_id: CODE-LG-05
+    - rule_id: CODE-LG-P-04
       version: ">=1.0.0"
-    - rule_id: CODE-LG-06
+    - rule_id: CODE-LG-P-05
       version: ">=1.0.0"
-    - rule_id: CODE-LG-07
+    - rule_id: CODE-LG-P-06
       version: ">=1.0.0"
-    - rule_id: CODE-LG-08
+    - rule_id: CODE-LG-P-07
       version: ">=1.0.0"
-    - rule_id: CODE-LG-09
+    - rule_id: CODE-LG-C-02
       version: ">=1.0.0"
 
   # ---------------------------------------------------------------------------
