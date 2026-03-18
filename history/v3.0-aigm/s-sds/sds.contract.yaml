@@ -1,0 +1,135 @@
+document:
+  meta:
+    id: sds-contract
+    title: SDS (Software Design Specification) Generation Contract
+    version: 1.0
+    status: active
+    action: contract
+    artifact: document
+    owner: aigm
+
+  applicability_context:
+    intent:
+      category:
+        - structure
+        - design
+        - generation
+        - rendering
+        - validation
+      source:
+        - sds.template.md
+        - sds.schema.yaml
+        - xim
+
+    roles:
+      enforced_on:
+        - ai
+        - human
+        - system
+      responsible:
+        - ai
+        - human
+        - system
+      involvement:
+        - primary
+        - secondary
+        - oversight
+
+    applies_to:
+      document_type:
+        - SDS
+
+      section:
+        - Documentation Sensitivity Notice
+        - Change History
+        - Purpose & Scope
+        - Design Overview
+        - Design Components
+        - Interaction & Data Flow
+        - Interfaces & Adapters
+        - Cross-Cutting Concerns
+        - Error Handling Strategy
+        - Deployment & Operational Design
+        - Appendix A. Traceability Policy
+        - Appendix B. Authoring and Structural Constraints
+
+      constraint:
+        - required
+        - generate_document
+        - render_when_empty
+        - pattern
+        - unique
+      template:
+        - sds.template.md
+
+  rules:
+    # --------------------------------------------------------------------------
+    # Execution Rules
+    # --------------------------------------------------------------------------
+    - id: CONTRACT-SDS-EXEC-001
+      title: Strictly Follow XIM
+      status: active
+      description: >
+        The AI MUST operate strictly according to the provided XIM (Execution Intent Model).
+        The AI MUST NOT consult any file not declared in XIM User File Injection.
+      intent:
+        - category: generation
+      roles:
+        - enforced_on: ai
+      severity: error
+
+    # --------------------------------------------------------------------------
+    # Content Source Rules
+    # --------------------------------------------------------------------------
+    - id: CONTRACT-SDS-SRC-001
+      title: Content Derived Only From Injected Sources
+      status: active
+      description: >
+        Software design content MUST be derived ONLY from User File Injection
+        declared in XIM (e.g., SRS, Architecture notes) and direct human-provided text in XIM DETAIL.
+      intent:
+        - category: generation
+      roles:
+        - enforced_on: ai
+      severity: error
+
+    - id: CONTRACT-SDS-SRC-002
+      title: Design Integrity and Non-Fabrication
+      status: active
+      description: >
+        AI MUST NOT infer missing requirements or fabricate design decisions
+        that are not supported by the input sources.
+      intent:
+        - category: generation
+      roles:
+        - enforced_on: ai
+      severity: error
+
+    # --------------------------------------------------------------------------
+    # Structural Rules
+    # --------------------------------------------------------------------------
+    - id: CONTRACT-SDS-STRUCT-001
+      title: Follow SDS Template
+      status: active
+      description: >
+        Document structure and section hierarchy MUST follow sds.template.md
+        and the associated execution policy.
+      intent:
+        - category: structure
+      roles:
+        - enforced_on: ai
+      severity: error
+
+    # --------------------------------------------------------------------------
+    # Language Rules
+    # --------------------------------------------------------------------------
+    - id: CONTRACT-SDS-LANG-001
+      title: Language Consistency
+      status: active
+      description: >
+        Section body content MUST be written in the language declared in XIM ARTIFACT.
+      intent:
+        - category: generation
+      roles:
+        - enforced_on: ai
+      severity: medium

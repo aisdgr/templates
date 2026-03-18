@@ -1,0 +1,37 @@
+rule:
+  id: DOCS-ST-C-20
+  execution_view: document_generator
+  constraint: Generation *MUST* be declarative only.
+  boundary:
+    domain:
+    - docs
+    artifact:
+    - SRS
+    - SDS
+    - STS
+    - CAS
+    - CIS
+    - CSS
+    rule_category:
+    - ST
+    rule_domain:
+    - DOCS
+  governance:
+    version: 1.0.0
+    status: draft
+    owner: aisr
+    original_rules:
+    - GGC-SRS-DECLARATIVE-001
+    - GGC-SDS-DECLARATIVE-001
+    - GGC-STS-DECLARATIVE-001
+    - GGC-CAS-DECLARATIVE-001
+    - GGC-CIS-DECLARATIVE-001
+    - GGC-CSS-DECLARATIVE-001
+    intent:
+      rationale:
+      - prevent_procedural_generation
+      - enforce_declarative_intent
+      purpose:
+      - ensure_clear_specification
+      risk: hallucination
+      severity: error

@@ -1,0 +1,27 @@
+rule:
+  id: DOCS-ST-C-10
+  execution_view: document_generator
+  constraint: Cross-cutting concerns *MUST* be traceable to NFR.
+  boundary:
+    domain:
+    - docs
+    artifact:
+    - SDS
+    rule_category:
+    - ST
+    rule_domain:
+    - DOCS
+  governance:
+    version: 1.0.0
+    status: draft
+    owner: aisr
+    original_rules:
+    - GEC-SDS-CROSSCUT-001
+    intent:
+      rationale:
+      - ensure_concern_alignment
+      - maintain_nfr_trace
+      purpose:
+      - enable_nfr_verification
+      risk: transparency
+      severity: high

@@ -1,0 +1,37 @@
+rule:
+  id: DOCS-BD-C-01
+  execution_view: document_generator
+  constraint: Document immutability *MUST* be enforced after approval.
+  boundary:
+    domain:
+    - docs
+    artifact:
+    - SRS
+    - SDS
+    - STS
+    - CAS
+    - CIS
+    - CSS
+    rule_category:
+    - BD
+    rule_domain:
+    - DOCS
+  governance:
+    version: 1.0.0
+    status: draft
+    owner: aisr
+    original_rules:
+    - GEC-SRS-IMMUTABLE-001
+    - GEC-SDS-IMMUTABLE-001
+    - GEC-STS-IMMUTABLE-001
+    - GEC-CAS-IMMUTABLE-001
+    - GEC-CIS-IMMUTABLE-001
+    - GEC-CSS-IMMUTABLE-001
+    intent:
+      rationale:
+      - prevent_unauthorized_modification
+      - protect_approved_content
+      purpose:
+      - maintain_document_integrity
+      risk: safety
+      severity: error

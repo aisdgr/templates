@@ -1,0 +1,50 @@
+# ==============================================================================
+# DOCS-BD-C-01: Policy Violation Termination
+# ==============================================================================
+
+rule:
+  id: DOCS-BD-C-01
+  execution_view: governance_enforcer
+  constraint: >
+    On policy violation, execution **MUST** terminate.
+
+  boundary:
+    domain:
+      - docs
+    artifact:
+      - execution_context
+      - policy_framework
+    rule_category:
+      - enforcement_boundary
+    rule_domain:
+      - DOCS
+
+  governance:
+    version: 1.0.0
+    status: draft
+    owner: aisr
+    intent:
+      rationale:
+        - enforce_policy_compliance
+        - prevent_violation_continuation
+      purpose:
+        - ensure_immediate_violation_response
+    responsibilities:
+      human:
+        - governance_officer
+      ai:
+        - policy_enforcer
+    applicability_context:
+      stage:
+        - develop
+      scope:
+        - policy_enforcement
+      risk:
+        - policy_bypass
+        - governance_failure
+      severity: critical
+    governance_impact:
+      level: enforce
+      affected_capabilities:
+        - policy_enforcement
+        - governance_integrity

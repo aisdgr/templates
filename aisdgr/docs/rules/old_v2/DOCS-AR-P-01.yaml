@@ -1,0 +1,50 @@
+# ==============================================================================
+# DOCS-AR-P-01: Single-Section Generation Constraint
+# ==============================================================================
+
+rule:
+  id: DOCS-AR-P-01
+  execution_view: document_generator
+  constraint: >
+    AI **MUST NOT** generate content spanning multiple sections.
+
+  boundary:
+    domain:
+      - docs
+    artifact:
+      - srs_document
+      - multi_section_document
+    rule_category:
+      - artifact_isolation
+    rule_domain:
+      - DOCS
+
+  governance:
+    version: 1.0.0
+    status: draft
+    owner: aisr
+    intent:
+      rationale:
+        - prevent_cross_section_contamination
+        - enforce_section_independence
+      purpose:
+        - restrict_generation_to_single_section
+    responsibilities:
+      human:
+        - requirement_owner
+      ai:
+        - document_generator
+    applicability_context:
+      stage:
+        - develop
+      scope:
+        - section_based_generation
+      risk:
+        - scope_violation
+        - section_coupling
+      severity: high
+    governance_impact:
+      level: enforce
+      affected_capabilities:
+        - section_integrity
+        - isolation_control

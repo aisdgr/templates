@@ -1,0 +1,40 @@
+rule:
+  id: DOCS-CN-C-01
+  execution_view: document_generator
+  constraint: AI **MUST NOT** infer or generate implicit requirements, decisions,
+    or content.
+  boundary:
+    domain:
+    - docs
+    artifact:
+    - SRS
+    - SDS
+    - STS
+    - CAS
+    - CIS
+    - CSS
+    rule_category:
+    - CN
+    rule_domain:
+    - DOCS
+  governance:
+    version: 1.0.0
+    status: draft
+    owner: aisr
+    original_rules:
+    - GEC-SRS-NO-INFERENCE-001
+    - GEC-SDS-NO-INFERENCE-001
+    - GEC-STS-NO-INFERENCE-001
+    - GEC-CAS-NO-INFERENCE-001
+    - GEC-CIS-NO-INFERENCE-001
+    - GEC-CSS-NO-INFERENCE-001
+    - GGC-SRS-NO-INFERENCE-001
+    - GGC-SDS-NO-INFERENCE-001
+    intent:
+      rationale:
+      - prevent_hallucination
+      - avoid_implicit_assumptions
+      purpose:
+      - ensure_explicit_content_only
+      risk: hallucination
+      severity: error

@@ -1,0 +1,32 @@
+rule:
+  id: DOCS-BD-P-02
+  execution_view: document_generator
+  constraint: Human accountability and oversight *MUST* be maintained.
+  boundary:
+    domain:
+    - docs
+    artifact:
+    - SRS
+    - SDS
+    - STS
+    - CAS
+    - CIS
+    - CSS
+    rule_category:
+    - BD
+    rule_domain:
+    - DOCS
+  governance:
+    version: 1.0.0
+    status: draft
+    owner: aisr
+    original_rules:
+    - GEC-SDS-ACCOUNT-001
+    intent:
+      rationale:
+      - ensure_human_control
+      - maintain_accountability
+      purpose:
+      - preserve_human_oversight
+      risk: transparency
+      severity: high

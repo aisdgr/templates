@@ -1,0 +1,50 @@
+# ==============================================================================
+# DOCS-AR-C-01: STS Immutability After Approval
+# ==============================================================================
+
+rule:
+  id: DOCS-AR-C-01
+  execution_view: governance_enforcer
+  constraint: >
+    STS *MUST* remain immutable after approval.
+
+  boundary:
+    domain:
+      - docs
+    artifact:
+      - sts_document
+      - approved_artifact
+    rule_category:
+      - artifact_isolation
+    rule_domain:
+      - DOCS
+
+  governance:
+    version: 1.0.0
+    status: draft
+    owner: aisr
+    intent:
+      rationale:
+        - ensure_sts_integrity_post_approval
+        - prevent_unauthorized_modification
+      purpose:
+        - enforce_immutability_for_approved_sts
+    responsibilities:
+      human:
+        - approval_authority
+      ai:
+        - document_manager
+    applicability_context:
+      stage:
+        - release
+      scope:
+        - approved_artifact_management
+      risk:
+        - approved_artifact_modification
+        - integrity_violation
+      severity: critical
+    governance_impact:
+      level: enforce
+      affected_capabilities:
+        - artifact_integrity
+        - approval_compliance

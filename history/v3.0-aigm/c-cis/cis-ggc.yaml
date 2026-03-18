@@ -1,0 +1,160 @@
+# ============================================================
+# CIS Generation Governance Constraints (GGC)
+# ============================================================
+# Generation governance rules for Conceptual Implementation
+# Specification (CIS).
+#
+# These rules constrain HOW AI may generate CIS content.
+# They do NOT define document structure (handled by GEC).
+#
+# Rules follow:
+# - aigdmm-rule-unified.yaml
+# - AIGD-CNL
+# - Semantic section grouping based on cis.template.md
+# ============================================================
+
+meta:                             # core
+  spec: AIGDMM-RULE               # core
+  version: 1.0                    # core
+  rule_set: ggc                   # option
+  owner: aigdmm                   # option
+  status: active                  # option
+
+
+rules:
+
+  # ==========================================================
+  # Global Generation Boundary
+  # ==========================================================
+  - rule:
+      id: GGC-CIS-GLOBAL-001
+      title: Generation Must Be Explicitly Scoped
+      description: >
+        AI MUST generate content only within explicitly requested CIS sections.
+        AI MUST NOT generate content for sections that are not explicitly requested.
+      severity: error
+
+    applies_to:
+      document_type: [CIS]
+      sections:
+        - Introduction
+        - Conceptual Model Overview
+        - Decision Structure
+
+    intent:
+      category: generation
+      risk: hallucination
+
+    roles:
+      enforced_on: [ai]
+
+
+  # ==========================================================
+  # Placeholder-Only Generation
+  # ==========================================================
+  - rule:
+      id: GGC-CIS-GEN-PLACEHOLDER-001
+      title: Generation Is Restricted to Declared Placeholders
+      description: >
+        AI MUST generate content only within declared placeholders.
+        AI MUST NOT introduce content outside declared placeholders.
+      severity: error
+
+    applies_to:
+      document_type: [CIS]
+      sections:
+        - Purpose
+        - Scope
+        - Conceptual Context
+        - Conceptual Approach
+        - Conceptual Patterns
+
+    intent:
+      category: generation
+      risk: hallucination
+
+    roles:
+      enforced_on: [ai]
+
+
+  # ==========================================================
+  # No Implicit Conceptual Decisions
+  # ==========================================================
+  - rule:
+      id: GGC-CIS-NO-IMPLICIT-DEC-001
+      title: No Implicit Conceptual Decisions May Be Generated
+      description: >
+        AI MUST NOT infer or generate implicit conceptual decisions.
+        All generated conceptual decisions MUST be explicitly stated by the user.
+      severity: error
+
+    applies_to:
+      document_type: [CIS]
+      sections:
+        - Decision Structure
+
+    intent:
+      category: generation
+      risk: hallucination
+
+    roles:
+      enforced_on: [ai]
+
+
+  # ==========================================================
+  # Decision Generation
+  # ==========================================================
+  - rule:
+      id: GGC-CIS-DEC-001
+      title: Decision Generation Is User-Driven Only
+      description: >
+        AI MUST generate conceptual decisions only when explicitly instructed.
+        AI MUST NOT propose new conceptual decisions autonomously.
+      severity: error
+
+    applies_to:
+      document_type: [CIS]
+      sections:
+        - Decision Structure
+
+    intent:
+      category: generation
+      risk: drift
+
+    roles:
+      enforced_on: [ai]
+
+
+  # ==========================================================
+  # Cross-Section Generation Prohibition
+  # ==========================================================
+  - rule:
+      id: GGC-CIS-CROSS-SECTION-001
+      title: Cross-Section Generation Is Prohibited
+      description: >
+        AI MUST NOT generate content that spans multiple CIS sections.
+        Each generation action MUST target a single declared section group.
+      severity: error
+
+    applies_to:
+      document_type: [CIS]
+      sections:
+        - Introduction
+        - Conceptual Model Overview
+        - Decision Structure
+
+    intent:
+      category: generation
+      risk: drift
+
+    roles:
+      enforced_on: [ai]
+
+
+# ============================================================
+# Appendix: AIGD-CNL
+# ============================================================
+#
+# All rule.description fields MUST follow AIGD-CNL.
+#
+# ============================================================

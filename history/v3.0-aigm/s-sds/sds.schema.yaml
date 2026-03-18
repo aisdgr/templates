@@ -1,0 +1,176 @@
+fields:
+
+  # ---------------------------------------------------------------------------
+  # Meta
+  # ---------------------------------------------------------------------------
+  - name: meta.id
+    type: string
+    pattern: '^[a-zA-Z0-9_\-\.]+$'
+    constraint: unique
+    required: true
+    render_when_empty: true
+    generate_document: true
+    role_in_code: ignore
+
+  - name: meta.title
+    type: string
+    required: true
+    render_when_empty: true
+    generate_document: true
+    role_in_code: ignore
+
+  # ---------------------------------------------------------------------------
+  # Version
+  # ---------------------------------------------------------------------------
+  - name: version.version
+    type: string
+    pattern: '^\d+\.\d+$'
+    required: true
+    render_when_empty: true
+    generate_document: true
+    role_in_code: ignore
+
+  - name: version.status
+    type: enum
+    values:
+      - Draft
+      - Review
+      - Approved
+      - Released
+      - Deprecated
+    default: Draft    
+    required: true
+    render_when_empty: true
+    generate_document: true
+    role_in_code: ignore
+
+  - name: version.author
+    type: string
+    required: false
+    render_when_empty: false
+    generate_document: true
+    role_in_code: ignore
+
+  - name: version.date
+    type: string
+    format: date
+    required: true
+    render_when_empty: true
+    generate_document: true
+    role_in_code: ignore
+
+  # ---------------------------------------------------------------------------
+  # Description
+  # ---------------------------------------------------------------------------
+  - name: description
+    type: string
+    required: false
+    render_when_empty: false
+    generate_document: true
+    role_in_code: ignore
+
+  # ---------------------------------------------------------------------------
+  # Purpose & Scope
+  # ---------------------------------------------------------------------------
+  - name: purpose
+    type: text
+    required: false
+    render_when_empty: true
+    generate_document: true
+    role_in_code: ignore
+
+  - name: scope
+    type: text
+    required: false
+    render_when_empty: true
+    generate_document: true
+    role_in_code: ignore
+
+  # ---------------------------------------------------------------------------
+  # Design Overview
+  # ---------------------------------------------------------------------------
+  - name: design_overview.id
+    type: string
+    pattern: '^SDS-OV-[A-Z0-9_\-]+$'
+    required: true
+    render_when_empty: true
+    generate_document: true
+    role_in_code: ignore
+
+  - name: design_overview.title
+    type: string
+    required: true
+    render_when_empty: true
+    generate_document: true
+    role_in_code: ignore
+
+  - name: trace.sas
+    type: string
+    required: false
+    render_when_empty: false
+    generate_document: true
+    role_in_code: ignore
+
+  # ---------------------------------------------------------------------------
+  # Design Components
+  # ---------------------------------------------------------------------------
+  - name: module.title
+    type: string
+    required: true
+    render_when_empty: true
+    generate_document: true
+    role_in_code: ignore
+
+  - name: component.id
+    type: string
+    pattern: '^SDS-COMP-[A-Z0-9_\-]+$'
+    required: true
+    render_when_empty: true
+    generate_document: true
+    role_in_code: ignore
+
+  - name: component.title
+    type: string
+    required: true
+    render_when_empty: true
+    generate_document: true
+    role_in_code: ignore
+
+  - name: responsibilities
+    type: text
+    required: false
+    render_when_empty: true
+    generate_document: true
+    role_in_code: ignore
+
+  - name: interactions
+    type: text
+    required: false
+    render_when_empty: true
+    generate_document: true
+    role_in_code: ignore
+
+  - name: trace.srs
+    type: string
+    required: false
+    render_when_empty: false
+    generate_document: true
+    role_in_code: ignore
+
+  # ---------------------------------------------------------------------------
+  # Interaction & Data Flow
+  # ---------------------------------------------------------------------------
+  - name: flow.id
+    type: string
+    pattern: '^SDS-FLOW-[A-Z0-9_\-]+$'
+    required: true
+    render_when_empty: true
+    generate_document: true
+    role_in_code: ignore
+
+  - name: flow.title
+    type: string
+    required: true
+    render_when_empty: true
+    generate_document: true
+    role_in_code: ignore

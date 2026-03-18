@@ -1,0 +1,27 @@
+rule:
+  id: DOCS-TI-P-01
+  execution_view: document_generator
+  constraint: Test specifications *MUST* follow item policy.
+  boundary:
+    domain:
+    - docs
+    artifact:
+    - STS
+    rule_category:
+    - TI
+    rule_domain:
+    - DOCS
+  governance:
+    version: 1.0.0
+    status: draft
+    owner: aisr
+    original_rules:
+    - GEC-STS-ITEM-001
+    intent:
+      rationale:
+      - ensure_test_conformity
+      - maintain_test_standards
+      purpose:
+      - align_with_item_policy
+      risk: ambiguity
+      severity: medium

@@ -1,0 +1,50 @@
+# ==============================================================================
+# DOCS-ST-P-02: Overall Description Descriptive Context
+# ==============================================================================
+
+rule:
+  id: DOCS-ST-P-02
+  execution_view: document_engineer
+  constraint: >
+    Overall Description sections *MUST* describe the system context.
+
+  boundary:
+    domain:
+      - docs
+    artifact:
+      - srs_document
+      - overall_description_section
+    rule_category:
+      - structural_constraint
+    rule_domain:
+      - DOCS
+
+  governance:
+    version: 1.0.0
+    status: draft
+    owner: aisr
+    intent:
+      rationale:
+        - ensure_contextual_clarity
+        - separate_description_from_requirements
+      purpose:
+        - maintain_descriptive_focus_in_overall_description
+    responsibilities:
+      human:
+        - document_author
+      ai:
+        - document_generator
+    applicability_context:
+      stage:
+        - develop
+      scope:
+        - overall_description_writing
+      risk:
+        - requirement_confusion
+        - structural_violation
+      severity: medium
+    governance_impact:
+      level: enforce
+      affected_capabilities:
+        - document_structure
+        - context_clarity

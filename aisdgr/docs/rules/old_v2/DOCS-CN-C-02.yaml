@@ -1,0 +1,50 @@
+# ==============================================================================
+# DOCS-CN-C-02: User-Driven Functional Requirements
+# ==============================================================================
+
+rule:
+  id: DOCS-CN-C-02
+  execution_view: requirement_engineer
+  constraint: >
+    AI **MUST NOT** propose new functional requirements autonomously.
+
+  boundary:
+    domain:
+      - docs
+    artifact:
+      - srs_document
+      - functional_requirement_section
+    rule_category:
+      - constraint_neutrality
+    rule_domain:
+      - DOCS
+
+  governance:
+    version: 1.0.0
+    status: draft
+    owner: aisr
+    intent:
+      rationale:
+        - prevent_autonomous_fr_proposal
+        - enforce_user_controlled_functional_requirements
+      purpose:
+        - ensure_functional_requirements_are_user_driven
+    responsibilities:
+      human:
+        - requirement_owner
+      ai:
+        - requirement_generator
+    applicability_context:
+      stage:
+        - develop
+      scope:
+        - functional_requirement_definition
+      risk:
+        - autonomous_requirement_injection
+        - user_intent_violation
+      severity: high
+    governance_impact:
+      level: enforce
+      affected_capabilities:
+        - requirement_ownership
+        - user_control

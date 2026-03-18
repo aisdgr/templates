@@ -1,0 +1,50 @@
+# ==============================================================================
+# DOCS-AR-P-02: Appendix Non-Generative Default
+# ==============================================================================
+
+rule:
+  id: DOCS-AR-P-02
+  execution_view: document_generator
+  constraint: >
+    AI **MUST NOT** generate appendix content by default.
+
+  boundary:
+    domain:
+      - docs
+    artifact:
+      - srs_document
+      - appendix_section
+    rule_category:
+      - artifact_isolation
+    rule_domain:
+      - DOCS
+
+  governance:
+    version: 1.0.0
+    status: draft
+    owner: aisr
+    intent:
+      rationale:
+        - prevent_automatic_appendix_generation
+        - enforce_explicit_appendix_request
+      purpose:
+        - restrict_default_appendix_creation
+    responsibilities:
+      human:
+        - document_owner
+      ai:
+        - document_generator
+    applicability_context:
+      stage:
+        - develop
+      scope:
+        - appendix_generation
+      risk:
+        - unauthorized_appendix
+        - scope_expansion
+      severity: medium
+    governance_impact:
+      level: enforce
+      affected_capabilities:
+        - appendix_control
+        - generation_boundary

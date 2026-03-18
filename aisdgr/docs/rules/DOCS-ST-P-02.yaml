@@ -1,0 +1,35 @@
+rule:
+  id: DOCS-ST-P-02
+  execution_view: document_generator
+  constraint: Change history *MUST* be informative only.
+  boundary:
+    domain:
+    - docs
+    artifact:
+    - SRS
+    - SDS
+    - STS
+    - CAS
+    - CIS
+    - CSS
+    rule_category:
+    - ST
+    rule_domain:
+    - DOCS
+  governance:
+    version: 1.0.0
+    status: draft
+    owner: aisr
+    original_rules:
+    - GEC-SRS-HISTORY-001
+    - GEC-SDS-HISTORY-001
+    - GEC-STS-HISTORY-001
+    - GEC-CAS-HISTORY-001
+    intent:
+      rationale:
+      - prevent_historical_invention
+      - maintain_record_accuracy
+      purpose:
+      - ensure_factual_history
+      risk: hallucination
+      severity: medium

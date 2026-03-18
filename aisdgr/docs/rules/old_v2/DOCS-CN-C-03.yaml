@@ -1,0 +1,50 @@
+# ==============================================================================
+# DOCS-CN-C-03: NFR Category Constraint
+# ==============================================================================
+
+rule:
+  id: DOCS-CN-C-03
+  execution_view: requirement_engineer
+  constraint: >
+    AI **MUST NOT** introduce new NFR categories.
+
+  boundary:
+    domain:
+      - docs
+    artifact:
+      - srs_document
+      - non_functional_requirement_section
+    rule_category:
+      - constraint_neutrality
+    rule_domain:
+      - DOCS
+
+  governance:
+    version: 1.0.0
+    status: draft
+    owner: aisr
+    intent:
+      rationale:
+        - prevent_autonomous_nfr_category_creation
+        - enforce_predefined_nfr_taxonomy
+      purpose:
+        - restrict_nfr_categories_to_declared_set
+    responsibilities:
+      human:
+        - requirement_engineer
+      ai:
+        - requirement_generator
+    applicability_context:
+      stage:
+        - develop
+      scope:
+        - nfr_categorization
+      risk:
+        - taxonomy_violation
+        - uncontrolled_nfr_expansion
+      severity: medium
+    governance_impact:
+      level: enforce
+      affected_capabilities:
+        - nfr_classification
+        - taxonomy_integrity

@@ -1,0 +1,148 @@
+document:
+  meta:
+    id: sts-contract
+    title: STS (Software Test Specification) Generation Contract
+    version: 1.1
+    status: active
+    action: contract
+    artifact: document
+    owner: aigm
+    description: >
+      This contract defines how an AI executes STS generation
+      based strictly on a provided XIM.
+
+  applicability_context:
+    intent:
+      category:
+        - structure
+        - testing
+        - generation
+        - rendering
+        - validation
+      source:
+        - sts.template.md
+        - sts.schema.yaml
+        - xim
+
+    roles:
+      enforced_on:
+        - ai
+      responsible:
+        - ai
+        - human
+        - system
+      involvement:
+        - primary
+        - secondary
+        - oversight
+
+    applies_to:
+      document_type:
+        - STS
+      
+      section:
+        - Change History
+        - Introduction
+        - Overall Test Description
+        - Test Specifications
+        - Traceability Policy
+        - Authoring and Structural Constraints
+        - Methodology Compatibility Notes
+        - Notes
+
+      constraint:
+        - required
+        - generate_document
+        - render_when_empty
+        - pattern
+        - unique
+      template:
+        - sts.template.md
+
+  rules:
+    # --------------------------------------------------------------------------
+    # Execution Rules
+    # --------------------------------------------------------------------------
+    - id: CONTRACT-STS-EXEC-001
+      title: Strictly Follow XIM
+      status: active
+      description: >
+        The AI MUST operate strictly according to the provided XIM.
+        The AI MUST NOT consult any file not declared in XIM User File Injection.
+      intent:
+        - category: generation
+      roles:
+        - enforced_on: ai
+      severity: error
+
+    # --------------------------------------------------------------------------
+    # Content Source Rules
+    # --------------------------------------------------------------------------
+    - id: CONTRACT-STS-SRC-001
+      title: Content Derived Only From Injected Sources
+      status: active
+      description: >
+        Test specification content MUST be derived ONLY from User File Injection
+        declared in XIM and direct human-provided text in XIM DETAIL.
+      intent:
+        - category: generation
+      roles:
+        - enforced_on: ai
+      severity: error
+
+    - id: CONTRACT-STS-SRC-002
+      title: No Inference or Fabrication
+      status: active
+      description: >
+        AI MUST NOT infer missing test cases or fabricate scenarios or assertions.
+        Absence of user inputs is a valid state.
+      intent:
+        - category: generation
+      roles:
+        - enforced_on: ai
+      severity: error
+
+    # --------------------------------------------------------------------------
+    # Structural Rules
+    # --------------------------------------------------------------------------
+    - id: CONTRACT-STS-STRUCT-001
+      title: Follow STS Template and Policy
+      status: active
+      description: >
+        Document structure, section hierarchy, and field definitions are dictated
+        exclusively by the injected STS template and execution policy.
+      intent:
+        - category: structure
+      roles:
+        - enforced_on: ai
+      severity: error
+
+    # --------------------------------------------------------------------------
+    # Executability & Omission Rules
+    # --------------------------------------------------------------------------
+    - id: CONTRACT-STS-EXEC-002
+      title: Respect Executability Policy
+      status: active
+      description: >
+        Sections marked as non-executable by execution policy MUST NOT be generated.
+        Executable sections with no valid test input MUST be handled according to policy.
+      intent:
+        - category: generation
+      roles:
+        - enforced_on: ai
+      severity: high
+
+    # --------------------------------------------------------------------------
+    # Language Rules
+    # --------------------------------------------------------------------------
+    - id: CONTRACT-STS-LANG-001
+      title: Language Consistency
+      status: active
+      description: >
+        Section body content MUST be written in the language declared in XIM ARTIFACT.
+        Do NOT mix languages within a section.
+      intent:
+        - category: generation
+      roles:
+        - enforced_on: ai
+      severity: medium

@@ -1,0 +1,181 @@
+# ==============================================================================
+# STS – Global Engineering Constraints (GEC)
+# ==============================================================================
+
+document:
+
+  # ---------------------------------------------------------------------------
+  # Meta Information
+  # ---------------------------------------------------------------------------
+  meta:
+    id: sts-gec
+    title: STS Global Engineering Constraints
+    version: 1.1
+    status: active
+    action: generate
+    artifact: document
+    owner: aigdmm
+    description: >
+      Execution policy governing AI interaction with
+      Software Test Specification (STS) documents.
+      STS defines verifiable behaviors and acceptance conditions
+      and MUST remain human-owned.
+
+  # ---------------------------------------------------------------------------
+  # Applicability Context (Structural Vocabulary Only)
+  # ---------------------------------------------------------------------------
+  applicability_context:
+
+    # 1. Intent vocabulary (Why)
+    intent:
+      category:
+        - structure
+        - testing
+        - generation
+
+    # 2. Role vocabulary (Who)
+    roles:
+      enforced_on:
+      - ai
+      - human
+      exempt:
+      - human
+      responsible:
+      - ai
+      - human
+      - system
+      involvement:
+      - primary
+      - secondary
+      - oversight
+
+    # 3. Applies-to vocabulary (Where / What)
+    applies_to:
+
+      document_type:
+        - STS
+
+      section:
+        - Change History
+        - Introduction
+        - Overall Test Description
+        - Test Specifications
+        - Traceability Policy
+        - Authoring and Structural Constraints
+        - Methodology Compatibility Notes
+        - Notes
+
+      authority:
+        - informative
+        - authoritative
+
+      generation:
+        - human_only
+        - ai_allowed
+        - ai_required
+
+      transformation:
+        - allowed
+        - forbidden
+
+  # ---------------------------------------------------------------------------
+  # Rules
+  # ---------------------------------------------------------------------------
+  rules:
+
+    # ==========================================================
+    # Global Governance Rules
+    # ==========================================================
+    - id: GEC-STS-GOV-001
+      version: 1.0
+      status: active
+      title: STS MUST be Human-Owned
+
+      description: >
+        STS defines verifiable behaviors and acceptance conditions
+        and MUST remain human-owned.
+
+      intent:
+        category: structure
+
+      roles:
+        enforced_on:
+          - ai
+          - human
+        responsible:
+          - human
+
+      applies_to:
+        document_type:
+          - STS
+        generation:
+          - human_only
+
+    - id: GEC-STS-GOV-002
+      version: 1.0
+      status: active
+      title: STS Immutable After Approval
+
+      description: >
+        Software Test Specification MUST remain immutable after approval.
+
+      intent:
+        category: structure
+
+      applies_to:
+        document_type:
+          - STS
+        transformation:
+          - forbidden
+
+    # ==========================================================
+    # Section-Level Policies
+    # ==========================================================
+    - id: GEC-STS-SEC-001
+      version: 1.0
+      status: active
+      title: Change History Visibility
+
+      description: >
+        Change History section MUST be human-only and not included in transformation.
+
+      applies_to:
+        section:
+          - Change History
+        generation:
+          - human_only
+        transformation:
+          - forbidden
+
+    - id: GEC-STS-SEC-002
+      version: 1.0
+      status: active
+      title: Test Specifications Item Policy
+
+      description: >
+        Test Specifications items MUST follow ID pattern TS-[A-Za-z0-9_-]+-[0-9]+
+        and contain required fields: DESCRIPTION, GIVEN / PREREQUISITES, 
+        WHEN / TEST_STEPS, THEN / EXPECTED_RESULT.
+
+      applies_to:
+        section:
+          - Test Specifications
+
+    # ==========================================================
+    # Enforcement Rules
+    # ==========================================================
+    - id: GEC-STS-ENFORCE-001
+      version: 1.0
+      status: active
+      title: Violation Termination
+
+      description: >
+        On policy violation, execution MUST terminate.
+
+    - id: GEC-STS-ENFORCE-002
+      version: 1.0
+      status: active
+      title: Field Rejection
+
+      description: >
+        On missing required field or invalid ID, the section or item MUST be rejected.

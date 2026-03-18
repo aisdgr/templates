@@ -1,0 +1,37 @@
+rule:
+  id: DOCS-AR-C-04
+  execution_view: document_generator
+  constraint: AI *MUST* produce a structurally valid document artifact.
+  boundary:
+    domain:
+    - docs
+    artifact:
+    - SRS
+    - SDS
+    - STS
+    - CAS
+    - CIS
+    - CSS
+    rule_category:
+    - AR
+    rule_domain:
+    - DOCS
+  governance:
+    version: 1.0.0
+    status: draft
+    owner: aisr
+    original_rules:
+    - GGC-SRS-STRUCTURE-001
+    - GGC-SDS-STRUCTURE-001
+    - GGC-STS-STRUCTURE-001
+    - GGC-CAS-STRUCTURE-001
+    - GGC-CIS-STRUCTURE-001
+    - GGC-CSS-STRUCTURE-001
+    intent:
+      rationale:
+      - ensure_document_validity
+      - maintain_structural_integrity
+      purpose:
+      - produce_valid_output
+      risk: ambiguity
+      severity: error

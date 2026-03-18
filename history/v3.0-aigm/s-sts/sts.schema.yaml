@@ -1,0 +1,192 @@
+fields:
+
+  # ---------------------------------------------------------------------------
+  # Meta
+  # ---------------------------------------------------------------------------
+  - name: meta.id
+    type: string
+    pattern: '^[a-zA-Z0-9_\-\.]+$'
+    constraint: unique
+    required: true
+    render_when_empty: true
+    generate_document: true
+    role_in_code: ignore
+
+  - name: meta.title
+    type: string
+    required: true
+    render_when_empty: true
+    generate_document: true
+    role_in_code: ignore
+
+  # ---------------------------------------------------------------------------
+  # Version
+  # ---------------------------------------------------------------------------
+  - name: version.version
+    type: string
+    pattern: '^\d+\.\d+$'
+    required: true
+    render_when_empty: true
+    generate_document: true
+    role_in_code: ignore
+
+  - name: version.status
+    type: enum
+    values:
+      - Draft
+      - Review
+      - Approved
+      - Released
+      - Deprecated
+    default: Draft    
+    required: true
+    render_when_empty: true
+    generate_document: true
+    role_in_code: ignore
+
+  - name: version.author
+    type: string
+    required: false
+    render_when_empty: false
+    generate_document: true
+    role_in_code: ignore
+
+  - name: version.date
+    type: string
+    format: date
+    required: true
+    render_when_empty: true
+    generate_document: true
+    role_in_code: ignore
+
+  # ---------------------------------------------------------------------------
+  # Description
+  # ---------------------------------------------------------------------------
+  - name: description
+    type: string
+    required: false
+    render_when_empty: false
+    generate_document: true
+    role_in_code: ignore
+
+  # ---------------------------------------------------------------------------
+  # Introduction
+  # ---------------------------------------------------------------------------
+  - name: purpose
+    type: text
+    required: false
+    render_when_empty: true
+    generate_document: true
+    role_in_code: ignore
+
+  - name: scope
+    type: text
+    required: false
+    render_when_empty: true
+    generate_document: true
+    role_in_code: ignore
+
+  # ---------------------------------------------------------------------------
+  # Overall Test Description
+  # ---------------------------------------------------------------------------
+  - name: test_perspective
+    type: text
+    required: false
+    render_when_empty: true
+    generate_document: true
+    role_in_code: ignore
+
+  - name: test_scope_and_coverage
+    type: text
+    required: false
+    render_when_empty: true
+    generate_document: true
+    role_in_code: ignore
+
+  - name: test_roles
+    type: text
+    required: false
+    render_when_empty: true
+    generate_document: true
+    role_in_code: ignore
+
+  - name: test_environment_assumptions
+    type: text
+    required: false
+    render_when_empty: true
+    generate_document: true
+    role_in_code: ignore
+
+  - name: test_constraints
+    type: text
+    required: false
+    render_when_empty: true
+    generate_document: true
+    role_in_code: ignore
+
+  - name: assumptions_dependencies
+    type: text
+    required: false
+    render_when_empty: true
+    generate_document: true
+    role_in_code: ignore
+
+  # ---------------------------------------------------------------------------
+  # Test Specifications
+  # ---------------------------------------------------------------------------
+  - name: test_area.title
+    type: string
+    required: true
+    render_when_empty: true
+    generate_document: true
+    role_in_code: ignore
+
+  - name: test_case.id
+    type: string
+    pattern: '^TS-[A-Z0-9_\-]+-[0-9]+$'
+    required: true
+    render_when_empty: true
+    generate_document: true
+    role_in_code: ignore
+
+  - name: test_case.title
+    type: string
+    required: true
+    render_when_empty: true
+    generate_document: true
+    role_in_code: ignore
+
+  - name: test_prerequisites
+    type: text
+    required: false
+    render_when_empty: true
+    generate_document: true
+    role_in_code: ignore
+
+  - name: test_steps
+    type: text
+    required: true
+    render_when_empty: true
+    generate_document: true
+    role_in_code: ignore
+
+  - name: expected_result
+    type: text
+    required: true
+    render_when_empty: true
+    generate_document: true
+    role_in_code: ignore
+
+  - name: trace.srs
+    type: string
+    required: false
+    render_when_empty: false
+    generate_document: true
+    role_in_code: ignore
+
+  - name: trace.sds
+    type: string
+    required: false
+    render_when_empty: false
+    generate_document: true
+    role_in_code: ignore

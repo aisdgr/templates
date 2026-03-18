@@ -1,0 +1,27 @@
+rule:
+  id: DOCS-ST-C-14
+  execution_view: document_generator
+  constraint: Architectural constraints *MUST* be explicitly declared.
+  boundary:
+    domain:
+    - docs
+    artifact:
+    - CAS
+    rule_category:
+    - ST
+    rule_domain:
+    - DOCS
+  governance:
+    version: 1.0.0
+    status: draft
+    owner: aisr
+    original_rules:
+    - GEC-CAS-CONSTRAINT-001
+    intent:
+      rationale:
+      - ensure_constraint_visibility
+      - prevent_implicit_limitations
+      purpose:
+      - maintain_architectural_transparency
+      risk: ambiguity
+      severity: error

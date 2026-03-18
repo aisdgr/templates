@@ -1,0 +1,27 @@
+rule:
+  id: DOCS-ST-C-04
+  execution_view: document_generator
+  constraint: Design components *MUST* declare responsibilities and interactions.
+  boundary:
+    domain:
+    - docs
+    artifact:
+    - SDS
+    rule_category:
+    - ST
+    rule_domain:
+    - DOCS
+  governance:
+    version: 1.0.0
+    status: draft
+    owner: aisr
+    original_rules:
+    - GEC-SDS-COMP-001
+    intent:
+      rationale:
+      - ensure_component_clarity
+      - define_interactions_explicitly
+      purpose:
+      - maintain_design_traceability
+      risk: ambiguity
+      severity: error

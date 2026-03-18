@@ -1,0 +1,37 @@
+rule:
+  id: DOCS-BD-C-02
+  execution_view: document_generator
+  constraint: Policy violation *MUST* result in execution termination.
+  boundary:
+    domain:
+    - docs
+    artifact:
+    - SRS
+    - SDS
+    - STS
+    - CAS
+    - CIS
+    - CSS
+    rule_category:
+    - BD
+    rule_domain:
+    - DOCS
+  governance:
+    version: 1.0.0
+    status: draft
+    owner: aisr
+    original_rules:
+    - GEC-SRS-STOP-001
+    - GEC-SDS-STOP-001
+    - GEC-STS-STOP-001
+    - GEC-CAS-STOP-001
+    - GEC-CIS-STOP-001
+    - GEC-CSS-STOP-001
+    intent:
+      rationale:
+      - enforce_policy_compliance
+      - prevent_risky_execution
+      purpose:
+      - ensure_safe_termination
+      risk: safety
+      severity: critical

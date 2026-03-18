@@ -1,0 +1,236 @@
+fields:
+
+  # ---------------------------------------------------------------------------
+  # Meta
+  # ---------------------------------------------------------------------------
+  - name: meta.id
+    type: string
+    pattern: '^[a-zA-Z0-9_\-\.]+$'
+    constraint: unique
+    required: true
+    render_when_empty: true
+    generate_document: true
+    role_in_code: ignore
+
+  - name: meta.title
+    type: string
+    required: true
+    render_when_empty: true
+    generate_document: true
+    role_in_code: ignore
+
+  # ---------------------------------------------------------------------------
+  # Version
+  # ---------------------------------------------------------------------------
+  - name: version.version
+    type: string
+    pattern: '^\d+\.\d+$'
+    required: true
+    render_when_empty: true
+    generate_document: true
+    role_in_code: ignore
+
+  - name: version.status
+    type: enum
+    values:
+      - Draft
+      - Review
+      - Approved
+      - Released
+      - Deprecated
+    default: Draft
+    required: true
+    render_when_empty: true
+    generate_document: true
+    role_in_code: ignore
+
+  - name: version.author
+    type: string
+    required: false
+    render_when_empty: false
+    generate_document: true
+    role_in_code: ignore
+
+  - name: version.date
+    type: string
+    format: date
+    required: true
+    render_when_empty: true
+    generate_document: true
+    role_in_code: ignore
+
+  # ---------------------------------------------------------------------------
+  # Description
+  # ---------------------------------------------------------------------------
+  - name: description
+    type: string
+    required: false
+    render_when_empty: false
+    generate_document: true
+    role_in_code: ignore
+
+  # ---------------------------------------------------------------------------
+  # Section
+  # ---------------------------------------------------------------------------
+  - name: purpose
+    type: text
+    required: false
+    render_when_empty: true
+    generate_document: true
+    role_in_code: ignore
+
+  - name: scope
+    type: text
+    required: false
+    render_when_empty: true
+    generate_document: true
+    role_in_code: ignore
+
+  - name: term
+    type: string
+    required: true
+    render_when_empty: false
+    generate_document: true
+    role_in_code: ignore
+
+  - name: references
+    type: list
+    required: false
+    render_when_empty: false
+    generate_document: true
+    role_in_code: ignore
+
+  - name: document_overview
+    type: text
+    required: false
+    render_when_empty: false
+    generate_document: true
+    role_in_code: ignore
+
+  # ---------------------------------------------------------------------------
+  # Architecture Fields
+  # ---------------------------------------------------------------------------
+  - name: architecture.context
+    type: text
+    required: false
+    render_when_empty: false
+    generate_document: true
+    role_in_code: architecture
+
+  - name: architecture.principles
+    type: list
+    required: false
+    render_when_empty: false
+    generate_document: true
+    role_in_code: architecture
+
+  - name: architecture.layers
+    type: list
+    required: false
+    render_when_empty: false
+    generate_document: true
+    role_in_code: architecture
+
+  - name: architecture.components
+    type: list
+    required: false
+    render_when_empty: false
+    generate_document: true
+    role_in_code: architecture
+
+  # ---------------------------------------------------------------------------
+  # Module ID
+  # ---------------------------------------------------------------------------
+  - name: module.id
+    type: string
+    pattern: '^MOD-[A-Za-z0-9_]+-\d{3}$'
+    constraint: unique
+    required: true
+    render_when_empty: true
+    generate_document: true
+    role_in_code: architecture
+
+  - name: module.title
+    type: string
+    required: true
+    render_when_empty: true
+    generate_document: true
+    role_in_code: architecture
+
+  - name: module.description
+    type: text
+    required: false
+    render_when_empty: false
+    generate_document: true
+    role_in_code: architecture
+
+  - name: module.dependencies
+    type: list
+    required: false
+    render_when_empty: false
+    generate_document: true
+    role_in_code: architecture
+
+  # ---------------------------------------------------------------------------
+  # Interface Fields
+  # ---------------------------------------------------------------------------
+  - name: interface.id
+    type: string
+    pattern: '^INT-[A-Za-z0-9_]+-\d{3}$'
+    constraint: unique
+    required: false
+    render_when_empty: false
+    generate_document: true
+    role_in_code: architecture
+
+  - name: interface.type
+    type: enum
+    values:
+      - API
+      - Library
+      - Service
+      - Database
+      - File
+      - Other
+    required: false
+    render_when_empty: false
+    generate_document: true
+    role_in_code: architecture
+
+  - name: interface.description
+    type: text
+    required: false
+    render_when_empty: false
+    generate_document: true
+    role_in_code: architecture
+
+  - name: interface.contract
+    type: text
+    required: false
+    render_when_empty: false
+    generate_document: true
+    role_in_code: architecture
+
+  # ---------------------------------------------------------------------------
+  # Constraint Fields
+  # ---------------------------------------------------------------------------
+  - name: constraint.design
+    type: text
+    required: false
+    render_when_empty: false
+    generate_document: true
+    role_in_code: architecture
+
+  - name: constraint.technology
+    type: text
+    required: false
+    render_when_empty: false
+    generate_document: true
+    role_in_code: architecture
+
+  - name: constraint.integration
+    type: text
+    required: false
+    render_when_empty: false
+    generate_document: true
+    role_in_code: architecture

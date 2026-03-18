@@ -1,0 +1,124 @@
+# ============================================================
+# STS Generation Governance Constraints (GGC)
+# ============================================================
+# Generation governance rules for Software Test
+# Specification (STS).
+#
+# These rules constrain HOW AI may generate STS content.
+# They do NOT define document structure (handled by GEC).
+#
+# Rules follow:
+# - aigdmm-rule-unified.yaml
+# - AIGD-CNL
+# - Semantic section grouping based on sts.template.md
+# ============================================================
+
+meta:                             # core
+  spec: AIGDMM-RULE               # core
+  version: 1.1                    # core (aligned with original)
+  rule_set: ggc                   # option
+  owner: aigdmm                   # option
+  status: active                  # option
+
+
+rules:
+
+  # ==========================================================
+  # Artifact Generation Rule
+  # ==========================================================
+  - rule:
+      id: GGC-STS-ARTIFACT-001
+      title: Must Produce Valid Artifact
+      description: >
+        AI MUST produce a structurally valid test specification artifact.
+        AI MUST NOT produce no output or false success.
+      severity: error
+
+    applies_to:
+      document_type: [STS]
+
+    intent:
+      category: generation
+      risk: validity
+
+    roles:
+      enforced_on: [ai]
+
+
+  # ==========================================================
+  # Semantic Input Handling
+  # ==========================================================
+  - rule:
+      id: GGC-STS-INPUT-001
+      title: Recognized Semantic Sources
+      description: >
+        AI SHOULD recognize SRS, SDS, IM, and direct human input as sources.
+        On absence of semantic input, AI MUST generate a minimal test skeleton.
+      severity: warning
+
+    applies_to:
+      document_type: [STS]
+
+    intent:
+      category: generation
+      risk: correctness
+
+
+  # ==========================================================
+  # Test Scenario Generation Rules
+  # ==========================================================
+  - rule:
+      id: GGC-STS-SCENARIO-001
+      title: Scenario Structure and Constraints
+      description: >
+        AI MUST follow GIVEN_WHEN_THEN format for test scenarios.
+        AI MUST NOT infer or fabricate test scenarios without input.
+        Missing content MUST be handled with explicit placeholders or open questions.
+      severity: error
+
+    applies_to:
+      document_type: [STS]
+      sections:
+        - Test Specifications
+
+    intent:
+      category: generation
+      risk: hallucination
+
+
+  # ==========================================================
+  # Structural Validity Rules
+  # ==========================================================
+  - rule:
+      id: GGC-STS-STRUCT-001
+      title: Preserve Section Hierarchy and Fields
+      description: >
+        AI MUST preserve the section hierarchy and required fields from the STS Template.
+        AI MUST render all structural sections, even if empty.
+      severity: error
+
+    applies_to:
+      document_type: [STS]
+
+    intent:
+      category: structure
+      risk: compliance
+
+# ----------------------------------------------------------
+# 7. Failure Conditions (SYSTEM-LEVEL ONLY)
+# ----------------------------------------------------------
+failure_conditions:
+  - template_missing
+  - template_corrupted
+  - output_path_unwritable
+  - execution_engine_failure
+
+# ----------------------------------------------------------
+# 8. Explicit Non-Scope
+# ----------------------------------------------------------
+non_scope:
+  - test_execution
+  - assertion_validation
+  - correctness_verification
+  - requirement_completeness_check
+  - pipeline_execution

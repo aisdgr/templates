@@ -1,0 +1,50 @@
+# ==============================================================================
+# DOCS-ST-P-03: Non-Functional Requirements Measurability
+# ==============================================================================
+
+rule:
+  id: DOCS-ST-P-03
+  execution_view: requirement_engineer
+  constraint: >
+    Non-functional requirement sections *MUST* define measurable constraints.
+
+  boundary:
+    domain:
+      - docs
+    artifact:
+      - srs_document
+      - nfr_section
+    rule_category:
+      - structural_constraint
+    rule_domain:
+      - DOCS
+
+  governance:
+    version: 1.0.0
+    status: draft
+    owner: aisr
+    intent:
+      rationale:
+        - enforce_nfr_testability
+        - prevent_vague_non_functional_requirements
+      purpose:
+        - ensure_nfr_measurability
+    responsibilities:
+      human:
+        - requirement_engineer
+      ai:
+        - document_generator
+    applicability_context:
+      stage:
+        - develop
+      scope:
+        - nfr_definition
+      risk:
+        - untestable_requirements
+        - vague_constraints
+      severity: high
+    governance_impact:
+      level: enforce
+      affected_capabilities:
+        - requirement_testability
+        - quality_assurance
