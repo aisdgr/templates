@@ -1,16 +1,16 @@
 # ==============================================================================
-# GOV-PR-C-02.yaml
-# Explicit governance over implicit trust
+# GOV-PR-C-001.yaml
+# AI as constrained executor
 # ==============================================================================
 
 rule:
-  id: GOV-PR-C-02
+  id: GOV-PR-C-001
   execution_view: governance_engineer
-  constraint: 'All AI behavior MUST be explicitly governed.
+  constraint: 'AI is a constrained executor, not an autonomous designer.
 
-    No AI action is permitted based on assumed intent
+    AI MUST comply with all applicable coding standards
 
-    or inferred authority.'
+    and MUST NOT reinterpret or weaken them.'
   boundary:
     domain:
     - code
@@ -23,7 +23,7 @@ rule:
     version: 1.0.0
     status: active
     owner: asdgr
-    original_rule: CGG-PR-003
+    original_rule: CGG-PR-001
     intent:
       rationale: []
     responsibilities:

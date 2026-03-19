@@ -1,14 +1,14 @@
 # ==============================================================================
-# GOV-ENF-C-02.yaml
-# GOV-ENF-C-02
+# GOV-PR-C-003.yaml
+# Visibility over silent correction
 # ==============================================================================
 
 rule:
-  id: GOV-ENF-C-02
+  id: GOV-PR-C-003
   execution_view: governance_engineer
-  constraint: 'Detected violations MUST result in a Code Validation Report (CVR).
+  constraint: 'Violations MUST be surfaced explicitly.
 
-    Violations MUST NOT be auto-fixed.'
+    Silent mutation or auto-correction is prohibited.'
   boundary:
     domain:
     - code
@@ -21,7 +21,7 @@ rule:
     version: 1.0.0
     status: active
     owner: asdgr
-    original_rule: CGG-ENF-002
+    original_rule: CGG-PR-004
     intent:
       rationale: []
     responsibilities:

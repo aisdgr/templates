@@ -1,14 +1,14 @@
 # ==============================================================================
-# GOV-PR-C-03.yaml
-# Visibility over silent correction
+# GOV-ENF-P-001.yaml
+# GOV-ENF-P-001
 # ==============================================================================
 
 rule:
-  id: GOV-PR-C-03
+  id: GOV-ENF-P-001
   execution_view: governance_engineer
-  constraint: 'Violations MUST be surfaced explicitly.
+  constraint: 'AI execution MAY continue in the presence of violations,
 
-    Silent mutation or auto-correction is prohibited.'
+    but violations MUST remain visible and traceable.'
   boundary:
     domain:
     - code
@@ -21,7 +21,7 @@ rule:
     version: 1.0.0
     status: active
     owner: asdgr
-    original_rule: CGG-PR-004
+    original_rule: CGG-ENF-003
     intent:
       rationale: []
     responsibilities:

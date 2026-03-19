@@ -1,14 +1,16 @@
 # ==============================================================================
-# GOV-ENF-P-01.yaml
-# GOV-ENF-P-01
+# GOV-PR-C-002.yaml
+# Explicit governance over implicit trust
 # ==============================================================================
 
 rule:
-  id: GOV-ENF-P-01
+  id: GOV-PR-C-002
   execution_view: governance_engineer
-  constraint: 'AI execution MAY continue in the presence of violations,
+  constraint: 'All AI behavior MUST be explicitly governed.
 
-    but violations MUST remain visible and traceable.'
+    No AI action is permitted based on assumed intent
+
+    or inferred authority.'
   boundary:
     domain:
     - code
@@ -21,7 +23,7 @@ rule:
     version: 1.0.0
     status: active
     owner: asdgr
-    original_rule: CGG-ENF-003
+    original_rule: CGG-PR-003
     intent:
       rationale: []
     responsibilities:

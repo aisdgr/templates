@@ -1,10 +1,10 @@
 # ==============================================================================
-# GOV-PR-P-01.yaml
+# GOV-PR-P-001.yaml
 # Separation of validity and correctness
 # ==============================================================================
 
 rule:
-  id: GOV-PR-P-01
+  id: GOV-PR-P-001
   execution_view: governance_engineer
   constraint: 'Validity and correctness are distinct responsibilities.
 

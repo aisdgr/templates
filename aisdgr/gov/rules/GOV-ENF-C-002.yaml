@@ -1,16 +1,14 @@
 # ==============================================================================
-# GOV-PR-C-01.yaml
-# AI as constrained executor
+# GOV-ENF-C-002.yaml
+# GOV-ENF-C-002
 # ==============================================================================
 
 rule:
-  id: GOV-PR-C-01
+  id: GOV-ENF-C-002
   execution_view: governance_engineer
-  constraint: 'AI is a constrained executor, not an autonomous designer.
+  constraint: 'Detected violations MUST result in a Code Validation Report (CVR).
 
-    AI MUST comply with all applicable coding standards
-
-    and MUST NOT reinterpret or weaken them.'
+    Violations MUST NOT be auto-fixed.'
   boundary:
     domain:
     - code
@@ -23,7 +21,7 @@ rule:
     version: 1.0.0
     status: active
     owner: asdgr
-    original_rule: CGG-PR-001
+    original_rule: CGG-ENF-002
     intent:
       rationale: []
     responsibilities:

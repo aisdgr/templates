@@ -1,10 +1,10 @@
 # ==============================================================================
-# GOV-ENF-C-01.yaml
-# GOV-ENF-C-01
+# GOV-ENF-C-001.yaml
+# GOV-ENF-C-001
 # ==============================================================================
 
 rule:
-  id: GOV-ENF-C-01
+  id: GOV-ENF-C-001
   execution_view: governance_engineer
   constraint: 'All AI-generated code MUST comply with CCS_Core
 
