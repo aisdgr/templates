@@ -1,0 +1,69 @@
+id: CORE-TR-C-001
+type: Constraint
+description: Must never delete existing traceability IDs
+rationale: |
+  保護追溯鏈的完整性，防止追溯資訊被刪除。
+
+  此規則是可追溯性的核心約束，確保：
+  1. 現有的追溯 ID 不得被刪除
+  2. 追溯關係必須持久保存
+  3. 追溯資訊的變更必須被記錄
+
+normative: MUST NOT
+
+metadata:
+  version: 1.0.0
+  status: active
+  owner: AISDGR
+  created_date: 2026-03-19
+  severity: critical
+  risk: high
+  impact: global
+  focus_areas:
+    - Traceability
+    - Audit Trail
+  domain_tags:
+    - Core
+  applicability:
+    - Code Modification
+    - Documentation Maintenance
+    - Test Maintenance
+
+examples:
+  compliant:
+    - description: "保留現有追溯 ID"
+      scenario: |
+        原始碼: // Trace: REQ-001
+        修改: 添加新功能，保留原有註解
+        結果: // Trace: REQ-001（已保留）
+        驗證: ✅ 符合規則
+
+  non_compliant:
+    - description: "刪除追溯 ID"
+      scenario: |
+        原始碼: // Trace: REQ-001
+        修改: AI 重構程式碼並刪除註解
+        結果: 程式碼無追溯 ID
+        驗證: ❌ 違反規則（追溯 ID 被刪除）
+
+validation:
+  detectable: true
+  detection_method: |
+    比對修改前後的追溯 ID，檢測是否有刪除行為。
+
+  evidence_generation: |
+    違規時生成 Evidence：
+    - 被刪除的追溯 ID 列表
+    - 原始追溯資訊
+    - 修改後的追溯資訊
+    - 刪除原因分析
+
+related_rules:
+  - CORE-TR-P-001  # 生成的製品必須包含追溯 ID
+  - CORE-TR-C-002  # 禁止生成沒有追溯 ID 的孤立製品
+  - CORE-TR-P-002  # 追溯 ID 必須嵌入在製品本身中
+
+migrated_from:
+  original_id: CODE-TR-C-01
+  migration_date: 2026-03-19
+  migration_reason: "移至 CORE Domain 作為通用可追溯性保護規則"

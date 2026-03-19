@@ -1,0 +1,67 @@
+id: CORE-CN-C-002
+type: Constraint
+description: Must never infer undeclared requirements
+rationale: |
+  防止 AI 自行推斷需求，確保所有需求都經過明確定義。
+
+  此規則是約束推斷的核心約束，確保：
+  1. 所有需求必須明確聲明
+  2. AI 不得自行推斷或創造需求
+  3. 需求來源必須可追溯
+
+normative: MUST NOT
+
+metadata:
+  version: 1.0.0
+  status: active
+  owner: AISDGR
+  created_date: 2026-03-19
+  severity: critical
+  risk: high
+  impact: global
+  focus_areas:
+    - Constraint Inference
+    - Requirement Management
+  domain_tags:
+    - Core
+  applicability:
+    - Code Generation
+    - Requirement Analysis
+    - Task Planning
+
+examples:
+  compliant:
+    - description: "僅使用明確聲明的需求"
+      scenario: |
+        聲明需求: 實現使用者登入功能
+        執行: AI 僅實現登入相關功能
+        結果: ✅ 符合規則
+
+  non_compliant:
+    - description: "自行推斷需求"
+      scenario: |
+        聲明需求: 實現使用者登入功能
+        推斷: AI 假設也需要實現登出功能
+        執行: AI 實現登入和登出功能
+        結果: ❌ 違反規則（推斷了未聲明的需求）
+
+validation:
+  detectable: true
+  detection_method: |
+    比對實際實現的功能與聲明的需求，檢測是否有推斷行為。
+
+  evidence_generation: |
+    違規時生成 Evidence：
+    - 推斷的需求列表
+    - 聲明的需求列表
+    - 推斷來源分析
+
+related_rules:
+  - CORE-CN-C-001  # 禁止推斷未聲明的邊界
+  - CORE-CN-C-003  # 禁止推斷未聲明的驗證目標
+  - CORE-TR-P-001  # 生成的製品必須包含追溯 ID
+
+migrated_from:
+  original_id: CODE-CN-C-02
+  migration_date: 2026-03-19
+  migration_reason: "移至 CORE Domain 作為通用需求推斷控制規則"

@@ -1,0 +1,68 @@
+id: CORE-BD-P-003
+type: Policy
+description: Code execution must stop when boundaries contain no executable targets
+rationale: |
+  防止無效的執行嘗試，確保執行目標明確且可達成。
+
+  此規則要求：
+  1. 執行前必須驗證邊界內是否包含可執行目標
+  2. 無可執行目標時必須停止並報告
+  3. 執行目標必須明確定義
+
+normative: MUST
+
+metadata:
+  version: 1.0.0
+  status: active
+  owner: AISDGR
+  created_date: 2026-03-19
+  severity: major
+  risk: medium
+  impact: global
+  focus_areas:
+    - Boundary Control
+    - Execution Safety
+  domain_tags:
+    - Core
+  applicability:
+    - Code Generation
+    - Code Execution
+    - Task Execution
+
+examples:
+  compliant:
+    - description: "無目標時停止執行"
+      scenario: |
+        聲明邊界: 修改 src/handlers/
+        檢查: 發現目錄為空或無符合條件的目標
+        執行: AI 停止執行並報告無可執行目標
+        結果: ✅ 符合規則
+
+  non_compliant:
+    - description: "無目標時繼續執行"
+      scenario: |
+        聲明邊界: 修改 src/handlers/
+        檢查: 發現目錄為空
+        執行: AI 嘗試建立新檔案或繼續執行
+        結果: ❌ 違反規則（應停止並報告）
+
+validation:
+  detectable: true
+  detection_method: |
+    檢查執行前是否有目標驗證步驟，以及無目標時是否停止。
+
+  evidence_generation: |
+    生成 Evidence：
+    - 目標驗證結果
+    - 邊界範圍掃描結果
+    - 停止執行原因報告
+
+related_rules:
+  - CORE-BD-P-001  # 執行必須在聲明邊界後停止
+  - CORE-BD-P-002  # 檢測到邊界衝突時必須停止執行
+  - CORE-BD-C-001  # 禁止修改邊界外的製品
+
+migrated_from:
+  original_id: CODE-BD-P-03
+  migration_date: 2026-03-19
+  migration_reason: "移至 CORE Domain 作為通用執行目標驗證規則"

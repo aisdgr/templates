@@ -1,0 +1,67 @@
+id: CORE-TR-P-001
+type: Policy
+description: Generated artifacts must include traceability IDs
+rationale: |
+  確保所有生成的製品可追溯到原始需求，建立完整的追溯鏈。
+
+  此規則要求：
+  1. 所有生成的製品必須包含追溯 ID
+  2. 追溯 ID 必須與需求或任務關聯
+  3. 追溯關係必須可查詢和驗證
+
+normative: MUST
+
+metadata:
+  version: 1.0.0
+  status: active
+  owner: AISDGR
+  created_date: 2026-03-19
+  severity: major
+  risk: medium
+  impact: global
+  focus_areas:
+    - Traceability
+    - Audit Trail
+  domain_tags:
+    - Core
+  applicability:
+    - Code Generation
+    - Documentation Generation
+    - Test Generation
+
+examples:
+  compliant:
+    - description: "製品包含追溯 ID"
+      scenario: |
+        需求 ID: REQ-001
+        執行: AI 生成程式碼，註解中包含 // Trace: REQ-001
+        結果: ✅ 符合規則
+
+  non_compliant:
+    - description: "製品缺乏追溯 ID"
+      scenario: |
+        需求 ID: REQ-002
+        執行: AI 生成程式碼，但未包含任何追溯資訊
+        結果: ❌ 違反規則（製品不可追溯）
+
+validation:
+  detectable: true
+  detection_method: |
+    檢查生成的製品是否包含追溯 ID 標記。
+
+  evidence_generation: |
+    生成 Evidence：
+    - 追溯 ID 存在性檢查結果
+    - 追溯 ID 格式驗證
+    - 追溯關係圖
+
+related_rules:
+  - CORE-TR-C-001  # 禁止刪除現有的追溯 ID
+  - CORE-TR-C-002  # 禁止生成沒有追溯 ID 的孤立製品
+  - CORE-TR-P-002  # 追溯 ID 必須嵌入在製品本身中
+  - CORE-TR-P-003  # 單個變更必須僅包含一個追溯 ID
+
+migrated_from:
+  original_id: CODE-TR-P-01
+  migration_date: 2026-03-19
+  migration_reason: "移至 CORE Domain 作為通用可追溯性規則"

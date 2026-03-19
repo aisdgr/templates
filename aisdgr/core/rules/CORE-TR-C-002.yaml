@@ -1,0 +1,66 @@
+id: CORE-TR-C-002
+type: Constraint
+description: Must never generate orphaned artifacts without traceability IDs
+rationale: |
+  防止生成孤立的製品，確保所有製品都可追溯到源頭。
+
+  此規則是可追溯性的核心約束，確保：
+  1. 所有生成的製品必須包含追溯 ID
+  2. 孤立製品（無追溯 ID）不得被生成
+  3. 追溯鏈必須完整無斷裂
+
+normative: MUST NOT
+
+metadata:
+  version: 1.0.0
+  status: active
+  owner: AISDGR
+  created_date: 2026-03-19
+  severity: critical
+  risk: high
+  impact: global
+  focus_areas:
+    - Traceability
+    - Artifact Management
+  domain_tags:
+    - Core
+  applicability:
+    - Code Generation
+    - Documentation Generation
+    - Test Generation
+
+examples:
+  compliant:
+    - description: "製品包含追溯 ID"
+      scenario: |
+        執行: AI 生成新的工具模組
+        結果: 模組包含 // Trace: REQ-002
+        驗證: ✅ 符合規則
+
+  non_compliant:
+    - description: "製品缺乏追溯 ID（孤立製品）"
+      scenario: |
+        執行: AI 生成新的工具模組
+        結果: 模組無任何追溯資訊
+        驗證: ❌ 違反規則（生成了孤立製品）
+
+validation:
+  detectable: true
+  detection_method: |
+    檢查所有新生成的製品是否包含追溯 ID。
+
+  evidence_generation: |
+    違規時生成 Evidence：
+    - 孤立製品列表
+    - 缺失的追溯 ID
+    - 生成時間和上下文
+
+related_rules:
+  - CORE-TR-P-001  # 生成的製品必須包含追溯 ID
+  - CORE-TR-C-001  # 禁止刪除現有的追溯 ID
+  - CORE-TR-P-002  # 追溯 ID 必須嵌入在製品本身中
+
+migrated_from:
+  original_id: CODE-TR-C-02
+  migration_date: 2026-03-19
+  migration_reason: "移至 CORE Domain 作為通用孤立製品預防規則"

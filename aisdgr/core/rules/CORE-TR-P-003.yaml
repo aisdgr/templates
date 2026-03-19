@@ -1,0 +1,70 @@
+id: CORE-TR-P-003
+type: Policy
+description: Single code changes must contain only one traceability ID
+rationale: |
+  確保追溯的精確性，使每個變更都清楚對應到單一需求。
+
+  此規則要求：
+  1. 單個程式碼變更（如函數、模組）僅對應一個追溯 ID
+  2. 多個需求的變更必須分開實現
+  3. 變更與需求的對應關係必須明確
+
+normative: MUST
+
+metadata:
+  version: 1.0.0
+  status: active
+  owner: AISDGR
+  created_date: 2026-03-19
+  severity: major
+  risk: medium
+  impact: global
+  focus_areas:
+    - Traceability
+    - Change Management
+  domain_tags:
+    - Core
+  applicability:
+    - Code Modification
+    - Code Generation
+    - Test Generation
+
+examples:
+  compliant:
+    - description: "單個變更包含一個追溯 ID"
+      scenario: |
+        變更: 修改使用者驗證函數
+        程式碼: |
+          // Trace: REQ-001
+          func Authenticate() { ... }
+        驗證: ✅ 符合規則（單一追溯 ID）
+
+  non_compliant:
+    - description: "單個變更包含多個追溯 ID"
+      scenario: |
+        變更: 修改使用者驗證函數
+        程式碼: |
+          // Trace: REQ-001, REQ-002, REQ-003
+          func Authenticate() { ... }
+        驗證: ❌ 違反規則（包含多個追溯 ID）
+
+validation:
+  detectable: true
+  detection_method: |
+    檢查單個變更單元是否包含多個追溯 ID。
+
+  evidence_generation: |
+    生成 Evidence：
+    - 變更單元中的追溯 ID 數量
+    - 追溯 ID 列表
+    - 建議的拆分方案
+
+related_rules:
+  - CORE-TR-P-001  # 生成的製品必須包含追溯 ID
+  - CORE-TR-P-002  # 追溯 ID 必須嵌入在製品本身中
+  - CORE-TR-C-001  # 禁止刪除現有的追溯 ID
+
+migrated_from:
+  original_id: CODE-TR-P-03
+  migration_date: 2026-03-19
+  migration_reason: "移至 CORE Domain 作為通用追溯精確性規則"

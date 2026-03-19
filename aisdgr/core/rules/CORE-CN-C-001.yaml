@@ -1,0 +1,67 @@
+id: CORE-CN-C-001
+type: Constraint
+description: Must never infer undeclared boundaries
+rationale: |
+  防止 AI 自行推斷邊界，確保所有邊界都經過明確定義。
+
+  此規則是約束推斷的核心約束，確保：
+  1. 所有執行邊界必須明確聲明
+  2. AI 不得自行推斷或擴展邊界
+  3. 邊界定義必須來自明確的授權來源
+
+normative: MUST NOT
+
+metadata:
+  version: 1.0.0
+  status: active
+  owner: AISDGR
+  created_date: 2026-03-19
+  severity: critical
+  risk: high
+  impact: global
+  focus_areas:
+    - Constraint Inference
+    - Boundary Control
+  domain_tags:
+    - Core
+  applicability:
+    - Code Generation
+    - Code Modification
+    - Task Planning
+
+examples:
+  compliant:
+    - description: "僅使用明確聲明的邊界"
+      scenario: |
+        聲明: 邊界為 src/handlers/
+        執行: AI 僅在 src/handlers/ 範圍內操作
+        結果: ✅ 符合規則
+
+  non_compliant:
+    - description: "自行推斷邊界"
+      scenario: |
+        聲明: 邊界為 src/handlers/
+        推斷: AI 假設 src/models/ 也應該包含在內
+        執行: AI 在 src/handlers/ 和 src/models/ 範圍內操作
+        結果: ❌ 違反規則（推斷了未聲明的邊界）
+
+validation:
+  detectable: true
+  detection_method: |
+    比對實際使用的邊界與聲明的邊界，檢測是否有推斷行為。
+
+  evidence_generation: |
+    違規時生成 Evidence：
+    - 推斷的邊界列表
+    - 聲明的邊界列表
+    - 推斷來源分析
+
+related_rules:
+  - CORE-CN-C-002  # 禁止推斷未聲明的需求
+  - CORE-CN-C-003  # 禁止推斷未聲明的驗證目標
+  - CORE-BD-C-001  # 禁止修改邊界外的製品
+
+migrated_from:
+  original_id: CODE-CN-C-01
+  migration_date: 2026-03-19
+  migration_reason: "移至 CORE Domain 作為通用約束推斷控制規則"

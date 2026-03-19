@@ -12,6 +12,52 @@ not *why*, *when*, or *by whom* they should occur.
 
 ---
 
+## ⚠️ 重要更新 (2026-03-19)
+
+部分通用規則已遷移至 **CORE Domain**，適用於所有製品類型（程式碼、文檔等）。
+
+### 已遷移至 CORE Domain 的規則
+
+以下 CODE 規則已被對應的 CORE 規則取代：
+
+| 原 CODE ID      | 新 CORE ID        | 說明                     |
+|-----------------|-------------------|--------------------------|
+| CODE-AR-01      | CORE-AR-P-001     | 創建權限定義             |
+| CODE-AR-02      | CORE-AR-C-001     | 禁止創建未聲明製品       |
+| CODE-AR-03      | CORE-AR-C-002     | 禁止修改未聲明製品       |
+| CODE-AR-05      | CORE-AR-P-002     | 製品可尋址性             |
+| CODE-BD-01      | CORE-BD-P-001     | 邊界後停止               |
+| CODE-BD-02      | CORE-BD-P-002     | 衝突時停止               |
+| CODE-BD-03      | CORE-BD-P-003     | 無目標時停止             |
+| CODE-BD-04      | CORE-BD-C-001     | 禁止越界修改             |
+| CODE-BD-05      | CORE-BD-C-002     | 禁止越界存取             |
+| CODE-BD-06      | CORE-BD-C-003     | 禁止未聲明依賴           |
+| CODE-CN-01      | CORE-CN-C-001     | 禁止推斷邊界             |
+| CODE-CN-02      | CORE-CN-C-002     | 禁止推斷需求             |
+| CODE-CN-03      | CORE-CN-C-003     | 禁止推斷驗證目標         |
+| CODE-TR-01      | CORE-TR-P-001     | 追溯 ID 必須包含         |
+| CODE-TR-02      | CORE-TR-P-002     | 追溯 ID 嵌入製品         |
+| CODE-TR-03      | CORE-TR-P-003     | 單一追溯 ID              |
+| CODE-TR-04      | CORE-TR-C-001     | 禁止刪除追溯 ID          |
+| CODE-TR-05      | CORE-TR-C-002     | 禁���孤立製品             |
+
+這些規則在原檔案中已標記為 `status: superseded`，請使用新的 CORE 規則。
+
+### 保留在 CODE Domain 的規則
+
+以下規則為程式碼特定，仍保留在 CODE Domain：
+
+- **AR-04**: 修改多個製品類型（程式碼特定）
+- **ST-***: 所有結構變更規則（程式碼特定）
+- **TI-***: 所有測試完整性規則（程式碼特定）
+- **LG-***: 所有日誌與報告規則（暫時保留，未來可能部分移至 CORE）
+
+詳情請參考：
+- [CORE Domain 規則](../../core/rules/LIST.md)
+- [規則遷移對照表](../../RULE_ID_MIGRATION_MAP.md)（待建立）
+
+---
+
 ## 1. Design Principles
 
 The CODE rules follow the following non-negotiable principles:

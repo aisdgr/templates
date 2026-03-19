@@ -1,0 +1,66 @@
+id: CORE-BD-C-003
+type: Constraint
+description: Code must not introduce undeclared external dependencies
+rationale: |
+  防止未經授權的外部相依性引入，確保所有相依性都經過審核和控制。
+
+  此規則是邊界控制的核心約束，確保：
+  1. 所有外部相依性必須在執行前明確聲明
+  2. 未聲明的相依性不得被引入
+  3. 相依性變更必須可追溯
+
+normative: MUST NOT
+
+metadata:
+  version: 1.0.0
+  status: active
+  owner: AISDGR
+  created_date: 2026-03-19
+  severity: critical
+  risk: high
+  impact: global
+  focus_areas:
+    - Boundary Control
+    - Dependency Management
+  domain_tags:
+    - Core
+  applicability:
+    - Code Generation
+    - Code Modification
+    - Dependency Management
+
+examples:
+  compliant:
+    - description: "引入已聲明的相依性"
+      scenario: |
+        聲明相依性: github.com/gin-gonic/gin v1.9.0
+        執行: AI 程式碼 import "github.com/gin-gonic/gin"
+        結果: ✅ 符合規則
+
+  non_compliant:
+    - description: "引入未聲明的相依性"
+      scenario: |
+        聲明相依性: 無
+        執行: AI 程式碼 import "github.com/some/external/pkg"
+        結果: ❌ 違反規則（引入了未聲明的相依性）
+
+validation:
+  detectable: true
+  detection_method: |
+    比對實際引入的相依性與聲明的相依性列表。
+
+  evidence_generation: |
+    違規時生成 Evidence：
+    - 未聲明的相依性列表
+    - 相依性來源分析
+    - 影響範圍評估
+
+related_rules:
+  - CORE-BD-C-001  # 禁止修改邊界外的製品
+  - CORE-BD-C-002  # 禁止存取邊界外的模組或資源
+  - CORE-BD-P-001  # 執行必須在聲明邊界後停止
+
+migrated_from:
+  original_id: CODE-BD-C-03
+  migration_date: 2026-03-19
+  migration_reason: "移至 CORE Domain 作為通用相依性控制規則"

@@ -29,7 +29,10 @@ rule:
   # ---------------------------------------------------------------------------
   governance:
     version: 1.0.0
-    status: draft
+    status: superseded
+    superseded_by: CORE-BD-C-002
+    superseded_date: 2026-03-19
+    superseded_reason: "移至 CORE Domain 作為通用規則"
     owner: asdgr
 
     # -------------------------------------------------------------------------

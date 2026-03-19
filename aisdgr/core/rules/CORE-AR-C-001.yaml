@@ -1,0 +1,66 @@
+id: CORE-AR-C-001
+type: Constraint
+description: Must not create undeclared artifact types
+rationale: |
+  確保所有製品類型都經過明確定義與授權，防止 AI 自���創建未經批准的製品類型。
+
+  此規則是制品隔離的核心約束，確保：
+  1. 所有製品類型都在執行前明確聲明
+  2. AI 只能生成已授權類型的製品
+  3. 防止製品類型的無限制擴展
+
+normative: MUST NOT
+
+metadata:
+  version: 1.0.0
+  status: active
+  owner: AISDGR
+  created_date: 2026-03-19
+  severity: major
+  risk: high
+  impact: global
+  focus_areas:
+    - Artifact Isolation
+    - Code Structure
+  domain_tags:
+    - Core
+  applicability:
+    - Code Generation
+    - Documentation Generation
+    - Test Generation
+
+examples:
+  compliant:
+    - description: "僅創建已聲明的製品類型"
+      scenario: |
+        聲明: 生成 Source Code 和 Test Files
+        執行: AI 僅生成 .go 源碼和 _test.go 測���檔案
+        結果: ✅ 符合規則
+
+  non_compliant:
+    - description: "創建未聲明的製品類型"
+      scenario: |
+        聲明: 僅生成 Source Code
+        執行: AI 生成 Source Code 和 README.md 文檔
+        結果: ❌ 違反規則 (創建了未聲明的 Documentation 製品)
+
+validation:
+  detectable: true
+  detection_method: |
+    可通過比對實際生成的製品類型與聲明的製品類型來檢測違規。
+
+  evidence_generation: |
+    違規時生成 Evidence：
+    - 未聲明的製品類型列表
+    - 生成時間戳
+    - 執行上下文資訊
+
+related_rules:
+  - CORE-AR-C-002  # 禁止修改未聲明的製品類型
+  - CORE-AR-P-001  # 創建新製品的權限必須明確定義
+  - CORE-AR-P-002  # 所有生成的製品必須可尋址和定位
+
+migrated_from:
+  original_id: CODE-AR-C-01
+  migration_date: 2026-03-19
+  migration_reason: "移至 CORE Domain 作為通用規則，適用於所有製品類型"

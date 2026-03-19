@@ -1,0 +1,67 @@
+id: CORE-BD-C-001
+type: Constraint
+description: Code must not modify artifacts beyond declared boundaries
+rationale: |
+  防止越權修改，確保 AI 只在授權的邊界範圍內操作。
+
+  此規則是邊界控制的核心約束，確保：
+  1. 所有修改操作都在明確聲明的邊界內
+  2. 邊界外的製品不被修改
+  3. 邊界定義清晰且可驗證
+
+normative: MUST NOT
+
+metadata:
+  version: 1.0.0
+  status: active
+  owner: AISDGR
+  created_date: 2026-03-19
+  severity: critical
+  risk: high
+  impact: global
+  focus_areas:
+    - Boundary Control
+    - Security
+  domain_tags:
+    - Core
+  applicability:
+    - Code Generation
+    - Code Modification
+    - Documentation Generation
+
+examples:
+  compliant:
+    - description: "在邊界內修改製品"
+      scenario: |
+        聲明邊界: 僅修改 src/ 目錄下的檔案
+        執行: AI 修改 src/main.go
+        結果: ✅ 符合規則
+
+  non_compliant:
+    - description: "越界修改製品"
+      scenario: |
+        聲明邊界: 僅修改 src/ 目錄下的檔案
+        執行: AI 修改 src/main.go 和 vendor/lib.go
+        結果: ❌ 違反規則 (vendor/lib.go 超出邊界)
+
+validation:
+  detectable: true
+  detection_method: |
+    通過比對實際修改的檔案路徑與聲明的邊界範圍來檢測違規。
+
+  evidence_generation: |
+    違規時生成 Evidence：
+    - 越界修改的檔案列表
+    - 聲明的邊界範圍
+    - 實際修改的範圍
+    - 差異分析報告
+
+related_rules:
+  - CORE-BD-C-002  # 禁止存取邊界外的模組或資源
+  - CORE-BD-C-003  # 禁止引入未聲明的外部相依性
+  - CORE-BD-P-001  # 執行必須在聲明邊界後停止
+
+migrated_from:
+  original_id: CODE-BD-C-01
+  migration_date: 2026-03-19
+  migration_reason: "移至 CORE Domain 作為通用邊界控制規則"
