@@ -1,24 +1,23 @@
 # ==============================================================================
-# CODE-LG-P-06.yaml
-# A rule-evaluation report MUST be generated.
+# CODE-LG-P-04.yaml
+# A change summary MUST be provided.
 # ==============================================================================
 
 rule:
-  id: CODE-LG-P-06
-  execution_view: governance_observer
+  id: CODE-LG-P-004
+  execution_view: logging_engineer
 
   constraint: >
-    Each execution MUST generate a rule-evaluation report.
+    Each code execution that results in changes
+    MUST include a change summary.
 
   boundary:
     domain:
       - code
     artifact:
       - execution_record
-      - rule_report
     rule_category:
       - logging
-      - governance
     rule_domain:
       - CODE
 
@@ -29,28 +28,29 @@ rule:
 
     intent:
       rationale:
-        - expose_rule_application
-        - prevent_silent_governance
+        - preserve_change_intent
+        - enable_review_and_audit
 
     responsibilities:
+      ai:
+        - code_executor
       system:
-        - rule_evaluator
-        - report_generator
+        - change_summarizer
 
     applicability_context:
       stage:
         - develop
       scope:
-        - rule_evaluation
+        - code_change
       risk:
-        - governance
+        - traceability
       severity:
-        - high
+        - medium
       reason:
-        - missing_rule_report
+        - missing_change_summary
 
     governance_impact:
       level: enforce
       affected_capabilities:
-        - governance_visibility
         - auditability
+        - reviewability

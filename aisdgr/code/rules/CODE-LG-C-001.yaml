@@ -1,15 +1,15 @@
 # ==============================================================================
-# CODE-LG-P-04.yaml
-# A change summary MUST be provided.
+# CODE-LG-C-01.yaml
+# Rationales MUST NOT be empty or purely repetitive.
 # ==============================================================================
 
 rule:
-  id: CODE-LG-P-04
+  id: CODE-LG-C-001
   execution_view: logging_engineer
 
   constraint: >
-    Each code execution that results in changes
-    MUST include a change summary.
+    Execution rationales MUST NOT be empty,
+    generic, or purely repetitive across executions.
 
   boundary:
     domain:
@@ -28,29 +28,28 @@ rule:
 
     intent:
       rationale:
-        - preserve_change_intent
-        - enable_review_and_audit
+        - prevent_placeholder_justification
+        - ensure_meaningful_rationale
 
     responsibilities:
-      ai:
-        - code_executor
       system:
-        - change_summarizer
+        - rationale_validator
 
     applicability_context:
       stage:
         - develop
       scope:
-        - code_change
+        - execution_logging
       risk:
-        - traceability
+        - accountability
       severity:
         - medium
       reason:
-        - missing_change_summary
+        - empty_rationale
+        - repetitive_rationale
 
     governance_impact:
       level: enforce
       affected_capabilities:
+        - accountability
         - auditability
-        - reviewability

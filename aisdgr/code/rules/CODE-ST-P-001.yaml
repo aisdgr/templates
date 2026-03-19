@@ -1,16 +1,15 @@
 # ==============================================================================
-# CODE-ST-C-03.yaml
-# Introduction of new functionality is forbidden unless explicitly allowed.
+# CODE-ST-P-01.yaml
+# Permission for structural refactoring MUST be explicit.
 # ==============================================================================
 
 rule:
-  id: CODE-ST-C-03
+  id: CODE-ST-P-001
   execution_view: structure_engineer
 
   constraint: >
-    Code execution MUST NOT introduce new functionality
-    unless explicit permission for new functionality
-    has been declared.
+    Permission for structural refactoring MUST be
+    explicitly declared before execution.
 
   # ---------------------------------------------------------------------------
   # Boundary
@@ -38,9 +37,9 @@ rule:
     # -------------------------------------------------------------------------
     intent:
       rationale:
-        - prevent_feature_creep
-        - block_implicit_requirement_expansion
-        - enforce_functional_scope_control
+        - prevent_implicit_refactoring
+        - separate_structure_from_logic_change
+        - enforce_explicit_structural_intent
 
     # -------------------------------------------------------------------------
     # Responsibilities
@@ -50,7 +49,6 @@ rule:
         - code_executor
       system:
         - structure_validator
-        - behavior_validator
 
     # -------------------------------------------------------------------------
     # Applicability Context
@@ -59,22 +57,21 @@ rule:
       stage:
         - develop
       scope:
-        - functionality_introduction
+        - structural_refactoring
       risk:
         - architecture
-        - correctness
       severity:
         - high
       reason:
-        - unauthorized_new_functionality
-        - implicit_requirement_expansion
+        - missing_structural_refactor_permission
+        - implicit_structure_change_risk
 
     # -------------------------------------------------------------------------
     # Governance Impact
     # -------------------------------------------------------------------------
     governance_impact:
-      level: blocking
+      level: gating
       affected_capabilities:
-        - functional_scope_control
         - architectural_stability
+        - change_predictability
         - auditability

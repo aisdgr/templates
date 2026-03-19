@@ -1,16 +1,15 @@
 # ==============================================================================
-# CODE-ST-C-04.yaml
-# Removal of existing behavior is forbidden unless explicitly allowed.
+# CODE-TI-C-01.yaml
+# Test artifacts MUST NOT modify or affect production code.
 # ==============================================================================
 
 rule:
-  id: CODE-ST-C-04
-  execution_view: structure_engineer
+  id: CODE-TI-C-001
+  execution_view: test_integrity_engineer
 
   constraint: >
-    Code execution MUST NOT remove existing behavior
-    unless explicit permission for behavior removal
-    has been declared.
+    Test artifacts MUST NOT modify or affect
+    production source code.
 
   # ---------------------------------------------------------------------------
   # Boundary
@@ -19,9 +18,9 @@ rule:
     domain:
       - code
     artifact:
-      - source_code
+      - test_artifact
     rule_category:
-      - structural_change
+      - test_integrity
     rule_domain:
       - CODE
 
@@ -38,9 +37,9 @@ rule:
     # -------------------------------------------------------------------------
     intent:
       rationale:
-        - prevent_silent_behavior_removal
-        - preserve_backward_compatibility
-        - enforce_explicit_deprecation_intent
+        - prevent_test_driven_code_mutation
+        - preserve_production_code_integrity
+        - enforce_test_production_separation
 
     # -------------------------------------------------------------------------
     # Responsibilities
@@ -49,8 +48,8 @@ rule:
       ai:
         - code_executor
       system:
-        - behavior_validator
-        - structure_validator
+        - test_validator
+        - artifact_validator
 
     # -------------------------------------------------------------------------
     # Applicability Context
@@ -59,15 +58,17 @@ rule:
       stage:
         - develop
       scope:
-        - behavior_removal
+        - test_execution
+        - test_generation
+        - test_modification
       risk:
-        - architecture
         - correctness
+        - isolation
       severity:
         - high
       reason:
-        - unauthorized_behavior_removal
-        - backward_compatibility_risk
+        - test_affecting_production_code
+        - test_integrity_violation
 
     # -------------------------------------------------------------------------
     # Governance Impact
@@ -75,6 +76,6 @@ rule:
     governance_impact:
       level: blocking
       affected_capabilities:
-        - behavioral_integrity
-        - backward_compatibility
+        - test_isolation
+        - production_stability
         - auditability

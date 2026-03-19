@@ -4,7 +4,7 @@
 # ==============================================================================
 
 rule:
-  id: CODE-LG-C-02
+  id: CODE-LG-C-002
   execution_view: governance_observer
 
   constraint: >

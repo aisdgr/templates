@@ -1,15 +1,15 @@
 # ==============================================================================
-# CODE-ST-P-01.yaml
-# Permission for structural refactoring MUST be explicit.
+# CODE-TI-C-04.yaml
+# Tests MUST NOT infer requirements or behavior from implementation.
 # ==============================================================================
 
 rule:
-  id: CODE-ST-P-01
-  execution_view: structure_engineer
+  id: CODE-TI-C-004
+  execution_view: test_integrity_engineer
 
   constraint: >
-    Permission for structural refactoring MUST be
-    explicitly declared before execution.
+    Tests MUST NOT infer requirements or expected behavior
+    from the implementation of the production code.
 
   # ---------------------------------------------------------------------------
   # Boundary
@@ -18,9 +18,9 @@ rule:
     domain:
       - code
     artifact:
-      - source_code
+      - test_artifact
     rule_category:
-      - structural_change
+      - test_integrity
     rule_domain:
       - CODE
 
@@ -37,9 +37,9 @@ rule:
     # -------------------------------------------------------------------------
     intent:
       rationale:
-        - prevent_implicit_refactoring
-        - separate_structure_from_logic_change
-        - enforce_explicit_structural_intent
+        - prevent_reverse_requirement_inference
+        - block_implementation_as_behavior_authority
+        - eliminate_inference_creep_via_tests
 
     # -------------------------------------------------------------------------
     # Responsibilities
@@ -48,7 +48,8 @@ rule:
       ai:
         - code_executor
       system:
-        - structure_validator
+        - test_validator
+        - behavior_validator
 
     # -------------------------------------------------------------------------
     # Applicability Context
@@ -57,21 +58,23 @@ rule:
       stage:
         - develop
       scope:
-        - structural_refactoring
+        - test_generation
+        - test_modification
       risk:
-        - architecture
+        - correctness
+        - governance
       severity:
         - high
       reason:
-        - missing_structural_refactor_permission
-        - implicit_structure_change_risk
+        - requirement_inferred_from_code
+        - implementation_as_authority
 
     # -------------------------------------------------------------------------
     # Governance Impact
     # -------------------------------------------------------------------------
     governance_impact:
-      level: gating
+      level: blocking
       affected_capabilities:
-        - architectural_stability
-        - change_predictability
+        - requirement_authority
+        - behavioral_integrity
         - auditability

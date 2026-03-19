@@ -4,7 +4,7 @@
 # ==============================================================================
 
 rule:
-  id: CODE-AR-C-03
+  id: CODE-AR-C-003
   execution_view: artifact_engineer
 
   constraint: >

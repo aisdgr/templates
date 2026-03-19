@@ -1,15 +1,15 @@
 # ==============================================================================
-# CODE-TI-C-04.yaml
-# Tests MUST NOT infer requirements or behavior from implementation.
+# CODE-LG-P-01.yaml
+# Each execution MUST produce a locatable execution record.
 # ==============================================================================
 
 rule:
-  id: CODE-TI-C-04
-  execution_view: test_integrity_engineer
+  id: CODE-LG-P-001
+  execution_view: logging_engineer
 
   constraint: >
-    Tests MUST NOT infer requirements or expected behavior
-    from the implementation of the production code.
+    Each code execution MUST produce
+    a locatable execution record.
 
   # ---------------------------------------------------------------------------
   # Boundary
@@ -18,9 +18,9 @@ rule:
     domain:
       - code
     artifact:
-      - test_artifact
+      - execution_record
     rule_category:
-      - test_integrity
+      - logging
     rule_domain:
       - CODE
 
@@ -37,9 +37,9 @@ rule:
     # -------------------------------------------------------------------------
     intent:
       rationale:
-        - prevent_reverse_requirement_inference
-        - block_implementation_as_behavior_authority
-        - eliminate_inference_creep_via_tests
+        - ensure_execution_observability
+        - prevent_untraceable_execution
+        - enable_post_execution_audit
 
     # -------------------------------------------------------------------------
     # Responsibilities
@@ -48,8 +48,8 @@ rule:
       ai:
         - code_executor
       system:
-        - test_validator
-        - behavior_validator
+        - execution_logger
+        - record_locator
 
     # -------------------------------------------------------------------------
     # Applicability Context
@@ -58,23 +58,22 @@ rule:
       stage:
         - develop
       scope:
-        - test_generation
-        - test_modification
+        - code_execution
       risk:
-        - correctness
+        - auditability
         - governance
       severity:
-        - high
+        - medium
       reason:
-        - requirement_inferred_from_code
-        - implementation_as_authority
+        - missing_execution_record
+        - non_locatable_record
 
     # -------------------------------------------------------------------------
     # Governance Impact
     # -------------------------------------------------------------------------
     governance_impact:
-      level: blocking
+      level: enforce
       affected_capabilities:
-        - requirement_authority
-        - behavioral_integrity
+        - execution_traceability
         - auditability
+        - accountability

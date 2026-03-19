@@ -1,21 +1,22 @@
 # ==============================================================================
-# CODE-LG-C-01.yaml
-# Rationales MUST NOT be empty or purely repetitive.
+# CODE-LG-P-05.yaml
+# Change summaries MUST match actual code changes.
 # ==============================================================================
 
 rule:
-  id: CODE-LG-C-01
+  id: CODE-LG-P-005
   execution_view: logging_engineer
 
   constraint: >
-    Execution rationales MUST NOT be empty,
-    generic, or purely repetitive across executions.
+    Change summaries MUST accurately reflect
+    the actual code changes performed.
 
   boundary:
     domain:
       - code
     artifact:
       - execution_record
+      - source_code
     rule_category:
       - logging
     rule_domain:
@@ -28,28 +29,28 @@ rule:
 
     intent:
       rationale:
-        - prevent_placeholder_justification
-        - ensure_meaningful_rationale
+        - prevent_misleading_summaries
+        - ensure_change_integrity
 
     responsibilities:
       system:
-        - rationale_validator
+        - diff_analyzer
+        - summary_validator
 
     applicability_context:
       stage:
         - develop
       scope:
-        - execution_logging
+        - code_change
       risk:
-        - accountability
+        - auditability
       severity:
-        - medium
+        - high
       reason:
-        - empty_rationale
-        - repetitive_rationale
+        - summary_mismatch
 
     governance_impact:
       level: enforce
       affected_capabilities:
+        - forensic_analysis
         - accountability
-        - auditability

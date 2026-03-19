@@ -1,15 +1,16 @@
 # ==============================================================================
-# CODE-TI-C-03.yaml
-# Tests MUST NOT redefine expected behavior.
+# CODE-ST-C-04.yaml
+# Removal of existing behavior is forbidden unless explicitly allowed.
 # ==============================================================================
 
 rule:
-  id: CODE-TI-C-03
-  execution_view: test_integrity_engineer
+  id: CODE-ST-C-004
+  execution_view: structure_engineer
 
   constraint: >
-    Tests MUST NOT redefine expected behavior
-    of the production code.
+    Code execution MUST NOT remove existing behavior
+    unless explicit permission for behavior removal
+    has been declared.
 
   # ---------------------------------------------------------------------------
   # Boundary
@@ -18,9 +19,9 @@ rule:
     domain:
       - code
     artifact:
-      - test_artifact
+      - source_code
     rule_category:
-      - test_integrity
+      - structural_change
     rule_domain:
       - CODE
 
@@ -37,9 +38,9 @@ rule:
     # -------------------------------------------------------------------------
     intent:
       rationale:
-        - prevent_test_driven_behavior_redefinition
-        - preserve_behavioral_authority
-        - avoid_requirement_drift_via_tests
+        - prevent_silent_behavior_removal
+        - preserve_backward_compatibility
+        - enforce_explicit_deprecation_intent
 
     # -------------------------------------------------------------------------
     # Responsibilities
@@ -48,8 +49,8 @@ rule:
       ai:
         - code_executor
       system:
-        - test_validator
         - behavior_validator
+        - structure_validator
 
     # -------------------------------------------------------------------------
     # Applicability Context
@@ -58,16 +59,15 @@ rule:
       stage:
         - develop
       scope:
-        - test_generation
-        - test_modification
+        - behavior_removal
       risk:
+        - architecture
         - correctness
-        - governance
       severity:
         - high
       reason:
-        - expected_behavior_redefined_by_test
-        - behavioral_authority_violation
+        - unauthorized_behavior_removal
+        - backward_compatibility_risk
 
     # -------------------------------------------------------------------------
     # Governance Impact
@@ -76,5 +76,5 @@ rule:
       level: blocking
       affected_capabilities:
         - behavioral_integrity
-        - requirement_stability
+        - backward_compatibility
         - auditability

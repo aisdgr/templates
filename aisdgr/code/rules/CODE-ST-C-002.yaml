@@ -1,15 +1,15 @@
 # ==============================================================================
-# CODE-TI-P-01.yaml
-# Test modifications MUST preserve original structure and intent.
+# CODE-ST-C-02.yaml
+# Structural refactoring and logic changes MUST NOT occur together.
 # ==============================================================================
 
 rule:
-  id: CODE-TI-P-01
-  execution_view: test_integrity_engineer
+  id: CODE-ST-C-002
+  execution_view: structure_engineer
 
   constraint: >
-    Test modifications MUST preserve the original
-    structure and intent of the tests.
+    Code execution MUST NOT perform structural refactoring
+    and logic changes within the same execution.
 
   # ---------------------------------------------------------------------------
   # Boundary
@@ -18,9 +18,9 @@ rule:
     domain:
       - code
     artifact:
-      - test_artifact
+      - source_code
     rule_category:
-      - test_integrity
+      - structural_change
     rule_domain:
       - CODE
 
@@ -37,9 +37,9 @@ rule:
     # -------------------------------------------------------------------------
     intent:
       rationale:
-        - prevent_test_semantic_erosion
-        - preserve_test_intent_over_time
-        - avoid_accidental_behavior_redefinition
+        - prevent_semantic_smuggling
+        - isolate_structural_change_from_behavior
+        - reduce_inference_creep
 
     # -------------------------------------------------------------------------
     # Responsibilities
@@ -48,7 +48,7 @@ rule:
       ai:
         - code_executor
       system:
-        - test_validator
+        - structure_validator
         - behavior_validator
 
     # -------------------------------------------------------------------------
@@ -58,22 +58,23 @@ rule:
       stage:
         - develop
       scope:
-        - test_modification
+        - structural_refactoring
+        - logic_modification
       risk:
+        - architecture
         - correctness
-        - maintainability
       severity:
-        - medium
+        - high
       reason:
-        - test_structure_altered
-        - test_intent_eroded
+        - mixed_structural_and_logic_change
+        - semantic_drift_risk
 
     # -------------------------------------------------------------------------
     # Governance Impact
     # -------------------------------------------------------------------------
     governance_impact:
-      level: gating
+      level: blocking
       affected_capabilities:
-        - test_intent_preservation
-        - regression_stability
+        - architectural_stability
+        - behavioral_integrity
         - auditability

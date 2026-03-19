@@ -1,15 +1,15 @@
 # ==============================================================================
-# CODE-TI-C-02.yaml
-# Test changes MUST NOT expand validation scope.
+# CODE-TI-P-01.yaml
+# Test modifications MUST preserve original structure and intent.
 # ==============================================================================
 
 rule:
-  id: CODE-TI-C-02
+  id: CODE-TI-P-001
   execution_view: test_integrity_engineer
 
   constraint: >
-    Test changes MUST NOT expand the validation scope
-    beyond what has been explicitly declared.
+    Test modifications MUST preserve the original
+    structure and intent of the tests.
 
   # ---------------------------------------------------------------------------
   # Boundary
@@ -37,9 +37,9 @@ rule:
     # -------------------------------------------------------------------------
     intent:
       rationale:
-        - prevent_implicit_validation_expansion
-        - avoid_test_driven_requirement_growth
-        - preserve_declared_validation_boundary
+        - prevent_test_semantic_erosion
+        - preserve_test_intent_over_time
+        - avoid_accidental_behavior_redefinition
 
     # -------------------------------------------------------------------------
     # Responsibilities
@@ -49,7 +49,7 @@ rule:
         - code_executor
       system:
         - test_validator
-        - boundary_validator
+        - behavior_validator
 
     # -------------------------------------------------------------------------
     # Applicability Context
@@ -58,23 +58,22 @@ rule:
       stage:
         - develop
       scope:
-        - test_generation
         - test_modification
       risk:
         - correctness
-        - scope
+        - maintainability
       severity:
-        - high
+        - medium
       reason:
-        - expanded_validation_scope
-        - implicit_test_requirement
+        - test_structure_altered
+        - test_intent_eroded
 
     # -------------------------------------------------------------------------
     # Governance Impact
     # -------------------------------------------------------------------------
     governance_impact:
-      level: blocking
+      level: gating
       affected_capabilities:
-        - validation_boundary_control
-        - requirement_stability
+        - test_intent_preservation
+        - regression_stability
         - auditability

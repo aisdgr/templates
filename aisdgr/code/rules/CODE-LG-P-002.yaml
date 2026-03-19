@@ -1,15 +1,15 @@
 # ==============================================================================
-# CODE-ST-C-02.yaml
-# Structural refactoring and logic changes MUST NOT occur together.
+# CODE-LG-P-02.yaml
+# Execution records MUST be linked to the corresponding Trace ID.
 # ==============================================================================
 
 rule:
-  id: CODE-ST-C-02
-  execution_view: structure_engineer
+  id: CODE-LG-P-002
+  execution_view: logging_engineer
 
   constraint: >
-    Code execution MUST NOT perform structural refactoring
-    and logic changes within the same execution.
+    Each execution record MUST be explicitly linked
+    to the corresponding Trace ID used in the affected code artifacts.
 
   # ---------------------------------------------------------------------------
   # Boundary
@@ -18,9 +18,11 @@ rule:
     domain:
       - code
     artifact:
+      - execution_record
       - source_code
     rule_category:
-      - structural_change
+      - logging
+      - traceability
     rule_domain:
       - CODE
 
@@ -37,9 +39,9 @@ rule:
     # -------------------------------------------------------------------------
     intent:
       rationale:
-        - prevent_semantic_smuggling
-        - isolate_structural_change_from_behavior
-        - reduce_inference_creep
+        - bind_execution_to_code_identity
+        - prevent_unattributed_execution
+        - enable_end_to_end_traceability
 
     # -------------------------------------------------------------------------
     # Responsibilities
@@ -48,8 +50,8 @@ rule:
       ai:
         - code_executor
       system:
-        - structure_validator
-        - behavior_validator
+        - execution_logger
+        - trace_linker
 
     # -------------------------------------------------------------------------
     # Applicability Context
@@ -58,23 +60,22 @@ rule:
       stage:
         - develop
       scope:
-        - structural_refactoring
-        - logic_modification
+        - code_execution
       risk:
-        - architecture
-        - correctness
+        - traceability
+        - auditability
       severity:
         - high
       reason:
-        - mixed_structural_and_logic_change
-        - semantic_drift_risk
+        - execution_without_trace_link
+        - orphan_execution_record
 
     # -------------------------------------------------------------------------
     # Governance Impact
     # -------------------------------------------------------------------------
     governance_impact:
-      level: blocking
+      level: enforce
       affected_capabilities:
-        - architectural_stability
-        - behavioral_integrity
+        - end_to_end_traceability
         - auditability
+        - forensic_analysis

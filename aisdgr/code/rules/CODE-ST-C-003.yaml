@@ -1,15 +1,16 @@
 # ==============================================================================
-# CODE-TI-C-01.yaml
-# Test artifacts MUST NOT modify or affect production code.
+# CODE-ST-C-03.yaml
+# Introduction of new functionality is forbidden unless explicitly allowed.
 # ==============================================================================
 
 rule:
-  id: CODE-TI-C-01
-  execution_view: test_integrity_engineer
+  id: CODE-ST-C-003
+  execution_view: structure_engineer
 
   constraint: >
-    Test artifacts MUST NOT modify or affect
-    production source code.
+    Code execution MUST NOT introduce new functionality
+    unless explicit permission for new functionality
+    has been declared.
 
   # ---------------------------------------------------------------------------
   # Boundary
@@ -18,9 +19,9 @@ rule:
     domain:
       - code
     artifact:
-      - test_artifact
+      - source_code
     rule_category:
-      - test_integrity
+      - structural_change
     rule_domain:
       - CODE
 
@@ -37,9 +38,9 @@ rule:
     # -------------------------------------------------------------------------
     intent:
       rationale:
-        - prevent_test_driven_code_mutation
-        - preserve_production_code_integrity
-        - enforce_test_production_separation
+        - prevent_feature_creep
+        - block_implicit_requirement_expansion
+        - enforce_functional_scope_control
 
     # -------------------------------------------------------------------------
     # Responsibilities
@@ -48,8 +49,8 @@ rule:
       ai:
         - code_executor
       system:
-        - test_validator
-        - artifact_validator
+        - structure_validator
+        - behavior_validator
 
     # -------------------------------------------------------------------------
     # Applicability Context
@@ -58,17 +59,15 @@ rule:
       stage:
         - develop
       scope:
-        - test_execution
-        - test_generation
-        - test_modification
+        - functionality_introduction
       risk:
+        - architecture
         - correctness
-        - isolation
       severity:
         - high
       reason:
-        - test_affecting_production_code
-        - test_integrity_violation
+        - unauthorized_new_functionality
+        - implicit_requirement_expansion
 
     # -------------------------------------------------------------------------
     # Governance Impact
@@ -76,6 +75,6 @@ rule:
     governance_impact:
       level: blocking
       affected_capabilities:
-        - test_isolation
-        - production_stability
+        - functional_scope_control
+        - architectural_stability
         - auditability

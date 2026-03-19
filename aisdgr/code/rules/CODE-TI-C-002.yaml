@@ -1,15 +1,15 @@
 # ==============================================================================
-# CODE-LG-P-03.yaml
-# Each execution MUST include a rationale.
+# CODE-TI-C-02.yaml
+# Test changes MUST NOT expand validation scope.
 # ==============================================================================
 
 rule:
-  id: CODE-LG-P-03
-  execution_view: logging_engineer
+  id: CODE-TI-C-002
+  execution_view: test_integrity_engineer
 
   constraint: >
-    Each code execution MUST include a non-empty rationale
-    explaining why the execution was performed.
+    Test changes MUST NOT expand the validation scope
+    beyond what has been explicitly declared.
 
   # ---------------------------------------------------------------------------
   # Boundary
@@ -18,9 +18,9 @@ rule:
     domain:
       - code
     artifact:
-      - execution_record
+      - test_artifact
     rule_category:
-      - logging
+      - test_integrity
     rule_domain:
       - CODE
 
@@ -37,9 +37,9 @@ rule:
     # -------------------------------------------------------------------------
     intent:
       rationale:
-        - preserve_decision_context
-        - prevent_silent_execution
-        - enable_post_hoc_analysis
+        - prevent_implicit_validation_expansion
+        - avoid_test_driven_requirement_growth
+        - preserve_declared_validation_boundary
 
     # -------------------------------------------------------------------------
     # Responsibilities
@@ -48,8 +48,8 @@ rule:
       ai:
         - code_executor
       system:
-        - execution_logger
-        - rationale_collector
+        - test_validator
+        - boundary_validator
 
     # -------------------------------------------------------------------------
     # Applicability Context
@@ -58,22 +58,23 @@ rule:
       stage:
         - develop
       scope:
-        - code_execution
+        - test_generation
+        - test_modification
       risk:
-        - accountability
-        - governance
+        - correctness
+        - scope
       severity:
-        - medium
+        - high
       reason:
-        - missing_execution_rationale
-        - opaque_execution_decision
+        - expanded_validation_scope
+        - implicit_test_requirement
 
     # -------------------------------------------------------------------------
     # Governance Impact
     # -------------------------------------------------------------------------
     governance_impact:
-      level: enforce
+      level: blocking
       affected_capabilities:
-        - accountability
+        - validation_boundary_control
+        - requirement_stability
         - auditability
-        - decision_traceability
