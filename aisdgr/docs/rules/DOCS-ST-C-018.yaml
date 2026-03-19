@@ -1,0 +1,27 @@
+rule:
+  id: DOCS-ST-C-018
+  execution_view: document_generator
+  constraint: Structural elements *MUST* define explicit responsibilities.
+  boundary:
+    domain:
+    - docs
+    artifact:
+    - CSS
+    rule_category:
+    - ST
+    rule_domain:
+    - DOCS
+  governance:
+    version: 1.0.0
+    status: draft
+    owner: aisr
+    original_rules:
+    - GEC-CSS-ELEMENT-001
+    intent:
+      rationale:
+      - ensure_element_clarity
+      - define_responsibilities_explicitly
+      purpose:
+      - maintain_single_responsibility
+      risk: ambiguity
+      severity: error

@@ -1,0 +1,62 @@
+id: DOCS-LG-P-001
+type: Policy
+description: Each documentation generation must generate execution logs
+rationale: |
+  確保文檔生成過程可追溯，提供執行記錄以便審計和除錯。
+
+  此規則要求：
+  1. 每次文檔生成執行都必須產生日誌記錄
+  2. 日誌必須包含執行時間、輸入參數、生成結果等關鍵資訊
+  3. 日誌位置必須可配置且可查詢
+
+normative: MUST
+
+metadata:
+  version: 1.0.0
+  status: active
+  owner: AISDGR
+  created_date: 2026-03-19
+  severity: major
+  risk: medium
+  impact: documentation
+  focus_areas:
+    - Logging & Report
+    - Documentation Generation
+  domain_tags:
+    - Docs
+  applicability:
+    - Documentation Generation
+
+examples:
+  compliant:
+    - description: "生成文檔並記錄執行日誌"
+      scenario: |
+        執行: AI 生成 API 文檔
+        日誌: 記錄生成時間、模板版本、輸出位置
+        結果: ✅ 符合規則
+
+  non_compliant:
+    - description: "生成文檔但無日誌"
+      scenario: |
+        執行: AI 生成 API 文檔
+        日誌: 未生成任何執行記���
+        結果: ❌ 違反規則（缺乏可追溯性）
+
+validation:
+  detectable: true
+  detection_method: |
+    檢查文檔生成執行是否產生日誌檔案或日誌記錄。
+
+  evidence_generation: |
+    生成 Evidence：
+    - 日誌檔案存在性檢查
+    - 日誌內容完整性檢查
+
+related_rules:
+  - DOCS-LG-P-002  # 日誌必須連結追溯 ID
+  - DOCS-LG-P-003  # 必須包含理由說明
+  - CORE-LG-P-001  # 通用日誌規則（如果存在）
+
+note: |
+  此規則補充 DOCS Domain 缺少的 LG (Logging & Report) 類別，
+  確保文檔生成過程具有與程式碼生成相同的日誌要求。

@@ -1,0 +1,27 @@
+rule:
+  id: DOCS-ST-C-016
+  execution_view: document_generator
+  constraint: Decision structure *MUST* define explicit conditions and outcomes.
+  boundary:
+    domain:
+    - docs
+    artifact:
+    - CIS
+    rule_category:
+    - ST
+    rule_domain:
+    - DOCS
+  governance:
+    version: 1.0.0
+    status: draft
+    owner: aisr
+    original_rules:
+    - GEC-CIS-DECISION-001
+    intent:
+      rationale:
+      - ensure_decision_clarity
+      - define_conditions_explicitly
+      purpose:
+      - enable_decision_traceability
+      risk: ambiguity
+      severity: error

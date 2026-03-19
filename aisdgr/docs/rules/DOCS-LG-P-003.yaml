@@ -1,0 +1,63 @@
+id: DOCS-LG-P-003
+type: Policy
+description: Each documentation generation must include rationale explanation
+rationale: |
+  確保文檔生成決策有明確的理由說明，便於審查和理解生成邏輯。
+
+  此規則要求：
+  1. 每次文檔生成必須包含理由說明
+  2. 理由必須說明為何生成該文檔、使用何種模板、包含哪些內容
+  3. 理由不能為空或純粹重複描述
+
+normative: MUST
+
+metadata:
+  version: 1.0.0
+  status: active
+  owner: AISDGR
+  created_date: 2026-03-19
+  severity: major
+  risk: medium
+  impact: documentation
+  focus_areas:
+    - Logging & Report
+    - Decision Transparency
+    - Documentation Generation
+  domain_tags:
+    - Docs
+  applicability:
+    - Documentation Generation
+
+examples:
+  compliant:
+    - description: "包含詳細理由說明"
+      scenario: |
+        生成: API 文檔
+        理由: "根據 OpenAPI 3.0 規範生成 REST API 文檔，包含端點描述、請求/響應範例、錯誤代碼說明"
+        結果: ✅ 符合規則
+
+  non_compliant:
+    - description: "理由為空或重複"
+      scenario: |
+        生成: API 文檔
+        理由: "生成文檔" 或 ""
+        結果: ❌ 違反規則（理由不充分）
+
+validation:
+  detectable: true
+  detection_method: |
+    檢查文檔生成記錄是否包含理由說明欄位，且內容非空、非重複。
+
+  evidence_generation: |
+    生成 Evidence：
+    - 理由欄位存在性檢查
+    - 理由內容長度和獨特性檢查
+
+related_rules:
+  - DOCS-LG-P-001  # 必須生成執行日誌
+  - DOCS-LG-P-002  # 日誌必須連結追溯 ID
+  - CORE-LG-C-01   # 理由絕不能為空或純粹重複（如果存在）
+
+note: |
+  此規則類似 CODE-LG-C-01（理由絕不能為空或純粹重複），
+  但專門針對文檔生成場景。

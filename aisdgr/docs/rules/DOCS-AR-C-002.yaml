@@ -1,0 +1,36 @@
+rule:
+  id: DOCS-AR-C-002
+  execution_view: document_generator
+  constraint: AI **MUST NOT** generate content that spans multiple sections.
+  boundary:
+    domain:
+    - docs
+    artifact:
+    - SRS
+    - SDS
+    - STS
+    - CAS
+    - CIS
+    - CSS
+    rule_category:
+    - AR
+    rule_domain:
+    - DOCS
+  governance:
+    version: 1.0.0
+    status: draft
+    owner: aisr
+    original_rules:
+    - GGC-SRS-CROSS-SECTION-001
+    - GGC-SDS-CROSS-SECTION-001
+    - GGC-STS-CROSS-SECTION-001
+    - GGC-CAS-CROSS-SECTION-001
+    - GGC-CIS-CROSS-SECTION-001
+    intent:
+      rationale:
+      - prevent_cross_section_contamination
+      - maintain_section_independence
+      purpose:
+      - ensure_modular_generation
+      risk: leakage
+      severity: error

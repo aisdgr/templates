@@ -1,0 +1,37 @@
+rule:
+  id: DOCS-AR-C-001
+  execution_view: document_generator
+  constraint: AI *MUST* generate content only within declared placeholders in the
+    document template.
+  boundary:
+    domain:
+    - docs
+    artifact:
+    - SRS
+    - SDS
+    - STS
+    - CAS
+    - CIS
+    - CSS
+    rule_category:
+    - AR
+    rule_domain:
+    - DOCS
+  governance:
+    version: 1.0.0
+    status: draft
+    owner: aisr
+    original_rules:
+    - GGC-SRS-PLACEHOLDER-001
+    - GGC-SDS-PLACEHOLDER-001
+    - GGC-STS-PLACEHOLDER-001
+    - GGC-CAS-PLACEHOLDER-001
+    - GGC-CIS-PLACEHOLDER-001
+    intent:
+      rationale:
+      - prevent_unauthorized_expansion
+      - enforce_template_boundaries
+      purpose:
+      - maintain_template_integrity
+      risk: leakage
+      severity: error
