@@ -1,0 +1,36 @@
+# ==============================================================================
+# LANG-GO-C-01.yaml
+# Explicit error handling
+# ==============================================================================
+
+rule:
+  id: LANG-ST-GO-001
+  execution_view: go_engineer
+  constraint: 'Errors MUST be handled explicitly.
+
+    Ignoring returned errors or using blank identifiers
+
+    to discard errors MUST NOT be allowed.'
+  boundary:
+    domain:
+    - code
+    artifact:
+    - source_code
+    rule_category: []
+    rule_domain:
+    - LANG
+    languages:
+    - Go
+  governance:
+    version: 1.0.0
+    status: active
+    owner: asdgr
+    original_rule: CCS-GO-001
+    intent:
+      rationale:
+      - Ensure all failure paths are visible and reviewable.
+    responsibilities:
+      ai:
+      - code_generator
+      human:
+      - code_reviewer

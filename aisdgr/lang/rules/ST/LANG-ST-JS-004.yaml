@@ -1,0 +1,36 @@
+# ==============================================================================
+# LANG-JS-C-04.yaml
+# Explicit error handling
+# ==============================================================================
+
+rule:
+  id: LANG-ST-JS-004
+  execution_view: javascript_engineer
+  constraint: 'Errors MUST be handled explicitly.
+
+    Promise rejections or runtime errors
+
+    MUST NOT be silently ignored.'
+  boundary:
+    domain:
+    - code
+    artifact:
+    - source_code
+    rule_category: []
+    rule_domain:
+    - LANG
+    languages:
+    - JavaScript
+  governance:
+    version: 1.0.0
+    status: active
+    owner: asdgr
+    original_rule: CCS-JS-004
+    intent:
+      rationale:
+      - Prevent silent failures in asynchronous flows.
+    responsibilities:
+      ai:
+      - code_generator
+      human:
+      - code_reviewer

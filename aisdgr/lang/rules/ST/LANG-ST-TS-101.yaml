@@ -1,0 +1,36 @@
+# ==============================================================================
+# LANG-TS-P-01.yaml
+# Prefer interfaces and type aliases appropriately
+# ==============================================================================
+
+rule:
+  id: LANG-ST-TS-101
+  execution_view: typescript_engineer
+  constraint: 'Interfaces SHOULD be used for object shape contracts.
+
+    Type aliases SHOULD be used for unions, intersections,
+
+    and complex composition types.'
+  boundary:
+    domain:
+    - code
+    artifact:
+    - source_code
+    rule_category: []
+    rule_domain:
+    - LANG
+    languages:
+    - TypeScript
+  governance:
+    version: 1.0.0
+    status: active
+    owner: asdgr
+    original_rule: CCS-TS-003
+    intent:
+      rationale:
+      - Improve clarity and evolvability of type definitions.
+    responsibilities:
+      ai:
+      - code_generator
+      human:
+      - code_reviewer

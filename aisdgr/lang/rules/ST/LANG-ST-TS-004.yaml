@@ -1,0 +1,36 @@
+# ==============================================================================
+# LANG-TS-C-04.yaml
+# Explicit null and undefined handling
+# ==============================================================================
+
+rule:
+  id: LANG-ST-TS-004
+  execution_view: typescript_engineer
+  constraint: 'Nullable values MUST be explicitly modeled.
+
+    Code MUST NOT assume presence without checks
+
+    when dealing with `null` or `undefined`.'
+  boundary:
+    domain:
+    - code
+    artifact:
+    - source_code
+    rule_category: []
+    rule_domain:
+    - LANG
+    languages:
+    - TypeScript
+  governance:
+    version: 1.0.0
+    status: active
+    owner: asdgr
+    original_rule: CCS-TS-005
+    intent:
+      rationale:
+      - Prevent runtime errors caused by invalid assumptions.
+    responsibilities:
+      ai:
+      - code_generator
+      human:
+      - code_reviewer

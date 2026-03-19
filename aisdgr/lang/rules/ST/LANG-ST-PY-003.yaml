@@ -1,0 +1,34 @@
+# ==============================================================================
+# LANG-PY-C-03.yaml
+# Deterministic core logic
+# ==============================================================================
+
+rule:
+  id: LANG-ST-PY-003
+  execution_view: python_engineer
+  constraint: 'Core logic MUST avoid hidden state, non-deterministic behavior,
+
+    or side effects that are not explicitly expressed.'
+  boundary:
+    domain:
+    - code
+    artifact:
+    - source_code
+    rule_category: []
+    rule_domain:
+    - LANG
+    languages:
+    - Python
+  governance:
+    version: 1.0.0
+    status: active
+    owner: asdgr
+    original_rule: CCS-PY-005
+    intent:
+      rationale:
+      - Maintain predictable and testable execution.
+    responsibilities:
+      ai:
+      - code_generator
+      human:
+      - code_reviewer

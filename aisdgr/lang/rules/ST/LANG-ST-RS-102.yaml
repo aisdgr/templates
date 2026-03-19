@@ -1,0 +1,34 @@
+# ==============================================================================
+# LANG-RS-P-02.yaml
+# Explicit lifetime and API contracts
+# ==============================================================================
+
+rule:
+  id: LANG-ST-RS-102
+  execution_view: rust_engineer
+  constraint: 'Public APIs SHOULD make ownership and lifetime expectations
+
+    explicit through type signatures and documentation.'
+  boundary:
+    domain:
+    - code
+    artifact:
+    - source_code
+    rule_category: []
+    rule_domain:
+    - LANG
+    languages:
+    - Rust
+  governance:
+    version: 1.0.0
+    status: active
+    owner: asdgr
+    original_rule: CCS-RS-006
+    intent:
+      rationale:
+      - Clarify API usage and prevent misuse by callers.
+    responsibilities:
+      ai:
+      - code_generator
+      human:
+      - code_reviewer

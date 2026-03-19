@@ -1,0 +1,34 @@
+# ==============================================================================
+# LANG-RS-C-03.yaml
+# Explicit error handling with Result and Option
+# ==============================================================================
+
+rule:
+  id: LANG-ST-RS-003
+  execution_view: rust_engineer
+  constraint: 'Errors MUST be represented using `Result` or `Option`.
+
+    Panics MUST NOT be used for normal control flow.'
+  boundary:
+    domain:
+    - code
+    artifact:
+    - source_code
+    rule_category: []
+    rule_domain:
+    - LANG
+    languages:
+    - Rust
+  governance:
+    version: 1.0.0
+    status: active
+    owner: asdgr
+    original_rule: CCS-RS-003
+    intent:
+      rationale:
+      - Ensure recoverable and predictable error propagation.
+    responsibilities:
+      ai:
+      - code_generator
+      human:
+      - code_reviewer

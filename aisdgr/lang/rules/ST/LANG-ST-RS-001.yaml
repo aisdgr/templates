@@ -1,0 +1,36 @@
+# ==============================================================================
+# LANG-RS-C-01.yaml
+# Ownership and borrowing correctness
+# ==============================================================================
+
+rule:
+  id: LANG-ST-RS-001
+  execution_view: rust_engineer
+  constraint: 'Code MUST respect Rust ownership and borrowing rules.
+
+    Lifetimes, mutability, and aliasing MUST be explicit
+
+    and enforced by the compiler.'
+  boundary:
+    domain:
+    - code
+    artifact:
+    - source_code
+    rule_category: []
+    rule_domain:
+    - LANG
+    languages:
+    - Rust
+  governance:
+    version: 1.0.0
+    status: active
+    owner: asdgr
+    original_rule: CCS-RS-001
+    intent:
+      rationale:
+      - Guarantee memory safety and prevent data races.
+    responsibilities:
+      ai:
+      - code_generator
+      human:
+      - code_reviewer
