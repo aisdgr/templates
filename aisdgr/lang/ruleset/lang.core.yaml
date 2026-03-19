@@ -1,0 +1,134 @@
+# ==============================================================================
+# lang.core.yaml
+#
+# Ruleset Role:
+#   This ruleset defines language-agnostic coding standards that apply
+#   to all programming languages.
+#
+# Execution Semantics:
+#   - All generated code must exhibit deterministic and reproducible behavior
+#   - Control flow and state management must be explicit
+#   - External dependencies must be declared explicitly
+#   - Sensitive data must be handled with explicit protection
+#   - Code structure should be intent-revealing and self-documenting
+#   - Errors should be visible at the earliest possible point
+#
+# Governance Semantics:
+#   - Core standards establish baseline quality requirements
+#   - All language-specific rulesets MUST include these core standards
+#   - Violations of Constraints trigger governance enforcement
+#   - Violations of Policies require documented justification
+#
+# Design Notes:
+#   - Individual rules are language-agnostic and reusable
+#   - Quality semantics are expressed ONLY at the ruleset level
+#   - Rulesets select and compose rules; they never redefine rule behavior
+#
+# ==============================================================================
+
+ruleset:
+  id: lang.core
+
+  # ---------------------------------------------------------------------------
+  # Included Rules (Execution Semantics)
+  # ---------------------------------------------------------------------------
+  includes:
+
+    # -------------------------------------------------------------------------
+    # Determinism & Reproducibility
+    # -------------------------------------------------------------------------
+    - rule_id: LANG-STD-C-01
+      version: ">=1.0.0"
+
+    # -------------------------------------------------------------------------
+    # Control Flow & State Management
+    # -------------------------------------------------------------------------
+    - rule_id: LANG-STD-C-02
+      version: ">=1.0.0"
+
+    # -------------------------------------------------------------------------
+    # Dependency Management
+    # -------------------------------------------------------------------------
+    - rule_id: LANG-STD-C-03
+      version: ">=1.0.0"
+
+    # -------------------------------------------------------------------------
+    # Sensitive Data Protection
+    # -------------------------------------------------------------------------
+    - rule_id: LANG-STD-C-04
+      version: ">=1.0.0"
+
+    # -------------------------------------------------------------------------
+    # Code Structure & Documentation
+    # -------------------------------------------------------------------------
+    - rule_id: LANG-STD-P-01
+      version: ">=1.0.0"
+
+    # -------------------------------------------------------------------------
+    # Boundary Validation & Error Visibility
+    # -------------------------------------------------------------------------
+    - rule_id: LANG-STD-P-02
+      version: ">=1.0.0"
+
+    # -------------------------------------------------------------------------
+    # AI Behavior Constraints
+    # -------------------------------------------------------------------------
+    - rule_id: LANG-STD-C-05
+      version: ">=1.0.0"
+
+  # ---------------------------------------------------------------------------
+  # Applicability (Governance Lens)
+  # ---------------------------------------------------------------------------
+  applicability:
+    domain:
+      - code
+    artifact:
+      - source_code
+    language:
+      - all
+    stage:
+      - develop
+
+  # ---------------------------------------------------------------------------
+  # Governance Metadata
+  # ---------------------------------------------------------------------------
+  # Governance metadata is descriptive and MUST NOT influence execution behavior.
+  governance:
+    version: "1.0.0"
+    status: active
+    owner: asdgr
+
+    # -------------------------------------------------------------------------
+    # Intent (Governance meaning of core standards)
+    # -------------------------------------------------------------------------
+    intent:
+      purpose:
+        - language_agnostic_quality
+        - baseline_coding_standards
+      notes:
+        - "This ruleset composes LANG-STD rules for all programming languages."
+
+    # -------------------------------------------------------------------------
+    # Responsibilities
+    # -------------------------------------------------------------------------
+    responsibilities:
+      ai:
+        - code_generator
+      human:
+        - code_reviewer
+      system:
+        - validator
+
+    # -------------------------------------------------------------------------
+    # Governance Impact
+    # -------------------------------------------------------------------------
+    governance_impact:
+      audit_scope:
+        - code_quality
+        - language_standards
+      reporting:
+        - rule_evaluation_report
+      risk_category:
+        - determinism
+        - explicitness
+        - safety

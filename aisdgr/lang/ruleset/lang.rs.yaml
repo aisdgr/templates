@@ -1,0 +1,97 @@
+# ==============================================================================
+# lang.rs.yaml
+#
+# Ruleset Role:
+#   This ruleset defines Rust-specific coding standards by composing
+#   language-agnostic core standards (LANG-STD) with Rust-specific rules.
+#
+# Execution Semantics:
+#   - Ownership and borrowing with explicit lifetime management
+#   - Restricted unsafe blocks with explicit justification
+#   - Explicit error handling with result<t, e> and option<t>
+#   - Deterministic concurrency with explicit synchronization
+#   - Immutability by default
+#   - Clear api contracts with lifetime annotations
+#
+# Governance Semantics:
+#   - Rust projects must comply with both core and Rust-specific standards
+#   - This ruleset automatically includes all LANG-STD core rules
+#   - Violations of Constraints trigger governance enforcement
+#   - Violations of Policies require documented justification
+#
+# Design Notes:
+#   - Individual rules are atomic and reusable
+#   - Quality semantics are expressed ONLY at the ruleset level
+#   - Rulesets select and compose rules; they never redefine rule behavior
+#
+# ==============================================================================
+
+ruleset:
+  id: lang.rs
+  includes:
+  - rule_id: LANG-STD-C-01
+    version: '>=1.0.0'
+  - rule_id: LANG-STD-C-02
+    version: '>=1.0.0'
+  - rule_id: LANG-STD-C-03
+    version: '>=1.0.0'
+  - rule_id: LANG-STD-C-04
+    version: '>=1.0.0'
+  - rule_id: LANG-STD-P-01
+    version: '>=1.0.0'
+  - rule_id: LANG-STD-P-02
+    version: '>=1.0.0'
+  - rule_id: LANG-STD-C-05
+    version: '>=1.0.0'
+  - rule_id: LANG-RS-C-01
+    version: '>=1.0.0'
+  - rule_id: LANG-RS-C-02
+    version: '>=1.0.0'
+  - rule_id: LANG-RS-C-03
+    version: '>=1.0.0'
+  - rule_id: LANG-RS-C-04
+    version: '>=1.0.0'
+  - rule_id: LANG-RS-P-01
+    version: '>=1.0.0'
+  - rule_id: LANG-RS-P-02
+    version: '>=1.0.0'
+  - rule_id: LANG-RS-P-03
+    version: '>=1.0.0'
+  applicability:
+    domain:
+    - code
+    artifact:
+    - source_code
+    language:
+    - rust
+    stage:
+    - develop
+  governance:
+    version: 1.0.0
+    status: active
+    owner: asdgr
+    intent:
+      purpose:
+      - rust_specific_quality
+      - language_standards
+      notes:
+      - This ruleset composes LANG-STD and LANG-RUST rules for Rust projects.
+      - 'Includes 14 rules: core standards + Rust-specific standards.'
+    responsibilities:
+      ai:
+      - code_generator
+      human:
+      - code_reviewer
+      system:
+      - validator
+    governance_impact:
+      audit_scope:
+      - code_quality
+      - language_standards
+      - rust_standards
+      reporting:
+      - rule_evaluation_report
+      risk_category:
+      - type_safety
+      - explicitness
+      - error_handling

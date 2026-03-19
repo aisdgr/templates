@@ -1,0 +1,38 @@
+# ==============================================================================
+# LANG-TS-C-03.yaml
+# No unsafe type assertions
+# ==============================================================================
+
+rule:
+  id: LANG-TS-C-03
+  execution_view: typescript_engineer
+  constraint: 'Unsafe type assertions (e.g. `as any`, double assertions)
+
+    MUST NOT be used.
+
+    Type narrowing MUST be achieved via explicit checks
+
+    or control flow analysis.'
+  boundary:
+    domain:
+    - code
+    artifact:
+    - source_code
+    rule_category: []
+    rule_domain:
+    - LANG
+    language:
+    - typescript
+  governance:
+    version: 1.0.0
+    status: active
+    owner: asdgr
+    original_rule: CCS-TS-004
+    intent:
+      rationale:
+      - Prevent bypassing the type system.
+    responsibilities:
+      ai:
+      - code_generator
+      human:
+      - code_reviewer

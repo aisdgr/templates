@@ -1,0 +1,32 @@
+# ==============================================================================
+# GOV-ENF-P-01.yaml
+# GOV-ENF-P-01
+# ==============================================================================
+
+rule:
+  id: GOV-ENF-P-01
+  execution_view: governance_engineer
+  constraint: 'AI execution MAY continue in the presence of violations,
+
+    but violations MUST remain visible and traceable.'
+  boundary:
+    domain:
+    - code
+    artifact:
+    - source_code
+    rule_category: []
+    rule_domain:
+    - GOV
+  governance:
+    version: 1.0.0
+    status: active
+    owner: asdgr
+    original_rule: CGG-ENF-003
+    intent:
+      rationale: []
+    responsibilities:
+      ai:
+      - code_generator
+      human:
+      - code_reviewer
+      - governance_enforcer

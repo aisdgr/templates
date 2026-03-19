@@ -1,0 +1,34 @@
+# ==============================================================================
+# LANG-GO-P-02.yaml
+# Minimal and explicit interfaces
+# ==============================================================================
+
+rule:
+  id: LANG-GO-P-02
+  execution_view: go_engineer
+  constraint: 'Interfaces SHOULD be defined at the point of use
+
+    and MUST expose only the methods actually required.'
+  boundary:
+    domain:
+    - code
+    artifact:
+    - source_code
+    rule_category: []
+    rule_domain:
+    - LANG
+    language:
+    - go
+  governance:
+    version: 1.0.0
+    status: active
+    owner: asdgr
+    original_rule: CCS-GO-005
+    intent:
+      rationale:
+      - Improve testability and decoupling.
+    responsibilities:
+      ai:
+      - code_generator
+      human:
+      - code_reviewer

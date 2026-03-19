@@ -1,0 +1,36 @@
+# ==============================================================================
+# LANG-GO-C-04.yaml
+# Deterministic behavior and side effects
+# ==============================================================================
+
+rule:
+  id: LANG-GO-C-04
+  execution_view: go_engineer
+  constraint: 'Core logic MUST avoid hidden side effects
+
+    and non-deterministic behavior.
+
+    Side effects MUST be explicit and localized.'
+  boundary:
+    domain:
+    - code
+    artifact:
+    - source_code
+    rule_category: []
+    rule_domain:
+    - LANG
+    language:
+    - go
+  governance:
+    version: 1.0.0
+    status: active
+    owner: asdgr
+    original_rule: CCS-GO-006
+    intent:
+      rationale:
+      - Ensure predictable execution and easier debugging.
+    responsibilities:
+      ai:
+      - code_generator
+      human:
+      - code_reviewer

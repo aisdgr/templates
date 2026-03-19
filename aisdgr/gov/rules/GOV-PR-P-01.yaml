@@ -1,0 +1,34 @@
+# ==============================================================================
+# GOV-PR-P-01.yaml
+# Separation of validity and correctness
+# ==============================================================================
+
+rule:
+  id: GOV-PR-P-01
+  execution_view: governance_engineer
+  constraint: 'Validity and correctness are distinct responsibilities.
+
+    AI is responsible for structural and rule validity.
+
+    Humans are responsible for semantic and business correctness.'
+  boundary:
+    domain:
+    - code
+    artifact:
+    - source_code
+    rule_category: []
+    rule_domain:
+    - GOV
+  governance:
+    version: 1.0.0
+    status: active
+    owner: asdgr
+    original_rule: CGG-PR-002
+    intent:
+      rationale: []
+    responsibilities:
+      ai:
+      - code_generator
+      human:
+      - code_reviewer
+      - governance_enforcer

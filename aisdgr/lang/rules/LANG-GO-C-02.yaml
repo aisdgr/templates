@@ -1,0 +1,36 @@
+# ==============================================================================
+# LANG-GO-C-02.yaml
+# Simple and explicit control flow
+# ==============================================================================
+
+rule:
+  id: LANG-GO-C-02
+  execution_view: go_engineer
+  constraint: 'Control flow MUST remain simple and explicit.
+
+    Deep nesting, complex boolean logic, or hidden flow
+
+    through defer misuse SHOULD be avoided.'
+  boundary:
+    domain:
+    - code
+    artifact:
+    - source_code
+    rule_category: []
+    rule_domain:
+    - LANG
+    language:
+    - go
+  governance:
+    version: 1.0.0
+    status: active
+    owner: asdgr
+    original_rule: CCS-GO-002
+    intent:
+      rationale:
+      - Preserve readability and ease of reasoning.
+    responsibilities:
+      ai:
+      - code_generator
+      human:
+      - code_reviewer

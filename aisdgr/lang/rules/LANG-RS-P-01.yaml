@@ -1,0 +1,36 @@
+# ==============================================================================
+# LANG-RS-P-01.yaml
+# Prefer immutability by default
+# ==============================================================================
+
+rule:
+  id: LANG-RS-P-01
+  execution_view: rust_engineer
+  constraint: 'Variables SHOULD be immutable by default.
+
+    Mutability MUST be introduced only when required
+
+    and scoped as narrowly as possible.'
+  boundary:
+    domain:
+    - code
+    artifact:
+    - source_code
+    rule_category: []
+    rule_domain:
+    - LANG
+    language:
+    - rust
+  governance:
+    version: 1.0.0
+    status: active
+    owner: asdgr
+    original_rule: CCS-RS-005
+    intent:
+      rationale:
+      - Improve reasoning and reduce accidental state changes.
+    responsibilities:
+      ai:
+      - code_generator
+      human:
+      - code_reviewer

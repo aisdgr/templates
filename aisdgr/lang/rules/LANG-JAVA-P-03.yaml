@@ -1,0 +1,34 @@
+# ==============================================================================
+# LANG-JAVA-P-03.yaml
+# Immutable data preference
+# ==============================================================================
+
+rule:
+  id: LANG-JAVA-P-03
+  execution_view: java_engineer
+  constraint: 'Data objects SHOULD be immutable where practical.
+
+    Mutable state MUST be minimized and clearly scoped.'
+  boundary:
+    domain:
+    - code
+    artifact:
+    - source_code
+    rule_category: []
+    rule_domain:
+    - LANG
+    language:
+    - java
+  governance:
+    version: 1.0.0
+    status: active
+    owner: asdgr
+    original_rule: CCS-JAVA-005
+    intent:
+      rationale:
+      - Improve thread-safety and reasoning simplicity.
+    responsibilities:
+      ai:
+      - code_generator
+      human:
+      - code_reviewer
