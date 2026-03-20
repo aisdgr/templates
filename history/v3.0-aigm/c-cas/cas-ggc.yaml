@@ -1,0 +1,219 @@
+# ============================================================
+# CAS Generation Governance Constraints (GGC)
+# ============================================================
+# Generation governance rules for Coding Architecture
+# Specification (CAS).
+#
+# These rules constrain HOW AI may generate CAS content.
+# They do NOT define document structure (handled by GEC).
+#
+# Rules follow:
+# - aigdmm-rule-unified.yaml
+# - AIGD-CNL
+# - Semantic section grouping based on cas.template.md
+# ============================================================
+
+meta:                             # core
+  spec: AIGDMM-RULE               # core
+  version: 1.0                    # core
+  rule_set: ggc                   # option
+  owner: aigdmm                   # option
+  status: active                  # option
+
+
+rules:
+
+  # ==========================================================
+  # Global Generation Boundary
+  # ==========================================================
+  - rule:
+      id: GGC-CAS-GLOBAL-001
+      title: Generation Must Be Explicitly Scoped
+      description: >
+        AI MUST generate content only within explicitly requested CAS sections.
+        AI MUST NOT generate content for sections that are not explicitly requested.
+      severity: error
+
+    applies_to:
+      document_type: [CAS]
+      sections:
+        - Introduction
+        - Architectural Context
+        - Module Structure
+        - Architectural Constraints
+        - Interface Architecture
+
+    intent:
+      category: generation
+      risk: hallucination
+
+    roles:
+      enforced_on: [ai]
+
+
+  # ==========================================================
+  # Placeholder-Only Generation
+  # ==========================================================
+  - rule:
+      id: GGC-CAS-GEN-PLACEHOLDER-001
+      title: Generation Is Restricted to Declared Placeholders
+      description: >
+        AI MUST generate content only within declared placeholders.
+        AI MUST NOT introduce content outside declared placeholders.
+      severity: error
+
+    applies_to:
+      document_type: [CAS]
+      sections:
+        - Purpose
+        - Scope
+        - Context Overview
+        - Architectural Principles
+        - Architectural Layers
+        - Module Structure
+        - Design Constraints
+        - Technology Constraints
+        - Integration Constraints
+
+    intent:
+      category: generation
+      risk: hallucination
+
+    roles:
+      enforced_on: [ai]
+
+
+  # ==========================================================
+  # No Implicit Architectural Decisions
+  # ==========================================================
+  - rule:
+      id: GGC-CAS-NO-IMPLICIT-DEC-001
+      title: No Implicit Architectural Decisions May Be Generated
+      description: >
+        AI MUST NOT infer or generate implicit architectural decisions.
+        All generated architectural decisions MUST be explicitly stated by the user.
+      severity: error
+
+    applies_to:
+      document_type: [CAS]
+      sections:
+        - Module Structure
+        - Architectural Constraints
+
+    intent:
+      category: generation
+      risk: hallucination
+
+    roles:
+      enforced_on: [ai]
+
+
+  # ==========================================================
+  # Module Boundary Generation
+  # ==========================================================
+  - rule:
+      id: GGC-CAS-MOD-001
+      title: Module Boundary Generation Is User-Driven Only
+      description: >
+        AI MUST generate module boundaries only when explicitly instructed.
+        AI MUST NOT propose new module boundaries autonomously.
+      severity: error
+
+    applies_to:
+      document_type: [CAS]
+      sections:
+        - Module Structure
+
+    intent:
+      category: generation
+      risk: drift
+
+    roles:
+      enforced_on: [ai]
+
+
+  # ==========================================================
+  # Architectural Constraint Generation
+  # ==========================================================
+  - rule:
+      id: GGC-CAS-AC-001
+      title: Architectural Constraint Generation Is Constraint-Bound
+      description: >
+        AI MUST generate architectural constraints only within declared categories.
+        AI MUST NOT introduce new architectural constraint categories.
+      severity: error
+
+    applies_to:
+      document_type: [CAS]
+      sections:
+        - Design Constraints
+        - Technology Constraints
+        - Integration Constraints
+
+    intent:
+      category: generation
+      risk: drift
+
+    roles:
+      enforced_on: [ai]
+
+
+  # ==========================================================
+  # Interface Architecture Generation
+  # ==========================================================
+  - rule:
+      id: GGC-CAS-IF-001
+      title: Interface Architecture Generation Must Be Declarative
+      description: >
+        AI MUST generate interface architecture declaratively.
+        AI MUST NOT infer endpoints, schemas, or protocols.
+      severity: error
+
+    applies_to:
+      document_type: [CAS]
+      sections:
+        - Interface Architecture
+
+    intent:
+      category: generation
+      risk: hallucination
+
+    roles:
+      enforced_on: [ai]
+
+
+  # ==========================================================
+  # Cross-Section Generation Prohibition
+  # ==========================================================
+  - rule:
+      id: GGC-CAS-CROSS-SECTION-001
+      title: Cross-Section Generation Is Prohibited
+      description: >
+        AI MUST NOT generate content that spans multiple CAS sections.
+        Each generation action MUST target a single declared section group.
+      severity: error
+
+    applies_to:
+      document_type: [CAS]
+      sections:
+        - Introduction
+        - Architectural Context
+        - Module Structure
+        - Architectural Constraints
+        - Interface Architecture
+
+    intent:
+      category: generation
+      risk: drift
+
+    roles:
+      enforced_on: [ai]
+
+
+# ============================================================
+# Appendix: AIGD-CNL
+# ============================================================
+#
+# All rule.description fields MUST follow AIGD-CNL.
+#
+# ============================================================

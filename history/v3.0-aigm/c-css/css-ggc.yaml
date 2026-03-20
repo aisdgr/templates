@@ -1,0 +1,172 @@
+# ============================================================
+# CSS Generation Governance Constraints (GGC)
+# ============================================================
+# Generation governance rules for Coding Structure
+# Specification (CSS).
+#
+# These rules constrain HOW AI may generate CSS content.
+# They do NOT define document structure (handled by GEC).
+#
+# Rules follow:
+# - aigdmm-rule-unified.yaml
+# - AIGD-CNL
+# - Semantic section grouping based on css.template.md
+# ============================================================
+
+meta:                             # core
+  spec: AIGDMM-RULE               # core
+  version: 1.0                    # core
+  rule_set: ggc                   # option
+  owner: aigdmm                   # option
+  status: active                  # option
+
+
+rules:
+
+  # ==========================================================
+  # Global Generation Boundary
+  # ==========================================================
+  - rule:
+      id: GGC-CSS-GLOBAL-001
+      title: Generation Must Be Explicitly Scoped
+      description: >
+        AI MUST generate content only within explicitly requested CSS sections.
+        AI MUST NOT generate content for sections that are not explicitly requested.
+      severity: error
+
+    applies_to:
+      document_type: [CSS]
+      sections:
+        - Introduction
+        - Structure Overview
+        - Structural Elements
+        - Packages
+        - Classes
+        - Functions
+        - Files
+
+    intent:
+      category: generation
+      risk: hallucination
+
+    roles:
+      enforced_on: [ai]
+
+
+  # ==========================================================
+  # Placeholder-Only Generation
+  # ==========================================================
+  - rule:
+      id: GGC-CSS-GEN-PLACEHOLDER-001
+      title: Generation Is Restricted to Declared Placeholders
+      description: >
+        AI MUST generate content only within declared placeholders.
+        AI MUST NOT introduce content outside declared placeholders.
+      severity: error
+
+    applies_to:
+      document_type: [CSS]
+      sections:
+        - Purpose
+        - Scope
+        - Structural Context
+        - Structural Responsibilities
+        - Structural Hierarchy
+
+    intent:
+      category: generation
+      risk: hallucination
+
+    roles:
+      enforced_on: [ai]
+
+
+  # ==========================================================
+  # No Implicit Structural Decisions
+  # ==========================================================
+  - rule:
+      id: GGC-CSS-NO-IMPLICIT-DEC-001
+      title: No Implicit Structural Decisions May Be Generated
+      description: >
+        AI MUST NOT infer or generate implicit structural decisions.
+        All generated structural decisions MUST be explicitly stated by the user.
+      severity: error
+
+    applies_to:
+      document_type: [CSS]
+      sections:
+        - Structural Elements
+        - Packages
+        - Classes
+        - Functions
+        - Files
+
+    intent:
+      category: generation
+      risk: hallucination
+
+    roles:
+      enforced_on: [ai]
+
+
+  # ==========================================================
+  # Structural Element Generation
+  # ==========================================================
+  - rule:
+      id: GGC-CSS-ELEM-001
+      title: Structural Element Generation Is User-Driven Only
+      description: >
+        AI MUST generate structural elements only when explicitly instructed.
+        AI MUST NOT propose new structural elements autonomously.
+      severity: error
+
+    applies_to:
+      document_type: [CSS]
+      sections:
+        - Structural Elements
+        - Packages
+        - Classes
+        - Functions
+        - Files
+
+    intent:
+      category: generation
+      risk: drift
+
+    roles:
+      enforced_on: [ai]
+
+
+  # ==========================================================
+  # Cross-Section Generation Prohibition
+  # ==========================================================
+  - rule:
+      id: GGC-CSS-CROSS-SECTION-001
+      title: Cross-Section Generation Is Prohibited
+      description: >
+        AI MUST NOT generate content that spans multiple CSS sections.
+        Each generation action MUST target a single declared section group.
+      severity: error
+
+    applies_to:
+      document_type: [CSS]
+      sections:
+        - Introduction
+        - Structure Overview
+        - Structural Elements
+
+    intent:
+      category: generation
+      risk: drift
+
+    roles:
+      enforced_on: [ai]
+
+
+# ============================================================
+# Appendix: AIGD-CNL
+# ============================================================
+#
+# All rule.description fields MUST follow AIGD-CNL.
+#
+# ============================================================

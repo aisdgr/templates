@@ -1,0 +1,186 @@
+fields:
+
+  # ---------------------------------------------------------------------------
+  # Meta
+  # ---------------------------------------------------------------------------
+  - name: meta.id
+    type: string
+    pattern: '^[a-zA-Z0-9_\-\.]+$'
+    constraint: unique
+    required: true
+    render_when_empty: true
+    generate_document: true
+    role_in_code: ignore
+
+  - name: meta.title
+    type: string
+    required: true
+    render_when_empty: true
+    generate_document: true
+    role_in_code: ignore
+
+  # ---------------------------------------------------------------------------
+  # Version
+  # ---------------------------------------------------------------------------
+  - name: version.version
+    type: string
+    pattern: '^\d+\.\d+$'
+    required: true
+    render_when_empty: true
+    generate_document: true
+    role_in_code: ignore
+
+  - name: version.status
+    type: enum
+    values:
+      - Draft
+      - Review
+      - Approved
+      - Released
+      - Deprecated
+    default: Draft
+    required: true
+    render_when_empty: true
+    generate_document: true
+    role_in_code: ignore
+
+  - name: version.author
+    type: string
+    required: false
+    render_when_empty: false
+    generate_document: true
+    role_in_code: ignore
+
+  - name: version.date
+    type: string
+    format: date
+    required: true
+    render_when_empty: true
+    generate_document: true
+    role_in_code: ignore
+
+  # ---------------------------------------------------------------------------
+  # Description
+  # ---------------------------------------------------------------------------
+  - name: description
+    type: string
+    required: false
+    render_when_empty: false
+    generate_document: true
+    role_in_code: ignore
+
+  # ---------------------------------------------------------------------------
+  # Section
+  # ---------------------------------------------------------------------------
+  - name: purpose
+    type: text
+    required: false
+    render_when_empty: true
+    generate_document: true
+    role_in_code: ignore
+
+  - name: scope
+    type: text
+    required: false
+    render_when_empty: true
+    generate_document: true
+    role_in_code: ignore
+
+  - name: term
+    type: string
+    required: true
+    render_when_empty: false
+    generate_document: true
+    role_in_code: ignore
+
+  - name: references
+    type: list
+    required: false
+    render_when_empty: false
+    generate_document: true
+    role_in_code: ignore
+
+  - name: document_overview
+    type: text
+    required: false
+    render_when_empty: false
+    generate_document: true
+    role_in_code: ignore
+
+  # ---------------------------------------------------------------------------
+  # Conceptual Fields
+  # ---------------------------------------------------------------------------
+  - name: conceptual.context
+    type: text
+    required: false
+    render_when_empty: false
+    generate_document: true
+    role_in_code: conceptual
+
+  - name: conceptual.approach
+    type: text
+    required: false
+    render_when_empty: false
+    generate_document: true
+    role_in_code: conceptual
+
+  - name: conceptual.patterns
+    type: list
+    required: false
+    render_when_empty: false
+    generate_document: true
+    role_in_code: conceptual
+
+  # ---------------------------------------------------------------------------
+  # Decision ID
+  # ---------------------------------------------------------------------------
+  - name: decision.id
+    type: string
+    pattern: '^DEC-[A-Za-z0-9_]+-\d{3}$'
+    constraint: unique
+    required: true
+    render_when_empty: true
+    generate_document: true
+    role_in_code: conceptual
+
+  - name: decision.title
+    type: string
+    required: true
+    render_when_empty: true
+    generate_document: true
+    role_in_code: conceptual
+
+  - name: decision.description
+    type: text
+    required: false
+    render_when_empty: false
+    generate_document: true
+    role_in_code: conceptual
+
+  - name: decision.rationale
+    type: text
+    required: false
+    render_when_empty: false
+    generate_document: true
+    role_in_code: conceptual
+
+  - name: decision.tradeoffs
+    type: list
+    required: false
+    render_when_empty: false
+    generate_document: true
+    role_in_code: conceptual
+
+  - name: decision.alternatives
+    type: text
+    required: false
+    render_when_empty: false
+    generate_document: true
+    role_in_code: conceptual
+
+  - name: decision.impact
+    type: text
+    required: false
+    render_when_empty: false
+    generate_document: true
+    role_in_code: conceptual

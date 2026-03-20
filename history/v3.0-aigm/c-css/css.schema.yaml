@@ -1,0 +1,250 @@
+fields:
+
+  # ---------------------------------------------------------------------------
+  # Meta
+  # ---------------------------------------------------------------------------
+  - name: meta.id
+    type: string
+    pattern: '^[a-zA-Z0-9_\-\.]+$'
+    constraint: unique
+    required: true
+    render_when_empty: true
+    generate_document: true
+    role_in_code: ignore
+
+  - name: meta.title
+    type: string
+    required: true
+    render_when_empty: true
+    generate_document: true
+    role_in_code: ignore
+
+  # ---------------------------------------------------------------------------
+  # Version
+  # ---------------------------------------------------------------------------
+  - name: version.version
+    type: string
+    pattern: '^\d+\.\d+$'
+    required: true
+    render_when_empty: true
+    generate_document: true
+    role_in_code: ignore
+
+  - name: version.status
+    type: enum
+    values:
+      - Draft
+      - Review
+      - Approved
+      - Released
+      - Deprecated
+    default: Draft
+    required: true
+    render_when_empty: true
+    generate_document: true
+    role_in_code: ignore
+
+  - name: version.author
+    type: string
+    required: false
+    render_when_empty: false
+    generate_document: true
+    role_in_code: ignore
+
+  - name: version.date
+    type: string
+    format: date
+    required: true
+    render_when_empty: true
+    generate_document: true
+    role_in_code: ignore
+
+  # ---------------------------------------------------------------------------
+  # Description
+  # ---------------------------------------------------------------------------
+  - name: description
+    type: string
+    required: false
+    render_when_empty: false
+    generate_document: true
+    role_in_code: ignore
+
+  # ---------------------------------------------------------------------------
+  # Section
+  # ---------------------------------------------------------------------------
+  - name: purpose
+    type: text
+    required: false
+    render_when_empty: true
+    generate_document: true
+    role_in_code: ignore
+
+  - name: scope
+    type: text
+    required: false
+    render_when_empty: true
+    generate_document: true
+    role_in_code: ignore
+
+  - name: term
+    type: string
+    required: true
+    render_when_empty: false
+    generate_document: true
+    role_in_code: ignore
+
+  - name: references
+    type: list
+    required: false
+    render_when_empty: false
+    generate_document: true
+    role_in_code: ignore
+
+  - name: document_overview
+    type: text
+    required: false
+    render_when_empty: false
+    generate_document: true
+    role_in_code: ignore
+
+  # ---------------------------------------------------------------------------
+  # Structure Fields
+  # ---------------------------------------------------------------------------
+  - name: structure.context
+    type: text
+    required: false
+    render_when_empty: false
+    generate_document: true
+    role_in_code: structure
+
+  - name: structure.responsibilities
+    type: list
+    required: false
+    render_when_empty: false
+    generate_document: true
+    role_in_code: structure
+
+  - name: structure.hierarchy
+    type: text
+    required: false
+    render_when_empty: false
+    generate_document: true
+    role_in_code: structure
+
+  # ---------------------------------------------------------------------------
+  # Package ID
+  # ---------------------------------------------------------------------------
+  - name: package.id
+    type: string
+    pattern: '^PKG-[A-Za-z0-9_]+-\d{3}$'
+    constraint: unique
+    required: true
+    render_when_empty: true
+    generate_document: true
+    role_in_code: structure
+
+  - name: package.title
+    type: string
+    required: true
+    render_when_empty: true
+    generate_document: true
+    role_in_code: structure
+
+  - name: package.description
+    type: text
+    required: false
+    render_when_empty: false
+    generate_document: true
+    role_in_code: structure
+
+  # ---------------------------------------------------------------------------
+  # Class ID
+  # ---------------------------------------------------------------------------
+  - name: class.id
+    type: string
+    pattern: '^CLS-[A-Za-z0-9_]+-\d{3}$'
+    constraint: unique
+    required: false
+    render_when_empty: false
+    generate_document: true
+    role_in_code: structure
+
+  - name: class.title
+    type: string
+    required: false
+    render_when_empty: false
+    generate_document: true
+    role_in_code: structure
+
+  - name: class.description
+    type: text
+    required: false
+    render_when_empty: false
+    generate_document: true
+    role_in_code: structure
+
+  - name: class.responsibilities
+    type: list
+    required: false
+    render_when_empty: false
+    generate_document: true
+    role_in_code: structure
+
+  # ---------------------------------------------------------------------------
+  # Function ID
+  # ---------------------------------------------------------------------------
+  - name: function.id
+    type: string
+    pattern: '^FUN-[A-Za-z0-9_]+-\d{3}$'
+    constraint: unique
+    required: false
+    render_when_empty: false
+    generate_document: true
+    role_in_code: structure
+
+  - name: function.title
+    type: string
+    required: false
+    render_when_empty: false
+    generate_document: true
+    role_in_code: structure
+
+  - name: function.description
+    type: text
+    required: false
+    render_when_empty: false
+    generate_document: true
+    role_in_code: structure
+
+  - name: function.signature
+    type: text
+    required: false
+    render_when_empty: false
+    generate_document: true
+    role_in_code: structure
+
+  # ---------------------------------------------------------------------------
+  # File ID
+  # ---------------------------------------------------------------------------
+  - name: file.id
+    type: string
+    pattern: '^FILE-[A-Za-z0-9_]+-\d{3}$'
+    constraint: unique
+    required: false
+    render_when_empty: false
+    generate_document: true
+    role_in_code: structure
+
+  - name: file.path
+    type: string
+    required: false
+    render_when_empty: false
+    generate_document: true
+    role_in_code: structure
+
+  - name: file.description
+    type: text
+    required: false
+    render_when_empty: false
+    generate_document: true
+    role_in_code: structure

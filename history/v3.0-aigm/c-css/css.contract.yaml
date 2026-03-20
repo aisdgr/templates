@@ -1,0 +1,194 @@
+document:
+  meta:
+    id: css-contract
+    title: CSS Contract
+    version: 1.0
+    status: active
+    action: contract
+    artifact: document
+    owner: aigm
+
+  applicability_context:
+    intent:
+      category:
+        - structure
+        - coding_structure
+        - generation
+        - rendering
+        - validation
+      source:
+        - css.template.md
+        - css.schema.yaml
+
+    roles:
+      enforced_on:
+        - ai
+        - human
+        - system
+      responsible:
+      - ai
+      - human
+      - system
+      involvement:
+      - primary
+      - secondary
+      - oversight
+
+    applies_to:
+      section:
+        - front_matter
+        - change_history
+
+        - introduction.purpose
+        - introduction.scope
+        - introduction.definitions
+        - introduction.references
+        - introduction.document_overview
+
+        - structure_overview.context
+        - structure_overview.responsibilities
+        - structure_overview.hierarchy
+
+        - structural_elements.packages
+        - structural_elements.classes
+        - structural_elements.functions
+        - structural_elements.files
+
+      constraint:
+        - required
+        - generate_document
+        - render_when_empty
+        - pattern
+        - unique
+      template:
+        - css.template.md
+      schema:
+        - css.schema.yaml
+
+  rules:
+    # --------------------------------------------------------------------------
+    # Contract rules (independent)
+    # --------------------------------------------------------------------------
+    - id: CONTRACT-CSS-STRUCT-001
+      title: Structure Follows CSS Template
+      status: active
+      description: CSS generator MUST follow the structure defined in css.template.md.
+      intent:
+        - category: structure
+        - source: css.template.md
+      roles:
+        - enforced_on: ai
+      applies_to:
+      risk: transparency
+      severity: high
+
+    - id: CONTRACT-CSS-VALUE-001
+      title: Values Conform to CSS Schema
+      status: active
+      description: CSS generator MUST ensure all field values conform to css.schema.yaml.
+      intent:
+        - category: coding_structure
+        - source: css.schema.yaml
+      roles:
+        - enforced_on: ai
+      applies_to:
+      risk: transparency
+      severity: high
+
+    - id: CONTRACT-CSS-LIST-RENDER-001
+      title: List Fields Render as Bullet Lists
+      status: active
+      description: CSS generator MUST render list-type fields as Markdown bullet lists.
+      intent:
+        - category: rendering
+      roles:
+        - enforced_on: ai
+      applies_to:
+        section:
+        - introduction.references
+        - structure_overview.responsibilities
+        - structural_elements.packages
+      risk: transparency
+      severity: medium
+
+    - id: CONTRACT-CSS-REQUIRED-RENDER-001
+      title: Required Fields Are Rendered
+      status: active
+      description: CSS generator MUST render all required fields in the output document.
+      intent:
+        - category: rendering
+      roles:
+        - enforced_on: ai
+      applies_to:
+        section:
+          - front_matter
+          - change_history
+          - introduction.purpose
+          - structure_overview.context
+          - structural_elements.packages
+      risk: transparency
+      severity: high
+
+    - id: CONTRACT-CSS-GENERATE-DOC-RENDER-001
+      title: Generate Document Fields Are Rendered
+      status: active
+      description: CSS generator MUST render fields marked generate_document as true.
+      intent:
+        - category: rendering
+      roles:
+        - enforced_on: ai
+      applies_to:
+        section:
+          - introduction.purpose
+          - introduction.scope
+          - structure_overview.context
+          - structure_overview.responsibilities
+          - structural_elements.packages
+      risk: transparency
+      severity: medium
+
+    - id: CONTRACT-CSS-RENDER-WHEN-EMPTY-001
+      title: Render When Empty Is Respected
+      status: active
+      description: CSS generator MUST render fields with render_when_empty set to true even when the value is empty.
+      intent:
+        - category: rendering
+      roles:
+        - enforced_on: ai
+      applies_to:
+        section:
+          - introduction.definitions
+          - introduction.references
+          - structural_elements.functions
+      risk: transparency
+      severity: medium
+
+    - id: CONTRACT-CSS-PATTERN-001
+      title: Pattern Constraints Are Satisfied
+      status: active
+      description: CSS generator MUST ensure values match any declared pattern constraints.
+      intent:
+        - category: validation
+      roles:
+        - enforced_on: ai
+      applies_to:
+        section:
+          - front_matter
+          - change_history
+          - structural_elements.packages
+          - structural_elements.classes
+      risk: security
+      severity: high
+
+    - id: CONTRACT-CSS-UNIQUE-001
+      title: Unique Constraints Are Satisfied
+      status: active
+      description: CSS generator MUST ensure values are unique where unique constraints are declared.
+      intent:
+        - category: validation
+      roles:
+        - enforced_on: ai
+      applies_to:
+        - constraint: unique
+      risk: transparency
+      severity: high
