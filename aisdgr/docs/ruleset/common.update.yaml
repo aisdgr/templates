@@ -1,0 +1,50 @@
+ruleset:
+  id: common.update
+  includes:
+  - rule_id: DOCS-AR-C-01
+    version: '>=1.0.0'
+  - rule_id: DOCS-AR-C-02
+    version: '>=1.0.0'
+  - rule_id: DOCS-AR-C-03
+    version: '>=1.0.0'
+  - rule_id: DOCS-BD-C-02
+    version: '>=1.0.0'
+  - rule_id: DOCS-BD-P-01
+    version: '>=1.0.0'
+  - rule_id: DOCS-CN-C-01
+    version: '>=1.0.0'
+  - rule_id: DOCS-ST-P-01
+    version: '>=1.0.0'
+  - rule_id: DOCS-ST-P-02
+    version: '>=1.0.0'
+  applicability:
+    domain:
+    - docs
+    artifact:
+    - SRS
+    - SDS
+    - STS
+    - CAS
+    - CIS
+    - CSS
+    intent:
+    - update
+    stage:
+    - develop
+  governance:
+    version: 1.0.0
+    status: active
+    owner: aisr
+    intent:
+      purpose:
+      - document_update
+      - governance_enforcement
+      notes:
+      - Common rules for document update operations
+    responsibilities:
+      ai:
+      - document_generator
+      human:
+      - document_reviewer
+      system:
+      - validator

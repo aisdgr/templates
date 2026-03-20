@@ -1,0 +1,36 @@
+# ==============================================================================
+# LANG-GO-P-01.yaml
+# Prefer composition over inheritance
+# ==============================================================================
+
+rule:
+  id: LANG-ST-GO-101
+  execution_view: go_engineer
+  constraint: 'Go code SHOULD favor composition via structs
+
+    and interfaces rather than inheritance-like patterns.
+
+    Interfaces SHOULD remain small and focused.'
+  boundary:
+    domain:
+    - code
+    artifact:
+    - source_code
+    rule_category: []
+    rule_domain:
+    - LANG
+    languages:
+    - Go
+  governance:
+    version: 1.0.0
+    status: active
+    owner: asdgr
+    original_rule: CCS-GO-004
+    intent:
+      rationale:
+      - Maintain flexibility and reduce coupling.
+    responsibilities:
+      ai:
+      - code_generator
+      human:
+      - code_reviewer

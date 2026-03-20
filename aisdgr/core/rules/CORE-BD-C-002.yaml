@@ -1,0 +1,66 @@
+id: CORE-BD-C-002
+type: Constraint
+description: Code must not access modules or resources beyond boundaries
+rationale: |
+  防止越界存取，確保 AI 只存取授權範圍內的模組和資源。
+
+  此規則是邊界控制的核心約束，確保：
+  1. 所有資源存取都在明確聲明的邊界內
+  2. 邊界外的模組和資源不被存取
+  3. 存取行為可被追蹤和驗證
+
+normative: MUST NOT
+
+metadata:
+  version: 1.0.0
+  status: active
+  owner: AISDGR
+  created_date: 2026-03-19
+  severity: critical
+  risk: high
+  impact: global
+  focus_areas:
+    - Boundary Control
+    - Security
+  domain_tags:
+    - Core
+  applicability:
+    - Code Generation
+    - Code Modification
+    - Resource Access
+
+examples:
+  compliant:
+    - description: "在邊界內存取資源"
+      scenario: |
+        聲明邊界: 僅存取 src/ 目錄下的模組
+        執行: AI 程式碼引用 src/utils/helper.go
+        結果: ✅ 符合規則
+
+  non_compliant:
+    - description: "越界存取資源"
+      scenario: |
+        聲明邊界: 僅存取 src/ 目錄下的模組
+        執行: AI 程式碼引用 src/utils/helper.go 和 vendor/crypto/hash.go
+        結果: ❌ 違反規則 (vendor/crypto/hash.go 超出邊界)
+
+validation:
+  detectable: true
+  detection_method: |
+    通過分析程式碼的 import 語句和資源引用來檢測越界存取。
+
+  evidence_generation: |
+    違規時生成 Evidence：
+    - 越界存取的模組或資源列表
+    - 聲明的邊界範圍
+    - 存取路徑分析
+
+related_rules:
+  - CORE-BD-C-001  # 禁止修改邊界外的製品
+  - CORE-BD-C-003  # 禁止引入未聲明的外部相依性
+  - CORE-BD-P-001  # 執行必須在聲明邊界後停止
+
+migrated_from:
+  original_id: CODE-BD-C-02
+  migration_date: 2026-03-19
+  migration_reason: "移至 CORE Domain 作為通用邊界存取控制規則"

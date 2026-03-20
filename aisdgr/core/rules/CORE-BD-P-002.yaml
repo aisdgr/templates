@@ -1,0 +1,69 @@
+id: CORE-BD-P-002
+type: Policy
+description: Code execution must stop when boundary conflicts are detected
+rationale: |
+  確保邊界衝突時立即停止執行，防止潛在的安全風險。
+
+  此規則要求：
+  1. 邊界衝突檢測必須即時進行
+  2. 檢測到衝突時必須立即停止執行
+  3. 衝突資訊必須被記錄和報告
+
+normative: MUST
+
+metadata:
+  version: 1.0.0
+  status: active
+  owner: AISDGR
+  created_date: 2026-03-19
+  severity: critical
+  risk: high
+  impact: global
+  focus_areas:
+    - Boundary Control
+    - Safety Mechanism
+  domain_tags:
+    - Core
+  applicability:
+    - Code Generation
+    - Code Execution
+    - Task Execution
+
+examples:
+  compliant:
+    - description: "檢測到衝突時停止執行"
+      scenario: |
+        聲明邊界: 修改 src/handlers/
+        檢測: 發現與其他任務的邊界衝突
+        執行: AI 立即停止執行並報告衝突
+        結果: ✅ 符合規則
+
+  non_compliant:
+    - description: "檢測到衝突後繼續執行"
+      scenario: |
+        聲明邊界: 修改 src/handlers/
+        檢測: 發現與其他任務的邊界衝突
+        執行: AI 繼續執行修改操作
+        結果: ❌ 違反規則（應立即停止）
+
+validation:
+  detectable: true
+  detection_method: |
+    檢測執行日誌中是否有邊界衝突處理記錄。
+
+  evidence_generation: |
+    生成 Evidence：
+    - 邊界衝突檢測結果
+    - 衝突詳細資訊
+    - 停止執行時間戳
+    - 衝突報告
+
+related_rules:
+  - CORE-BD-P-001  # 執行必須在聲明邊界後停止
+  - CORE-BD-P-003  # 邊界不包含可執行目標時必須停止
+  - CORE-BD-C-001  # 禁止修改邊界外的製品
+
+migrated_from:
+  original_id: CODE-BD-P-02
+  migration_date: 2026-03-19
+  migration_reason: "移至 CORE Domain 作為通用安全控制規則"

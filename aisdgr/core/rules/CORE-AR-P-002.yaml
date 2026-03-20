@@ -1,0 +1,65 @@
+id: CORE-AR-P-002
+type: Policy
+description: All generated artifacts must be addressable and locatable
+rationale: |
+  確保所有生成的製品都有明確的位置和識別方式，便於管理和追溯。
+
+  此規則要求：
+  1. 每個製品必須有唯一識別符或路徑
+  2. 製品位置必須可查詢
+  3. 支援製品的快速定位和存取
+
+normative: MUST
+
+metadata:
+  version: 1.0.0
+  status: active
+  owner: AISDGR
+  created_date: 2026-03-19
+  severity: major
+  risk: medium
+  impact: global
+  focus_areas:
+    - Artifact Isolation
+    - Artifact Management
+  domain_tags:
+    - Core
+  applicability:
+    - Code Generation
+    - Documentation Generation
+    - Test Generation
+
+examples:
+  compliant:
+    - description: "製品有明確路徑"
+      scenario: |
+        生成: src/main.go
+        位置: 明確的檔案路徑
+        結果: ✅ 符合規則
+
+  non_compliant:
+    - description: "製品位置不明確"
+      scenario: |
+        生成: 某個配置片段
+        位置: 未指定具體檔案或位置
+        結果: ❌ 違反規則（製品不可定位）
+
+validation:
+  detectable: true
+  detection_method: |
+    檢查生成的製品是否有明確的路徑或識別符。
+
+  evidence_generation: |
+    生成 Evidence：
+    - 製品清單
+    - 製品路徑或識別符
+
+related_rules:
+  - CORE-AR-C-001  # 禁止創建未聲明的製品類型
+  - CORE-AR-P-001  # 創建權限必須明確定義
+  - CORE-TR-P-001  # 製品必須包含追溯 ID
+
+migrated_from:
+  original_id: CODE-AR-P-02
+  migration_date: 2026-03-19
+  migration_reason: "移至 CORE Domain 作為通用製品管理規則"

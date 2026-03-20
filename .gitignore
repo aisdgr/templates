@@ -208,6 +208,10 @@ __marimo__/
 
 # AI
 .claude/
+<<<<<<< HEAD
 .obsidian/
 
 .vscode/
+=======
+.obsidian/
+>>>>>>> 1501a02 (更名 CNL -> RNL, AIDBR -> AISDGR)

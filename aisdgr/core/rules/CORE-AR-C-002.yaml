@@ -1,0 +1,66 @@
+id: CORE-AR-C-002
+type: Constraint
+description: Must not modify undeclared artifact types
+rationale: |
+  防止對未授權製品類型的修改，確保製品修改的範圍受控。
+
+  此規則確保：
+  1. 只能修改已聲明的製品類型
+  2. 防止對未授權製品的意外修改
+  3. 保持製品修改的可追溯性
+
+normative: MUST NOT
+
+metadata:
+  version: 1.0.0
+  status: active
+  owner: AISDGR
+  created_date: 2026-03-19
+  severity: major
+  risk: high
+  impact: global
+  focus_areas:
+    - Artifact Isolation
+    - Change Control
+  domain_tags:
+    - Core
+  applicability:
+    - Code Generation
+    - Documentation Generation
+    - Test Generation
+
+examples:
+  compliant:
+    - description: "僅修改已聲明的製品類型"
+      scenario: |
+        聲明: 可修改 Source Code
+        執行: 僅修改 .go 檔案
+        結果: ✅ 符合規則
+
+  non_compliant:
+    - description: "修改未聲明的製品類型"
+      scenario: |
+        聲明: 可修改 Source Code
+        執行: 修改 .go 檔案和 README.md
+        結果: ❌ 違反規則 (修改了未聲明的 Documentation)
+
+validation:
+  detectable: true
+  detection_method: |
+    比對實際修改的製品類型與聲明的製品類型。
+
+  evidence_generation: |
+    違規時生成 Evidence：
+    - 未授權修改的製品類型
+    - 修改內容摘要
+    - 執行上下文
+
+related_rules:
+  - CORE-AR-C-001  # 禁止創建未聲明的製品類型
+  - CORE-AR-P-001  # 創建權限必須明確定義
+  - CORE-AR-P-002  # 製品必須可尋址和定位
+
+migrated_from:
+  original_id: CODE-AR-C-02
+  migration_date: 2026-03-19
+  migration_reason: "移至 CORE Domain 作為通用製品隔離規則"

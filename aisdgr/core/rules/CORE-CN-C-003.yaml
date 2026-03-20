@@ -1,0 +1,67 @@
+id: CORE-CN-C-003
+type: Constraint
+description: Must never infer undeclared verification targets
+rationale: |
+  防止 AI 自行推斷驗證目標，確保所有驗證目標都經過明確定義。
+
+  此規則是約束推斷的核心約束，確保：
+  1. 所有驗證目標必須明確聲明
+  2. AI 不得自行推斷或創造驗證目標
+  3. 驗證目標必須與需求對應
+
+normative: MUST NOT
+
+metadata:
+  version: 1.0.0
+  status: active
+  owner: AISDGR
+  created_date: 2026-03-19
+  severity: critical
+  risk: high
+  impact: global
+  focus_areas:
+    - Constraint Inference
+    - Verification Management
+  domain_tags:
+    - Core
+  applicability:
+    - Code Generation
+    - Test Generation
+    - Verification Planning
+
+examples:
+  compliant:
+    - description: "僅使用明確聲明的驗證目標"
+      scenario: |
+        聲明驗證目標: 測試登入成功場景
+        執行: AI 僅生成登入成功測試案例
+        結果: ✅ 符合規則
+
+  non_compliant:
+    - description: "自行推斷驗證目標"
+      scenario: |
+        聲明驗證目標: 測試登入成功場景
+        推斷: AI 假設也需要測試登入失敗場景
+        執行: AI 生成登入成功和失敗的測試案例
+        結果: ❌ 違反規則（推斷了未聲明的驗證目標）
+
+validation:
+  detectable: true
+  detection_method: |
+    比對實際驗證目標與聲明的驗證目標，檢測是否有推斷行為。
+
+  evidence_generation: |
+    違規時生成 Evidence：
+    - 推斷的驗證目標列表
+    - 聲明的驗證目標列表
+    - 推斷來源分析
+
+related_rules:
+  - CORE-CN-C-001  # 禁止推斷未聲明的邊界
+  - CORE-CN-C-002  # 禁止推斷未聲明的需求
+  - CORE-TR-P-001  # 生成的製品必須包含追溯 ID
+
+migrated_from:
+  original_id: CODE-CN-C-03
+  migration_date: 2026-03-19
+  migration_reason: "移至 CORE Domain 作為通用驗證目標推斷控制規則"

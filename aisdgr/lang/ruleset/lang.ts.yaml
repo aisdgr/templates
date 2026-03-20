@@ -1,0 +1,97 @@
+# ==============================================================================
+# lang.ts.yaml
+#
+# Ruleset Role:
+#   This ruleset defines TypeScript-specific coding standards by composing
+#   language-agnostic core standards (LANG-STD) with TypeScript-specific rules.
+#
+# Execution Semantics:
+#   - Strict type checking enabled
+#   - Explicit type annotations for public apis
+#   - Appropriate use of interfaces and type aliases
+#   - No unsafe type assertions without validation
+#   - Explicit null and undefined handling
+#   - Type-safe async interfaces with explicit error types
+#
+# Governance Semantics:
+#   - TypeScript projects must comply with both core and TypeScript-specific standards
+#   - This ruleset automatically includes all LANG-STD core rules
+#   - Violations of Constraints trigger governance enforcement
+#   - Violations of Policies require documented justification
+#
+# Design Notes:
+#   - Individual rules are atomic and reusable
+#   - Quality semantics are expressed ONLY at the ruleset level
+#   - Rulesets select and compose rules; they never redefine rule behavior
+#
+# ==============================================================================
+
+ruleset:
+  id: lang.ts
+  includes:
+  - rule_id: LANG-STD-C-01
+    version: '>=1.0.0'
+  - rule_id: LANG-STD-C-02
+    version: '>=1.0.0'
+  - rule_id: LANG-STD-C-03
+    version: '>=1.0.0'
+  - rule_id: LANG-STD-C-04
+    version: '>=1.0.0'
+  - rule_id: LANG-STD-P-01
+    version: '>=1.0.0'
+  - rule_id: LANG-STD-P-02
+    version: '>=1.0.0'
+  - rule_id: LANG-STD-C-05
+    version: '>=1.0.0'
+  - rule_id: LANG-TS-C-01
+    version: '>=1.0.0'
+  - rule_id: LANG-TS-C-02
+    version: '>=1.0.0'
+  - rule_id: LANG-TS-P-01
+    version: '>=1.0.0'
+  - rule_id: LANG-TS-C-03
+    version: '>=1.0.0'
+  - rule_id: LANG-TS-C-04
+    version: '>=1.0.0'
+  - rule_id: LANG-TS-P-02
+    version: '>=1.0.0'
+  - rule_id: LANG-TS-P-03
+    version: '>=1.0.0'
+  applicability:
+    domain:
+    - code
+    artifact:
+    - source_code
+    language:
+    - typescript
+    stage:
+    - develop
+  governance:
+    version: 1.0.0
+    status: active
+    owner: asdgr
+    intent:
+      purpose:
+      - typescript_specific_quality
+      - language_standards
+      notes:
+      - This ruleset composes LANG-STD and LANG-TYPESCRIPT rules for TypeScript projects.
+      - 'Includes 14 rules: core standards + TypeScript-specific standards.'
+    responsibilities:
+      ai:
+      - code_generator
+      human:
+      - code_reviewer
+      system:
+      - validator
+    governance_impact:
+      audit_scope:
+      - code_quality
+      - language_standards
+      - typescript_standards
+      reporting:
+      - rule_evaluation_report
+      risk_category:
+      - type_safety
+      - explicitness
+      - error_handling

@@ -1,0 +1,97 @@
+# ==============================================================================
+# lang.js.yaml
+#
+# Ruleset Role:
+#   This ruleset defines JavaScript-specific coding standards by composing
+#   language-agnostic core standards (LANG-STD) with JavaScript-specific rules.
+#
+# Execution Semantics:
+#   - Explicit variable scope (const/let, not var)
+#   - Strict equality comparisons (=== and !==)
+#   - Explicit async control flow (async/await preferred)
+#   - Explicit error handling with specific error types
+#   - Immutable data patterns (const, object.freeze)
+#   - No implicit globals or dynamic code execution
+#
+# Governance Semantics:
+#   - JavaScript projects must comply with both core and JavaScript-specific standards
+#   - This ruleset automatically includes all LANG-STD core rules
+#   - Violations of Constraints trigger governance enforcement
+#   - Violations of Policies require documented justification
+#
+# Design Notes:
+#   - Individual rules are atomic and reusable
+#   - Quality semantics are expressed ONLY at the ruleset level
+#   - Rulesets select and compose rules; they never redefine rule behavior
+#
+# ==============================================================================
+
+ruleset:
+  id: lang.js
+  includes:
+  - rule_id: LANG-STD-C-01
+    version: '>=1.0.0'
+  - rule_id: LANG-STD-C-02
+    version: '>=1.0.0'
+  - rule_id: LANG-STD-C-03
+    version: '>=1.0.0'
+  - rule_id: LANG-STD-C-04
+    version: '>=1.0.0'
+  - rule_id: LANG-STD-P-01
+    version: '>=1.0.0'
+  - rule_id: LANG-STD-P-02
+    version: '>=1.0.0'
+  - rule_id: LANG-STD-C-05
+    version: '>=1.0.0'
+  - rule_id: LANG-JS-C-01
+    version: '>=1.0.0'
+  - rule_id: LANG-JS-C-02
+    version: '>=1.0.0'
+  - rule_id: LANG-JS-C-03
+    version: '>=1.0.0'
+  - rule_id: LANG-JS-C-04
+    version: '>=1.0.0'
+  - rule_id: LANG-JS-P-01
+    version: '>=1.0.0'
+  - rule_id: LANG-JS-C-05
+    version: '>=1.0.0'
+  - rule_id: LANG-JS-P-02
+    version: '>=1.0.0'
+  applicability:
+    domain:
+    - code
+    artifact:
+    - source_code
+    language:
+    - javascript
+    stage:
+    - develop
+  governance:
+    version: 1.0.0
+    status: active
+    owner: asdgr
+    intent:
+      purpose:
+      - javascript_specific_quality
+      - language_standards
+      notes:
+      - This ruleset composes LANG-STD and LANG-JAVASCRIPT rules for JavaScript projects.
+      - 'Includes 14 rules: core standards + JavaScript-specific standards.'
+    responsibilities:
+      ai:
+      - code_generator
+      human:
+      - code_reviewer
+      system:
+      - validator
+    governance_impact:
+      audit_scope:
+      - code_quality
+      - language_standards
+      - javascript_standards
+      reporting:
+      - rule_evaluation_report
+      risk_category:
+      - type_safety
+      - explicitness
+      - error_handling

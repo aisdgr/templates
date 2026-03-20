@@ -1,0 +1,45 @@
+ruleset:
+  id: sds.generate
+  includes:
+  - rule_id: DOCS-ST-C-04
+    version: '>=1.0.0'
+  - rule_id: DOCS-ST-C-05
+    version: '>=1.0.0'
+  - rule_id: DOCS-ST-C-06
+    version: '>=1.0.0'
+  - rule_id: DOCS-ST-C-07
+    version: '>=1.0.0'
+  - rule_id: DOCS-ST-C-08
+    version: '>=1.0.0'
+  - rule_id: DOCS-ST-C-09
+    version: '>=1.0.0'
+  - rule_id: DOCS-ST-C-10
+    version: '>=1.0.0'
+  - rule_id: DOCS-ST-C-11
+    version: '>=1.0.0'
+  applicability:
+    domain:
+    - docs
+    artifact:
+    - SDS
+    intent:
+    - generate
+    stage:
+    - develop
+  governance:
+    version: 1.0.0
+    status: active
+    owner: aisr
+    intent:
+      purpose:
+      - document_generate
+      - governance_enforcement
+      notes:
+      - Software Design Specification specific rules for generate
+    responsibilities:
+      ai:
+      - document_generator
+      human:
+      - document_reviewer
+      system:
+      - validator

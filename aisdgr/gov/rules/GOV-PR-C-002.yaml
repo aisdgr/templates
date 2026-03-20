@@ -1,0 +1,34 @@
+# ==============================================================================
+# GOV-PR-C-002.yaml
+# Explicit governance over implicit trust
+# ==============================================================================
+
+rule:
+  id: GOV-PR-C-002
+  execution_view: governance_engineer
+  constraint: 'All AI behavior MUST be explicitly governed.
+
+    No AI action is permitted based on assumed intent
+
+    or inferred authority.'
+  boundary:
+    domain:
+    - code
+    artifact:
+    - source_code
+    rule_category: []
+    rule_domain:
+    - GOV
+  governance:
+    version: 1.0.0
+    status: active
+    owner: asdgr
+    original_rule: CGG-PR-003
+    intent:
+      rationale: []
+    responsibilities:
+      ai:
+      - code_generator
+      human:
+      - code_reviewer
+      - governance_enforcer

@@ -1,0 +1,35 @@
+ruleset:
+  id: cas.generate
+  includes:
+  - rule_id: DOCS-ST-C-12
+    version: '>=1.0.0'
+  - rule_id: DOCS-ST-C-13
+    version: '>=1.0.0'
+  - rule_id: DOCS-ST-C-14
+    version: '>=1.0.0'
+  applicability:
+    domain:
+    - docs
+    artifact:
+    - CAS
+    intent:
+    - generate
+    stage:
+    - develop
+  governance:
+    version: 1.0.0
+    status: active
+    owner: aisr
+    intent:
+      purpose:
+      - document_generate
+      - governance_enforcement
+      notes:
+      - Coding Architecture Specification specific rules for generate
+    responsibilities:
+      ai:
+      - document_generator
+      human:
+      - document_reviewer
+      system:
+      - validator

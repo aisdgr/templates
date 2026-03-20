@@ -1,0 +1,32 @@
+# ==============================================================================
+# GOV-PR-C-003.yaml
+# Visibility over silent correction
+# ==============================================================================
+
+rule:
+  id: GOV-PR-C-003
+  execution_view: governance_engineer
+  constraint: 'Violations MUST be surfaced explicitly.
+
+    Silent mutation or auto-correction is prohibited.'
+  boundary:
+    domain:
+    - code
+    artifact:
+    - source_code
+    rule_category: []
+    rule_domain:
+    - GOV
+  governance:
+    version: 1.0.0
+    status: active
+    owner: asdgr
+    original_rule: CGG-PR-004
+    intent:
+      rationale: []
+    responsibilities:
+      ai:
+      - code_generator
+      human:
+      - code_reviewer
+      - governance_enforcer

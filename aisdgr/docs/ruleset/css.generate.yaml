@@ -1,0 +1,33 @@
+ruleset:
+  id: css.generate
+  includes:
+  - rule_id: DOCS-ST-C-17
+    version: '>=1.0.0'
+  - rule_id: DOCS-ST-C-18
+    version: '>=1.0.0'
+  applicability:
+    domain:
+    - docs
+    artifact:
+    - CSS
+    intent:
+    - generate
+    stage:
+    - develop
+  governance:
+    version: 1.0.0
+    status: active
+    owner: aisr
+    intent:
+      purpose:
+      - document_generate
+      - governance_enforcement
+      notes:
+      - Coding Structure Specification specific rules for generate
+    responsibilities:
+      ai:
+      - document_generator
+      human:
+      - document_reviewer
+      system:
+      - validator

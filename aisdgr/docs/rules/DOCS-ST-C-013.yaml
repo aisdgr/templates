@@ -1,0 +1,27 @@
+rule:
+  id: DOCS-ST-C-013
+  execution_view: document_generator
+  constraint: Module structure *MUST* define explicit boundaries.
+  boundary:
+    domain:
+    - docs
+    artifact:
+    - CAS
+    rule_category:
+    - ST
+    rule_domain:
+    - DOCS
+  governance:
+    version: 1.0.0
+    status: draft
+    owner: aisr
+    original_rules:
+    - GEC-CAS-MODULE-001
+    intent:
+      rationale:
+      - ensure_module_isolation
+      - prevent_boundary_violation
+      purpose:
+      - maintain_module_integrity
+      risk: leakage
+      severity: error

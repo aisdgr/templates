@@ -1,0 +1,33 @@
+ruleset:
+  id: cas.update
+  includes:
+  - rule_id: DOCS-ST-C-13
+    version: '>=1.0.0'
+  - rule_id: DOCS-ST-C-14
+    version: '>=1.0.0'
+  applicability:
+    domain:
+    - docs
+    artifact:
+    - CAS
+    intent:
+    - update
+    stage:
+    - develop
+  governance:
+    version: 1.0.0
+    status: active
+    owner: aisr
+    intent:
+      purpose:
+      - document_update
+      - governance_enforcement
+      notes:
+      - Coding Architecture Specification specific rules for update
+    responsibilities:
+      ai:
+      - document_generator
+      human:
+      - document_reviewer
+      system:
+      - validator

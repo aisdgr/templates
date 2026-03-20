@@ -1,0 +1,36 @@
+# ==============================================================================
+# LANG-JAVA-C-02.yaml
+# Explicit null handling
+# ==============================================================================
+
+rule:
+  id: LANG-ST-JV-002
+  execution_view: java_engineer
+  constraint: 'Null handling MUST be explicit.
+
+    APIs SHOULD avoid returning null and SHOULD use
+
+    Optional or clearly documented null contracts.'
+  boundary:
+    domain:
+    - code
+    artifact:
+    - source_code
+    rule_category: []
+    rule_domain:
+    - LANG
+    languages:
+    - Java
+  governance:
+    version: 1.0.0
+    status: active
+    owner: asdgr
+    original_rule: CCS-JAVA-003
+    intent:
+      rationale:
+      - Prevent NullPointerException-driven failures.
+    responsibilities:
+      ai:
+      - code_generator
+      human:
+      - code_reviewer

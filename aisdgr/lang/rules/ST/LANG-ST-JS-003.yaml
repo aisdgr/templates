@@ -1,0 +1,36 @@
+# ==============================================================================
+# LANG-JS-C-03.yaml
+# Explicit async control flow
+# ==============================================================================
+
+rule:
+  id: LANG-ST-JS-003
+  execution_view: javascript_engineer
+  constraint: 'Asynchronous behavior MUST be expressed explicitly using
+
+    `async` / `await` or well-scoped Promise chains.
+
+    Implicit or fire-and-forget async patterns MUST NOT be used.'
+  boundary:
+    domain:
+    - code
+    artifact:
+    - source_code
+    rule_category: []
+    rule_domain:
+    - LANG
+    languages:
+    - JavaScript
+  governance:
+    version: 1.0.0
+    status: active
+    owner: asdgr
+    original_rule: CCS-JS-003
+    intent:
+      rationale:
+      - Preserve predictable execution order and error propagation.
+    responsibilities:
+      ai:
+      - code_generator
+      human:
+      - code_reviewer

@@ -1,0 +1,27 @@
+rule:
+  id: DOCS-ST-C-017
+  execution_view: document_generator
+  constraint: Structure overview *MUST* describe context and hierarchy.
+  boundary:
+    domain:
+    - docs
+    artifact:
+    - CSS
+    rule_category:
+    - ST
+    rule_domain:
+    - DOCS
+  governance:
+    version: 1.0.0
+    status: draft
+    owner: aisr
+    original_rules:
+    - GEC-CSS-STRUCTURE-001
+    intent:
+      rationale:
+      - ensure_structural_clarity
+      - define_hierarchy_explicitly
+      purpose:
+      - establish_code_organization
+      risk: ambiguity
+      severity: high

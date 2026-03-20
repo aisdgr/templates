@@ -1,0 +1,34 @@
+# ==============================================================================
+# GOV-PR-C-001.yaml
+# AI as constrained executor
+# ==============================================================================
+
+rule:
+  id: GOV-PR-C-001
+  execution_view: governance_engineer
+  constraint: 'AI is a constrained executor, not an autonomous designer.
+
+    AI MUST comply with all applicable coding standards
+
+    and MUST NOT reinterpret or weaken them.'
+  boundary:
+    domain:
+    - code
+    artifact:
+    - source_code
+    rule_category: []
+    rule_domain:
+    - GOV
+  governance:
+    version: 1.0.0
+    status: active
+    owner: asdgr
+    original_rule: CGG-PR-001
+    intent:
+      rationale: []
+    responsibilities:
+      ai:
+      - code_generator
+      human:
+      - code_reviewer
+      - governance_enforcer

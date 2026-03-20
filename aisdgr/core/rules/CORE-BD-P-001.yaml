@@ -1,0 +1,66 @@
+id: CORE-BD-P-001
+type: Policy
+description: Code execution must stop after declared boundaries
+rationale: |
+  確保執行範圍受控，防止超出預期的執行範圍。
+
+  此規則要求：
+  1. 執行必須在聲明的邊界範圍內完成
+  2. 超出邊界的執行必須被終止
+  3. 執行範圍必須可驗證
+
+normative: MUST
+
+metadata:
+  version: 1.0.0
+  status: active
+  owner: AISDGR
+  created_date: 2026-03-19
+  severity: critical
+  risk: high
+  impact: global
+  focus_areas:
+    - Boundary Control
+    - Execution Safety
+  domain_tags:
+    - Core
+  applicability:
+    - Code Generation
+    - Code Execution
+    - Task Execution
+
+examples:
+  compliant:
+    - description: "執行在邊界範圍內停止"
+      scenario: |
+        聲明邊界: 修改 src/handlers/ 目錄
+        執行: AI 修改 src/handlers/user.go 後停止
+        結果: ✅ 符合規則
+
+  non_compliant:
+    - description: "執行超出邊界範圍"
+      scenario: |
+        聲明邊界: 修改 src/handlers/ 目錄
+        執行: AI 修改 src/handlers/user.go 和 src/models/user.go
+        結果: ❌ 違反規則（執行超出邊界）
+
+validation:
+  detectable: true
+  detection_method: |
+    比對實際執行的範圍與聲明的邊界範圍。
+
+  evidence_generation: |
+    生成 Evidence：
+    - 聲明的邊界範圍
+    - 實際執行的範圍
+    - 邊界符合性驗證結果
+
+related_rules:
+  - CORE-BD-C-001  # 禁止修改邊界外的製品
+  - CORE-BD-C-002  # 禁止存取邊界外的模組或資源
+  - CORE-BD-P-002  # 檢測到邊界衝突時必須停止執行
+
+migrated_from:
+  original_id: CODE-BD-P-01
+  migration_date: 2026-03-19
+  migration_reason: "移至 CORE Domain 作為通用執行範圍控制規則"

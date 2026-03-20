@@ -1,0 +1,65 @@
+id: CORE-AR-P-001
+type: Policy
+description: Permission to create new artifacts must be explicitly defined
+rationale: |
+  確保製品創建權限受到明確控制，防止未經授權的製品創建。
+
+  此規則要求：
+  1. 明確定義誰有權創建何種製品
+  2. 權限定義必須可追溯
+  3. 未經授權的創建嘗試必須被阻止並記錄
+
+normative: MUST
+
+metadata:
+  version: 1.0.0
+  status: active
+  owner: AISDGR
+  created_date: 2026-03-19
+  severity: major
+  risk: medium
+  impact: global
+  focus_areas:
+    - Artifact Isolation
+    - Permission Control
+  domain_tags:
+    - Core
+  applicability:
+    - Code Generation
+    - Documentation Generation
+    - Test Generation
+
+examples:
+  compliant:
+    - description: "明確定義創建權限"
+      scenario: |
+        配置: "使用者 A 可創建 Source Code 和 Test Files"
+        執行: 使用者 A 請求生成 Source Code
+        結果: ✅ 符合規則（權限已明確定義）
+
+  non_compliant:
+    - description: "缺乏權限定義"
+      scenario: |
+        配置: 無明確的權限定義
+        執行: 使用者 B 請求生成 Documentation
+        結果: ❌ 違反規則（缺乏權限定義，應拒絕執行）
+
+validation:
+  detectable: true
+  detection_method: |
+    檢查是否存在明確的權限定義文檔或配置。
+
+  evidence_generation: |
+    生成 Evidence：
+    - 權限定義檢���結果
+    - 授權來源追溯
+
+related_rules:
+  - CORE-AR-C-001  # 禁止創建未聲明的製品類型
+  - CORE-AR-C-002  # 禁止修改未聲明的製品類型
+  - CORE-AR-P-002  # 所有生成的製品必須可尋址和定位
+
+migrated_from:
+  original_id: CODE-AR-P-01
+  migration_date: 2026-03-19
+  migration_reason: "移至 CORE Domain 作為通用權限控制規則"

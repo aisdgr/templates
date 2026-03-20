@@ -1,0 +1,36 @@
+# ==============================================================================
+# LANG-STD-C-02.yaml
+# Explicit control flow and state
+# ==============================================================================
+
+rule:
+  id: LANG-ST-STD-002
+  execution_view: code_quality_engineer
+  constraint: 'Control flow and state transitions MUST be explicit.
+
+    Implicit magic, reflection-based behavior, or hidden mutation
+
+    MUST NOT be used unless explicitly constrained by design.'
+  boundary:
+    domain:
+    - code
+    artifact:
+    - source_code
+    rule_category: []
+    rule_domain:
+    - LANG
+    languages: []
+  governance:
+    version: 1.0.0
+    status: active
+    owner: asdgr
+    original_rule: CCS-STD-002
+    intent:
+      rationale:
+      - Prevent opaque behavior that cannot be reliably reasoned about by humans or
+        AI reviewers.
+    responsibilities:
+      ai:
+      - code_generator
+      human:
+      - code_reviewer

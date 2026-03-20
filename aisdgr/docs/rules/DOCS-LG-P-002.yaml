@@ -1,0 +1,63 @@
+id: DOCS-LG-P-002
+type: Policy
+description: Documentation generation logs must link to traceability IDs
+rationale: |
+  確保文檔生成日誌可追溯到原始需求或任務，建立完整的追溯鏈。
+
+  此規則要求：
+  1. 日誌記錄必須包含相關的追溯 ID
+  2. 追溯 ID 必須與文檔內容中的追溯 ID 一致
+  3. 支援透過追溯 ID 查詢相關日誌
+
+normative: MUST
+
+metadata:
+  version: 1.0.0
+  status: active
+  owner: AISDGR
+  created_date: 2026-03-19
+  severity: major
+  risk: medium
+  impact: documentation
+  focus_areas:
+    - Logging & Report
+    - Traceability
+    - Documentation Generation
+  domain_tags:
+    - Docs
+  applicability:
+    - Documentation Generation
+
+examples:
+  compliant:
+    - description: "日誌包含追溯 ID"
+      scenario: |
+        需求 ID: REQ-API-001
+        執行: 生成 API 文檔，日誌記錄 "Trace ID: REQ-API-001"
+        結果: ✅ 符合規則
+
+  non_compliant:
+    - description: "日誌缺乏追溯 ID"
+      scenario: |
+        需求 ID: REQ-API-002
+        執行: 生成 API 文檔，但日誌未記錄追溯 ID
+        結果: ❌ 違反規則（日誌不可追溯）
+
+validation:
+  detectable: true
+  detection_method: |
+    檢查日誌記錄是否包含追溯 ID 欄位。
+
+  evidence_generation: |
+    生成 Evidence：
+    - 追溯 ID 存在性檢查
+    - 追溯 ID 與文檔內容的一致性檢查
+
+related_rules:
+  - DOCS-LG-P-001  # 必須生成執行日誌
+  - DOCS-LG-P-003  # 必須包含理由說明
+  - DOCS-TR-P-001  # 文檔可追溯性
+  - CORE-TR-P-001  # 通用追溯規則
+
+note: |
+  與 DOCS-TR-P-001 配合，確保文檔本身和生成日誌都具有可追溯性。

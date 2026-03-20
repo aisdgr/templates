@@ -1,0 +1,31 @@
+ruleset:
+  id: sts.generate
+  includes:
+  - rule_id: DOCS-TI-P-01
+    version: '>=1.0.0'
+  applicability:
+    domain:
+    - docs
+    artifact:
+    - STS
+    intent:
+    - generate
+    stage:
+    - develop
+  governance:
+    version: 1.0.0
+    status: active
+    owner: aisr
+    intent:
+      purpose:
+      - document_generate
+      - governance_enforcement
+      notes:
+      - System Test Specification specific rules for generate
+    responsibilities:
+      ai:
+      - document_generator
+      human:
+      - document_reviewer
+      system:
+      - validator

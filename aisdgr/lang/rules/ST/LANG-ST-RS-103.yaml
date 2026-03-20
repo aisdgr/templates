@@ -1,0 +1,41 @@
+# ==============================================================================
+# LANG-RS-P-03.yaml
+# Intent-revealing naming and documentation
+# ==============================================================================
+
+rule:
+  id: LANG-ST-RS-103
+  execution_view: rust_engineer
+  constraint: 'Public functions, types, and non-trivial logic
+
+    SHOULD be named and documented to clearly express intent,
+
+    responsibilities, and constraints.
+
+
+    Documentation MUST explain "what" and "why",
+
+    and MUST NOT be used to justify correctness or approval.'
+  boundary:
+    domain:
+    - code
+    artifact:
+    - source_code
+    rule_category: []
+    rule_domain:
+    - LANG
+    languages:
+    - Rust
+  governance:
+    version: 1.0.0
+    status: active
+    owner: asdgr
+    original_rule: CCS-RS-007
+    intent:
+      rationale:
+      - Improve readability, review efficiency, and long-term maintenance.
+    responsibilities:
+      ai:
+      - code_generator
+      human:
+      - code_reviewer

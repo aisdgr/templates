@@ -1,0 +1,36 @@
+# ==============================================================================
+# LANG-JS-C-05.yaml
+# No implicit globals or dynamic execution
+# ==============================================================================
+
+rule:
+  id: LANG-ST-JS-005
+  execution_view: javascript_engineer
+  constraint: 'Code MUST NOT introduce implicit global variables.
+
+    Dynamic code execution mechanisms such as `eval`
+
+    or `new Function` MUST NOT be used.'
+  boundary:
+    domain:
+    - code
+    artifact:
+    - source_code
+    rule_category: []
+    rule_domain:
+    - LANG
+    languages:
+    - JavaScript
+  governance:
+    version: 1.0.0
+    status: active
+    owner: asdgr
+    original_rule: CCS-JS-006
+    intent:
+      rationale:
+      - Prevent security risks and unpredictable runtime behavior.
+    responsibilities:
+      ai:
+      - code_generator
+      human:
+      - code_reviewer

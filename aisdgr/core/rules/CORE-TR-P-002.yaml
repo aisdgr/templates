@@ -1,0 +1,71 @@
+id: CORE-TR-P-002
+type: Policy
+description: Traceability IDs must be embedded in source artifacts themselves
+rationale: |
+  確保追溯資訊與製品緊密結合，防止追溯鏈斷裂。
+
+  此規則要求：
+  1. 追溯 ID 必須直接嵌入在製品中（如註解、元資料）
+  2. 追溯資訊不得僅存在於外部資料庫
+  3. 追溯 ID 必須與製品同步保存和遷移
+
+normative: MUST
+
+metadata:
+  version: 1.0.0
+  status: active
+  owner: AISDGR
+  created_date: 2026-03-19
+  severity: major
+  risk: medium
+  impact: global
+  focus_areas:
+    - Traceability
+    - Artifact Management
+  domain_tags:
+    - Core
+  applicability:
+    - Code Generation
+    - Documentation Generation
+    - Test Generation
+
+examples:
+  compliant:
+    - description: "追溯 ID 嵌入在原始碼中"
+      scenario: |
+        執行: AI 生成函數
+        結果: |
+          // Trace: REQ-001
+          func ProcessData() { ... }
+        驗證: ✅ 符合規則（追溯 ID 嵌入在製品中）
+
+  non_compliant:
+    - description: "追溯 ID 僅存在於外部"
+      scenario: |
+        執行: AI 生成函數
+        結果: |
+          func ProcessData() { ... }
+        追溯資訊: 僅存在於外部資料庫
+        驗證: ❌ 違反規則（追溯 ID 未嵌入製品）
+
+validation:
+  detectable: true
+  detection_method: |
+    檢查製品本身是否包含嵌入的追溯 ID。
+
+  evidence_generation: |
+    生成 Evidence：
+    - 製品中的追溯 ID 檢測結果
+    - 追溯 ID 嵌入位置
+    - 嵌入格式驗證
+
+related_rules:
+  - CORE-TR-P-001  # 生成的製品必須包含追溯 ID
+  - CORE-TR-C-001  # 禁止刪除現有的追溯 ID
+  - CORE-TR-C-002  # 禁止生成沒有追溯 ID 的孤立製品
+  - CORE-TR-P-003  # 單個變更必須僅包含一個追溯 ID
+
+migrated_from:
+  original_id: CODE-TR-P-02
+  migration_date: 2026-03-19
+  migration_reason: "移至 CORE Domain 作為通用追溯 ID 嵌入規則"
