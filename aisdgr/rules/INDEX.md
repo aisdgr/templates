@@ -90,6 +90,46 @@
 
 ---
 
+## Domain: LANG（程式碼語言約束）
+
+### CC — Content Constraints（語言層約束）
+
+> **Pattern + Concrete 架構**：11 條 Pattern Rule（跨語言）+ 18 條 Concrete Rule（語言專屬）= 29 條，覆蓋 54 條 v3.0 AIGM Lang Rules。
+
+| ID              | Type | Pattern  | Lang | Description                            |
+| --------------- | ---- | -------- | ---- | -------------------------------------- |
+| LANG-CC-ALL-P01 | C    | Pattern  | ALL  | AI 必須作為受限執行者，遵守所有適用標準     |
+| LANG-CC-ALL-P02 | C    | Pattern  | ALL  | AI 確保結構有效性，不假定語義正確性         |
+| LANG-CC-ALL-P03 | C    | Pattern  | ALL  | AI 不得基於隱含意圖行動                   |
+| LANG-CC-ALL-P04 | C    | Pattern  | ALL  | 違規必須可見，不得靜默修正                 |
+| LANG-CC-ALL-P05 | C    | Pattern  | ALL  | 程式碼必須具確定性                       |
+| LANG-CC-ALL-P06 | C    | Pattern  | ALL  | 控制流程必須明確                         |
+| LANG-CC-ALL-P07 | C    | Pattern  | ALL  | 敏感資料不得暴露                         |
+| LANG-CC-ALL-P08 | C    | Pattern  | ALL  | 錯誤不得靜默忽略                         |
+| LANG-CC-ALL-P09 | C    | Pattern  | ALL  | 程式碼應揭示意圖                         |
+| LANG-CC-ALL-P10 | C    | Pattern  | ALL  | 資料應為不可變                           |
+| LANG-CC-ALL-P11 | C    | Pattern  | ALL  | 輸入應驗證                             |
+| LANG-CC-GO-C01  | C    | Concrete | GO   | 並發歸屬必須明確                         |
+| LANG-CC-GO-C02  | C    | Concrete | GO   | 介面必須最小化                          |
+| LANG-CC-JV-C01  | C    | Concrete | JV   | 必須使用明確型別                         |
+| LANG-CC-JV-C02  | C    | Concrete | JV   | 繼承應受控制                           |
+| LANG-CC-JV-C03  | C    | Concrete | JV   | null 處理必須明確                       |
+| LANG-CC-JV-C04  | C    | Concrete | JV   | 例外不得被忽略                          |
+| LANG-CC-JS-C01  | C    | Concrete | JS   | 必須使用 const/let                      |
+| LANG-CC-JS-C02  | C    | Concrete | JS   | 必須使用嚴格等號                         |
+| LANG-CC-JS-C03  | C    | Concrete | JS   | 不得使用隱含全域變數                     |
+| LANG-CC-TS-C01  | C    | Concrete | TS   | 必須啟用嚴格型別檢查                     |
+| LANG-CC-TS-C02  | C    | Concrete | TS   | 公開 API 必須明確標註型別                |
+| LANG-CC-TS-C03  | C    | Concrete | TS   | 不得使用不安全的型別斷言                 |
+| LANG-CC-PY-C01  | C    | Concrete | PY   | 例外必須明確處理                         |
+| LANG-CC-PY-C02  | C    | Concrete | PY   | 核心邏輯必須具確定性                     |
+| LANG-CC-PY-C03  | C    | Concrete | PY   | 輸入應在邊界驗證                        |
+| LANG-CC-RS-C01  | C    | Concrete | RS   | 所有權與借用必須正確                     |
+| LANG-CC-RS-C02  | C    | Concrete | RS   | 不得使用 unsafe                         |
+| LANG-CC-RS-C03  | C    | Concrete | RS   | 生命週期合約應明確                       |
+
+---
+
 ## Domain: SPEC（規格文件生成）
 
 ### TR — Traceability（可追溯性）
@@ -183,4 +223,5 @@
 | Domain | TR  | BD  | AR  | ST  | TI  | CN  | LG  | CC  | 合計 |
 | ------ | --- | --- | --- | --- | --- | --- | --- | --- | ---- |
 | CODE   | 5   | 7   | 5   | 6   | 5   | 3   | 9   | —   | 40   |
+| LANG   | —   | —   | —   | —   | —   | —   | —   | 29  | 29   |
 | SPEC   | 6   | 7   | 5   | 6   | —   | 3   | 9   | 7   | 43   |
